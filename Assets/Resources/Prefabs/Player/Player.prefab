@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591819997861733907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2101120027413610668}
   - component: {fileID: 6772020166255092793}
   - component: {fileID: 7268047885603715099}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,16 +178,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Motor: {fileID: 2101120027413610668}
-  MaxStableMoveSpeed: 10
+  MaxStableMoveSpeed: 7
   StableMovementSharpness: 15
   OrientationSharpness: 10
-  MaxAirMoveSpeed: 15
-  AirAccelerationSpeed: 15
+  MaxAirMoveSpeed: 5
+  AirAccelerationSpeed: 5
   Drag: 0.1
   Gravity: {x: 0, y: -30, z: 0}
   AllowJumpingWhenSliding: 0
-  JumpUpSpeed: 10
-  JumpScalableForwardSpeed: 10
+  JumpUpSpeed: 7
+  JumpScalableForwardSpeed: 2
   JumpPreGroundingGraceTime: 0
   JumpPostGroundingGraceTime: 0
   BonusOrientationSharpness: 10
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 3137788225395571078}
   - component: {fileID: 385428820975117111}
   - component: {fileID: 4958308677547491212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}

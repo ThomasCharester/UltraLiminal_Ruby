@@ -6,6 +6,6 @@ namespace Code.Gameplay.Common.Collisions
     {
         void Register(int instanceId, IEntity entity);
         void Unregister(int instanceId);
-        TEntity GetEntity<TEntity>(int instanceId) where TEntity : class;
+        TEntity Get<TEntity>(int instanceId) where TEntity : class;
     }
 }

@@ -1,11 +1,14 @@
 using Code.Gameplay.Common;
 using Code.Gameplay.Common.Collisions;
+using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Camera.Factory;
+using Code.Gameplay.Features.Items.Factories;
 using Code.Gameplay.Features.Player.Factory;
 using Code.Gameplay.Input;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Level;
+using Code.Gameplay.StaticData;
 using Code.Infrastructure.Indentifiers;
 using Code.Infrastructure.Loading;
 using Code.Infrastructure.ShitManagement;
@@ -37,6 +40,7 @@ namespace Code.Infrastructure.Installers
         private void BindGameplayServices()
         {
             Container.Bind<ITimeService>().To<TimeService>().AsSingle();
+            Container.Bind<IPhysicsService>().To<PhysicsService>().AsSingle();
             Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
             Container.Bind<GameplayConstants>().FromInstance(gameplayConstants).AsSingle();
         }
@@ -50,7 +54,8 @@ namespace Code.Infrastructure.Installers
         private void BindInfrastructureServices()
         {
             Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
-            Container.Bind<IIndentifierService>().To<IndentifierService>().AsSingle();
+            Container.Bind<IIdentifierService>().To<IdentifierService>().AsSingle();
+            Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
         }
         private void BindSystemFactories()
         {
@@ -58,6 +63,8 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
             Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
             Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
+            Container.Bind<IItemFactory>().To<ItemFactory>().AsSingle();
+            Container.Bind<IInventoryFactory>().To<InventoryFactory>().AsSingle();
         }
         private void BindAssetManagementServices()
         {
@@ -75,6 +82,7 @@ namespace Code.Infrastructure.Installers
         }
         public void Initialize()
         {
+            Container.Resolve<IStaticDataService>().LoadAll();
             Container.Resolve<ISceneLoader>().LoadScene("Chistilinsk");   
         }
 

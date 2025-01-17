@@ -10,50 +10,65 @@ public static class GameComponentsLookup {
 
     public const int Destructed = 0;
     public const int Id = 1;
-    public const int View = 2;
-    public const int ViewPath = 3;
-    public const int ViewPrefab = 4;
-    public const int CharacterController = 5;
-    public const int Direction = 6;
-    public const int SpawnPoint = 7;
-    public const int Speed = 8;
-    public const int Transform = 9;
-    public const int WorldPosition = 10;
-    public const int WorldRotation = 11;
-    public const int Camera = 12;
-    public const int CameraTrackingTarget = 13;
-    public const int Cinemachine = 14;
-    public const int CinemachineCamera = 15;
-    public const int MainCamera = 16;
-    public const int Tracking = 17;
-    public const int Player = 18;
-    public const int PlayerAnimator = 19;
-    public const int AxisInput = 20;
-    public const int CrouchButton = 21;
-    public const int CrouchButtonHold = 22;
-    public const int CrouchButtonPressed = 23;
-    public const int Input = 24;
-    public const int JumpButton = 25;
-    public const int JumpButtonHold = 26;
-    public const int JumpButtonPressed = 27;
-    public const int PlayerInputs = 28;
-    public const int UseButton = 29;
-    public const int UseButtonHold = 30;
-    public const int UseButtonPressed = 31;
+    public const int SelfDestructTimer = 2;
+    public const int View = 3;
+    public const int ViewPath = 4;
+    public const int ViewPrefab = 5;
+    public const int CharacterController = 6;
+    public const int Direction = 7;
+    public const int LayerMask = 8;
+    public const int Speed = 9;
+    public const int Transform = 10;
+    public const int TransformSpawnPoint = 11;
+    public const int VectorSpawnPoint = 12;
+    public const int WorldPosition = 13;
+    public const int WorldRotation = 14;
+    public const int Camera = 15;
+    public const int CameraTrackingTarget = 16;
+    public const int Cinemachine = 17;
+    public const int CinemachineCamera = 18;
+    public const int MainCamera = 19;
+    public const int Tracking = 20;
+    public const int DebugKeyMiniGameActivator = 21;
+    public const int Inventory = 22;
+    public const int Item = 23;
+    public const int ItemID = 24;
+    public const int PlayerItemList = 25;
+    public const int Triggered = 26;
+    public const int Useless = 27;
+    public const int WorldItemList = 28;
+    public const int Player = 29;
+    public const int PlayerAnimator = 30;
+    public const int TriggeredItem = 31;
+    public const int AxisInput = 32;
+    public const int CrouchButton = 33;
+    public const int CrouchButtonHold = 34;
+    public const int CrouchButtonPressed = 35;
+    public const int Input = 36;
+    public const int JumpButton = 37;
+    public const int JumpButtonHold = 38;
+    public const int JumpButtonPressed = 39;
+    public const int PlayerInputs = 40;
+    public const int UseButton = 41;
+    public const int UseButtonHold = 42;
+    public const int UseButtonPressed = 43;
 
-    public const int TotalComponents = 32;
+    public const int TotalComponents = 44;
 
     public static readonly string[] componentNames = {
         "Destructed",
         "Id",
+        "SelfDestructTimer",
         "View",
         "ViewPath",
         "ViewPrefab",
         "CharacterController",
         "Direction",
-        "SpawnPoint",
+        "LayerMask",
         "Speed",
         "Transform",
+        "TransformSpawnPoint",
+        "VectorSpawnPoint",
         "WorldPosition",
         "WorldRotation",
         "Camera",
@@ -62,8 +77,17 @@ public static class GameComponentsLookup {
         "CinemachineCamera",
         "MainCamera",
         "Tracking",
+        "DebugKeyMiniGameActivator",
+        "Inventory",
+        "Item",
+        "ItemID",
+        "PlayerItemList",
+        "Triggered",
+        "Useless",
+        "WorldItemList",
         "Player",
         "PlayerAnimator",
+        "TriggeredItem",
         "AxisInput",
         "CrouchButton",
         "CrouchButtonHold",
@@ -81,14 +105,17 @@ public static class GameComponentsLookup {
     public static readonly System.Type[] componentTypes = {
         typeof(Code.Common.Destructed),
         typeof(Code.Common.Id),
+        typeof(Code.Common.SelfDestructTimer),
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPath),
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.CharacterControllerComponent),
         typeof(Code.Gameplay.Common.Direction),
-        typeof(Code.Gameplay.Common.SpawnPoint),
+        typeof(Code.Gameplay.Common.LayerMask),
         typeof(Code.Gameplay.Common.Speed),
         typeof(Code.Gameplay.Common.TransformComponent),
+        typeof(Code.Gameplay.Common.TransformSpawnPoint),
+        typeof(Code.Gameplay.Common.VectorSpawnPoint),
         typeof(Code.Gameplay.Common.WorldPosition),
         typeof(Code.Gameplay.Common.WorldRotation),
         typeof(Code.Gameplay.Features.Camera.Camera),
@@ -97,8 +124,17 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Camera.CinemachineCameraComponent),
         typeof(Code.Gameplay.Features.Camera.MainCamera),
         typeof(Code.Gameplay.Features.Camera.Tracking),
+        typeof(Code.Gameplay.Features.Items.DebugKeyMiniGameActivator),
+        typeof(Code.Gameplay.Features.Items.Inventory),
+        typeof(Code.Gameplay.Features.Items.Item),
+        typeof(Code.Gameplay.Features.Items.ItemIDComponent),
+        typeof(Code.Gameplay.Features.Items.PlayerItemList),
+        typeof(Code.Gameplay.Features.Items.Triggered),
+        typeof(Code.Gameplay.Features.Items.Useless),
+        typeof(Code.Gameplay.Features.Items.WorldItemList),
         typeof(Code.Gameplay.Features.Player.Player),
         typeof(Code.Gameplay.Features.Player.PlayerAnimatorComponent),
+        typeof(Code.Gameplay.Features.Player.TriggeredItem),
         typeof(Code.Gameplay.Input.AxisInput),
         typeof(Code.Gameplay.Input.CrouchButton),
         typeof(Code.Gameplay.Input.CrouchButtonHold),

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Code.Gameplay.Level
@@ -10,5 +11,7 @@ namespace Code.Gameplay.Level
         {
             PlayerStart = playerStart;
         }
+
+        public List<Transform> ItemSpawnPoints { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 namespace Code.Infrastructure.Indentifiers
 {
-    public interface IIndentifierService
+    public interface IIdentifierService
     {
         int NextId();
     }

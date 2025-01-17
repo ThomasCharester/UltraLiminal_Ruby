@@ -11,9 +11,13 @@ namespace Code.Gameplay.Features.Player
         public PlayerFeature(ISystemFactory systems)
         {
             Add(systems.Create<PlayerInitializeSystem>());
+            Add(systems.Create<InitializePlayerInventorySystem>());
+            
             Add(systems.Create<SetPlayerInputsSystem>());
             Add(systems.Create<SendPlayerInputsToControllerSystem>());
             Add(systems.Create<SetPlayerAnimationMovementSystem>());
+            
+            Add(systems.Create<ProcessPlayerUseSystem>());
         }
     }
 }

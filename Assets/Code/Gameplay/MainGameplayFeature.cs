@@ -1,4 +1,6 @@
+using Code.Common.Destruct;
 using Code.Gameplay.Features.Camera;
+using Code.Gameplay.Features.Items;
 using Code.Gameplay.Features.Player;
 using Code.Gameplay.Input;
 using Code.Gameplay.Movement;
@@ -17,6 +19,9 @@ namespace Code.Gameplay
             
             Add(systems.Create<PlayerFeature>());
             Add(systems.Create<CameraFeature>());
+            Add(systems.Create<ItemsFeature>());
+            
+            Add(systems.Create<ProcessDestructFeature>());
         }
     }
 }

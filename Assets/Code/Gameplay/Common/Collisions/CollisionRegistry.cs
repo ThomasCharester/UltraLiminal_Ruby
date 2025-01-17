@@ -18,7 +18,7 @@ namespace Code.Gameplay.Common.Collisions
                 _entityByInstanceId.Remove(instanceId);
         }
 
-        public TEntity GetEntity<TEntity>(int instanceId) where TEntity : class
+        public TEntity Get<TEntity>(int instanceId) where TEntity : class
         {
             return _entityByInstanceId.TryGetValue(instanceId, out IEntity entity) 
                 ? entity as TEntity 

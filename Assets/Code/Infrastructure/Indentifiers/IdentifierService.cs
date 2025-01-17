@@ -1,6 +1,6 @@
 namespace Code.Infrastructure.Indentifiers
 {
-    public class IndentifierService : IIndentifierService
+    public class IdentifierService : IIdentifierService
     {
         private int _lastId = 1;
         

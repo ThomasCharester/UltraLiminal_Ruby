@@ -4,7 +4,8 @@ namespace Code.Common.Extensions
 {
     public enum CollisionLayer
     {
-        Player = 7
+        Player = 7,
+        Items = 6
     }
     public static class CollisionExtentions
     {

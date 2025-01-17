@@ -7,18 +7,18 @@ namespace Code.Gameplay.Features.Player.Factory
 {
     public class PlayerFactory : IPlayerFactory
     {
-        private readonly IIndentifierService _indentifierService;
+        private readonly IIdentifierService _identifierService;
 
-        public PlayerFactory(IIndentifierService indentifierService)
+        public PlayerFactory(IIdentifierService identifierService)
         {
-            _indentifierService = indentifierService;
+            _identifierService = identifierService;
         }
 
         public GameEntity CreatePlayer(Vector3 position)
         {
             return CreateEntity.Empty()
-                    .AddId(_indentifierService.NextId())
-                    .AddSpawnPoint(position)
+                    .AddId(_identifierService.NextId())
+                    .AddVectorSpawnPoint(position)
                     .AddSpeed(5f)
                     .AddViewPath("Prefabs/Player/Player")
                     .With(x => x.isPlayer = true);

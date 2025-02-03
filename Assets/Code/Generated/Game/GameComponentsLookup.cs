@@ -14,46 +14,58 @@ public static class GameComponentsLookup {
     public const int View = 3;
     public const int ViewPath = 4;
     public const int ViewPrefab = 5;
-    public const int CharacterController = 6;
-    public const int Direction = 7;
-    public const int LayerMask = 8;
-    public const int Speed = 9;
-    public const int Transform = 10;
-    public const int TransformSpawnPoint = 11;
-    public const int VectorSpawnPoint = 12;
-    public const int WorldPosition = 13;
-    public const int WorldRotation = 14;
-    public const int Camera = 15;
-    public const int CameraTrackingTarget = 16;
-    public const int Cinemachine = 17;
-    public const int CinemachineCamera = 18;
-    public const int MainCamera = 19;
-    public const int Tracking = 20;
-    public const int DebugKeyMiniGameActivator = 21;
-    public const int Inventory = 22;
-    public const int Item = 23;
-    public const int ItemID = 24;
-    public const int PlayerItemList = 25;
-    public const int Triggered = 26;
-    public const int Useless = 27;
-    public const int WorldItemList = 28;
-    public const int Player = 29;
-    public const int PlayerAnimator = 30;
-    public const int TriggeredItem = 31;
-    public const int AxisInput = 32;
-    public const int CrouchButton = 33;
-    public const int CrouchButtonHold = 34;
-    public const int CrouchButtonPressed = 35;
-    public const int Input = 36;
-    public const int JumpButton = 37;
-    public const int JumpButtonHold = 38;
-    public const int JumpButtonPressed = 39;
-    public const int PlayerInputs = 40;
-    public const int UseButton = 41;
-    public const int UseButtonHold = 42;
-    public const int UseButtonPressed = 43;
+    public const int AnimationSpeed = 6;
+    public const int CharacterController = 7;
+    public const int Direction = 8;
+    public const int LayerMask = 9;
+    public const int Speed = 10;
+    public const int Transform = 11;
+    public const int TransformSpawnPoint = 12;
+    public const int VectorSpawnPoint = 13;
+    public const int WorldPosition = 14;
+    public const int WorldRotation = 15;
+    public const int MultiAimConstraint = 16;
+    public const int NotYetUnWeighted = 17;
+    public const int NotYetWeighted = 18;
+    public const int RigBuilder = 19;
+    public const int TrackingTarget = 20;
+    public const int Weighted = 21;
+    public const int Camera = 22;
+    public const int CameraTrackingTarget = 23;
+    public const int Cinemachine = 24;
+    public const int CinemachineCamera = 25;
+    public const int MainCamera = 26;
+    public const int Tracking = 27;
+    public const int DebugDoorMiniGameActivator = 28;
+    public const int DebugKeyMiniGameActivator = 29;
+    public const int Inventory = 30;
+    public const int Item = 31;
+    public const int ItemID = 32;
+    public const int PlayerItemList = 33;
+    public const int Triggered = 34;
+    public const int Useless = 35;
+    public const int WorldItemList = 36;
+    public const int NPC = 37;
+    public const int FoundTarget = 38;
+    public const int WatchingForTargets = 39;
+    public const int WatchRadius = 40;
+    public const int Player = 41;
+    public const int PlayerAnimator = 42;
+    public const int TriggeredItem = 43;
+    public const int AxisInput = 44;
+    public const int CrouchButton = 45;
+    public const int CrouchButtonHold = 46;
+    public const int CrouchButtonPressed = 47;
+    public const int Input = 48;
+    public const int JumpButton = 49;
+    public const int JumpButtonHold = 50;
+    public const int JumpButtonPressed = 51;
+    public const int PlayerInputs = 52;
+    public const int UseButton = 53;
+    public const int UseButtonHold = 54;
+    public const int UseButtonPressed = 55;
 
-    public const int TotalComponents = 44;
+    public const int TotalComponents = 56;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -62,6 +74,7 @@ public static class GameComponentsLookup {
         "View",
         "ViewPath",
         "ViewPrefab",
+        "AnimationSpeed",
         "CharacterController",
         "Direction",
         "LayerMask",
@@ -71,12 +84,19 @@ public static class GameComponentsLookup {
         "VectorSpawnPoint",
         "WorldPosition",
         "WorldRotation",
+        "MultiAimConstraint",
+        "NotYetUnWeighted",
+        "NotYetWeighted",
+        "RigBuilder",
+        "TrackingTarget",
+        "Weighted",
         "Camera",
         "CameraTrackingTarget",
         "Cinemachine",
         "CinemachineCamera",
         "MainCamera",
         "Tracking",
+        "DebugDoorMiniGameActivator",
         "DebugKeyMiniGameActivator",
         "Inventory",
         "Item",
@@ -85,6 +105,10 @@ public static class GameComponentsLookup {
         "Triggered",
         "Useless",
         "WorldItemList",
+        "NPC",
+        "FoundTarget",
+        "WatchingForTargets",
+        "WatchRadius",
         "Player",
         "PlayerAnimator",
         "TriggeredItem",
@@ -109,6 +133,7 @@ public static class GameComponentsLookup {
         typeof(Code.Common.View),
         typeof(Code.Common.ViewPath),
         typeof(Code.Common.ViewPrefab),
+        typeof(Code.Gameplay.Common.AnimationSpeed),
         typeof(Code.Gameplay.Common.CharacterControllerComponent),
         typeof(Code.Gameplay.Common.Direction),
         typeof(Code.Gameplay.Common.LayerMask),
@@ -118,12 +143,19 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Common.VectorSpawnPoint),
         typeof(Code.Gameplay.Common.WorldPosition),
         typeof(Code.Gameplay.Common.WorldRotation),
+        typeof(Code.Gameplay.Features.AnimationRigShit.MultiAimConstraintComponent),
+        typeof(Code.Gameplay.Features.AnimationRigShit.NotYetUnWeighted),
+        typeof(Code.Gameplay.Features.AnimationRigShit.NotYetWeighted),
+        typeof(Code.Gameplay.Features.AnimationRigShit.RigBuilderComponent),
+        typeof(Code.Gameplay.Features.AnimationRigShit.TrackingTarget),
+        typeof(Code.Gameplay.Features.AnimationRigShit.Weighted),
         typeof(Code.Gameplay.Features.Camera.Camera),
         typeof(Code.Gameplay.Features.Camera.CameraTrackingTarget),
         typeof(Code.Gameplay.Features.Camera.Cinemachine),
         typeof(Code.Gameplay.Features.Camera.CinemachineCameraComponent),
         typeof(Code.Gameplay.Features.Camera.MainCamera),
         typeof(Code.Gameplay.Features.Camera.Tracking),
+        typeof(Code.Gameplay.Features.Items.DebugDoorMiniGameActivator),
         typeof(Code.Gameplay.Features.Items.DebugKeyMiniGameActivator),
         typeof(Code.Gameplay.Features.Items.Inventory),
         typeof(Code.Gameplay.Features.Items.Item),
@@ -132,6 +164,10 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Items.Triggered),
         typeof(Code.Gameplay.Features.Items.Useless),
         typeof(Code.Gameplay.Features.Items.WorldItemList),
+        typeof(Code.Gameplay.Features.NPC.NPC),
+        typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),
+        typeof(Code.Gameplay.Features.ObjectSeek.WatchingForTargets),
+        typeof(Code.Gameplay.Features.ObjectSeek.WatchRadius),
         typeof(Code.Gameplay.Features.Player.Player),
         typeof(Code.Gameplay.Features.Player.PlayerAnimatorComponent),
         typeof(Code.Gameplay.Features.Player.TriggeredItem),

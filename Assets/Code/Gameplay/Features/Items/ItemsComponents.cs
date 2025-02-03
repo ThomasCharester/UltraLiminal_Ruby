@@ -15,4 +15,5 @@ namespace Code.Gameplay.Features.Items
     
     [Game] public class Useless : IComponent { }
     [Game] public class DebugKeyMiniGameActivator : IComponent { }
+    [Game] public class DebugDoorMiniGameActivator : IComponent { }
 }

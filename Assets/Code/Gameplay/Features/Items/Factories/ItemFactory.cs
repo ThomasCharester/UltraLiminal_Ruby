@@ -16,7 +16,7 @@ namespace Code.Gameplay.Features.Items.Factories
             _identifierService = identifierService;
             _staticDataService = staticDataService;
         }
-        
+
         public GameEntity CreateItem(ItemID itemID, Vector3 spawnPoint)
         {
             GameEntity item = CreateEntity.Empty();
@@ -26,16 +26,15 @@ namespace Code.Gameplay.Features.Items.Factories
                     .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
                     .AddVectorSpawnPoint(spawnPoint)
                     .With(x => x.isItem = true);
-            else 
-            item.AddItemID(itemID)
-                .AddId(_identifierService.NextId())
-                .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
-                .AddTransformSpawnPoint(_staticDataService.GetItemConfig(itemID).transform)
-                .With(x => x.isItem = true);
+            else
+                item.AddItemID(itemID)
+                    .AddId(_identifierService.NextId())
+                    .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
+                    .AddTransformSpawnPoint(_staticDataService.GetItemConfig(itemID).transform)
+                    .With(x => x.isItem = true);
 
             AssignMiniGameActivator(item, itemID);
             return item;
-
         }
 
         private GameEntity AssignMiniGameActivator(GameEntity item, ItemID itemID)
@@ -47,6 +46,9 @@ namespace Code.Gameplay.Features.Items.Factories
                     break;
                 case ItemID.DebugKey:
                     item.With(x => x.isDebugKeyMiniGameActivator = true);
+                    break;
+                case ItemID.DebugDoor:
+                    item.With(x => x.isDebugDoorMiniGameActivator = true);
                     break;
             }
 

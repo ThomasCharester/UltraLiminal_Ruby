@@ -17,9 +17,10 @@ namespace Code.Gameplay.Features.Items.Systems
 
         public void Initialize()
         {
-            foreach (var inventory in _worldInventories)
+            foreach (var inventory in _worldInventories) // to do Вынести в конфиг
             {
                 inventory.WorldItemList.Add(ItemID.DebugKey);
+                inventory.WorldItemList.Add(ItemID.DebugDoor);
             }
         }
     }

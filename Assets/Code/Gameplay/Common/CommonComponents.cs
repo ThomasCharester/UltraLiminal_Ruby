@@ -13,4 +13,5 @@ namespace Code.Gameplay.Common
     [Game] public class VectorSpawnPoint : IComponent { public Vector3 Value; }
     [Game] public class TransformSpawnPoint : IComponent { public Transform Value; }
     [Game] public class LayerMask : IComponent { public int Value; }
+    [Game] public class AnimationSpeed : IComponent { public float Value; } 
 }

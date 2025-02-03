@@ -13,6 +13,7 @@ namespace Code.Gameplay.Features.Items
             Add(systems.Create<ProcessWorldInventoryItemsSystem>());
             
             Add(systems.Create<DebugKeyMiniGameSystem>());
+            Add(systems.Create<DebugDoorMiniGameSystem>());
         }
     }
 }

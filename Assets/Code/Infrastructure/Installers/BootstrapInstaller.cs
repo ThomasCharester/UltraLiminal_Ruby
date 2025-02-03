@@ -4,6 +4,7 @@ using Code.Gameplay.Common.Physics;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Camera.Factory;
 using Code.Gameplay.Features.Items.Factories;
+using Code.Gameplay.Features.NPC.Factories;
 using Code.Gameplay.Features.Player.Factory;
 using Code.Gameplay.Input;
 using Code.Gameplay.Input.Service;
@@ -65,6 +66,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<ICameraFactory>().To<CameraFactory>().AsSingle();
             Container.Bind<IItemFactory>().To<ItemFactory>().AsSingle();
             Container.Bind<IInventoryFactory>().To<InventoryFactory>().AsSingle();
+            Container.Bind<INPCFactory>().To<NPCFactory>().AsSingle();
         }
         private void BindAssetManagementServices()
         {

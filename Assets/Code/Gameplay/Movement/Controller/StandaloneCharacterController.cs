@@ -14,7 +14,8 @@ namespace Code.Gameplay.Movement.Controller
         public bool CrouchUp;
         public bool CrouchDown;
 
-        public PlayerCharacterInputs(Vector3 moveAxis, Quaternion cameraRotation, bool jump, bool crouchUp, bool crouchDown)
+        public PlayerCharacterInputs(Vector3 moveAxis, Quaternion cameraRotation, bool jump, bool crouchUp,
+            bool crouchDown)
         {
             MoveAxis = moveAxis;
             CameraRotation = cameraRotation;
@@ -37,7 +38,7 @@ namespace Code.Gameplay.Movement.Controller
     {
         public KinematicCharacterMotor Motor;
 
-        [Header("Stable Movement")] public float MaxStableMoveSpeed = 10f;
+        [Header("Stable Movement")] public float MaxStableMoveSpeed = 2.5f;
         public float StableMovementSharpness = 15f;
         public float OrientationSharpness = 10f;
 
@@ -163,8 +164,8 @@ namespace Code.Gameplay.Movement.Controller
                     // Move and look inputs
                     _moveInputVector = cameraPlanarRotation * moveInputVector;
                     _lookInputVector = cameraPlanarDirection;
-                    
-                    
+
+
                     // Jumping input
                     if (inputs.Jump)
                     {
@@ -188,6 +189,7 @@ namespace Code.Gameplay.Movement.Controller
                     {
                         _shouldBeCrouching = false;
                     }
+
                     break;
                 }
             }
@@ -265,7 +267,7 @@ namespace Code.Gameplay.Movement.Controller
                         // Add move input
                         if (_moveInputVector.sqrMagnitude > 0f)
                         {
-                            Vector3 addedVelocity = _moveInputVector * AirAccelerationSpeed * deltaTime;
+                            Vector3 addedVelocity = _moveInputVector * (AirAccelerationSpeed * deltaTime);
 
                             Vector3 currentVelocityOnInputsPlane =
                                 Vector3.ProjectOnPlane(currentVelocity, Motor.CharacterUp);

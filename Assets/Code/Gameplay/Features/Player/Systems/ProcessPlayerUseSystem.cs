@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.Player.Systems
         {
             foreach (var camera in _camera)
             foreach (var input in _inputs)
-                if (input.isUseButtonHold)
+                if (input.isUseButtonHold) // to do переписать и под NPC
                 {
                     GameEntity item = _physicsService.Raycast(
                         camera.Transform.position,

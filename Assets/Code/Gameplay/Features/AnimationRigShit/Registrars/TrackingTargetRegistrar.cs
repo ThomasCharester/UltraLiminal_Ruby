@@ -1,20 +1,20 @@
-using Code.Gameplay.Features.Player.Animator;
 using Code.Infrastructure.View.Registrar;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.Player.Registrars
+namespace Code.Gameplay.Features.AnimationRigShit.Registrars
 {
     public class TrackingTargetRegistrar : EntityComponentRegistrar
     {
-        public Transform target;
-        
+        [SerializeField] private Transform trackingTarget;
         public override void RegisterComponents()
         {
-            Entity.AddCameraTrackingTarget(target);
+            Entity.AddTrackingTarget(trackingTarget);
         }
+
         public override void UnregisterComponents()
         {
-            Entity.RemoveCameraTrackingTarget();
+            if (Entity.hasTrackingTarget)
+                Entity.RemoveTrackingTarget();
         }
     }
 }

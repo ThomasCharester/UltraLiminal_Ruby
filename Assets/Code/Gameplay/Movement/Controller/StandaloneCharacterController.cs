@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using KinematicCharacterController;
-using KinematicCharacterController.Examples;
+// using KinematicCharacterController.Examples;
 using UnityEngine;
 
 namespace Code.Gameplay.Movement.Controller
@@ -199,11 +199,11 @@ namespace Code.Gameplay.Movement.Controller
         /// This is called every frame by the AI script in order to tell the character what its inputs are
         /// Понадобится в будущем
         /// </summary>
-        public void SetInputs(ref AICharacterInputs inputs)
-        {
-            _moveInputVector = inputs.MoveVector;
-            _lookInputVector = inputs.LookVector;
-        }
+        // public void SetInputs(ref AICharacterInputs inputs)
+        // {
+        //     _moveInputVector = inputs.MoveVector;
+        //     _lookInputVector = inputs.LookVector;
+        // }
 
         private Quaternion _tmpTransientRot;
 

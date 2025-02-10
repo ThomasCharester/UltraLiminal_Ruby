@@ -481,5 +481,7 @@ namespace Code.Gameplay.Movement.Controller
         public void OnDiscreteCollisionDetected(Collider hitCollider)
         {
         }
+        public CapsuleCollider GetCapsuleCollider() => Motor.Capsule;
+        public Rigidbody GetRigidbody() => Motor.AttachedRigidbody;
     }
 }

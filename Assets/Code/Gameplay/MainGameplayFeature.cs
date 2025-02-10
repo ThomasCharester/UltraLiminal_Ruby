@@ -7,6 +7,7 @@ using Code.Gameplay.Features.ObjectSeek;
 using Code.Gameplay.Features.Player;
 using Code.Gameplay.Input;
 using Code.Gameplay.Movement;
+using Code.Gameplay.StateMachine;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View;
 
@@ -19,6 +20,7 @@ namespace Code.Gameplay
             Add(systems.Create<InputFeature>());
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<MovementFeature>());
+            Add(systems.Create<StateMachineFeature>());
             Add(systems.Create<AnimationRigFeature>());
             Add(systems.Create<ObjectSeekFeature>());
             

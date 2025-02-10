@@ -39,7 +39,7 @@ namespace Code.Gameplay.StateMachine
             else if(!IsTransitioningToState)
                 TransitionToState(nextStateKey);
             
-            Debug.Log("CurrentState is " + CurrentState.StateKey);
+            //Debug.Log("CurrentState is " + CurrentState.StateKey);
         }
         public void TransitionToState(EState key)
         {

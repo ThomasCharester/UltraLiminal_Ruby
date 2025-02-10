@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         private float _approachDuration = 2.0f;
         private float _approachWeight = .5f;
         private float _approachRotationWeight = .75f;
-        private float rotationSpeed = 500f;
+        private float _rotationSpeed = 500f;
         private float _riseDistanceThreshold = .5f;
 
         public ApproachState(EnvironmentInteractionContext context,
@@ -24,9 +24,10 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         public override void UpdateState()
         {
             Quaternion expectedGroundRotation = Quaternion.LookRotation(-Vector3.up, Context.RootTransform.forward);
+            
             Context.CurrentIKTargetTransform.rotation = Quaternion.RotateTowards(Context.CurrentIKTargetTransform.rotation, 
                 expectedGroundRotation, 
-                rotationSpeed*Time.deltaTime);
+                _rotationSpeed*Time.deltaTime);
             
             _elapsedTime += Time.deltaTime;
             
@@ -40,7 +41,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         {
             bool isOverStateLifeDuration = _elapsedTime >= _approachDuration;
             
-            if (isOverStateLifeDuration) //|| CheckShouldReset())
+            if (isOverStateLifeDuration || CheckShouldReset())
                 return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
             
             bool isWithinArmsReach = Vector3.Distance(Context.ClosestPointOnColliderFromShoulder,

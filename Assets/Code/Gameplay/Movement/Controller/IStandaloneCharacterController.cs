@@ -4,7 +4,9 @@ namespace Code.Gameplay.Movement.Controller
 {
     public interface IStandaloneCharacterController
     {
-        void SetInputs(PlayerCharacterInputs inputs);
+        public void SetInputs(PlayerCharacterInputs inputs);
         public void SetPosition(Vector3 position);
+        public CapsuleCollider GetCapsuleCollider();
+        public Rigidbody GetRigidbody();
     }
 }

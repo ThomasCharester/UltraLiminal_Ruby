@@ -1,6 +1,7 @@
 using System;
+using UnityEngine;
 
-namespace Code.Gameplay.Features.AnimationRigShit.BaseStateMachine
+namespace Code.Gameplay.StateMachine
 {
     public abstract class BaseState<EState> where EState : Enum
     {
@@ -9,12 +10,13 @@ namespace Code.Gameplay.Features.AnimationRigShit.BaseStateMachine
             StateKey = key;
         }
         public EState StateKey { get; private set; }
+        
         public abstract void EnterState();
         public abstract void ExitState();
         public abstract void UpdateState(); 
         public abstract EState GetNextState();
-        public abstract void OnTriggerEnter();
-        public abstract void OnTriggerStay();
-        public abstract void OnTriggerExit();
+        public abstract void OnTriggerEnter(Collider other);
+        public abstract void OnTriggerStay(Collider other);
+        public abstract void OnTriggerExit(Collider other);
     }
 }

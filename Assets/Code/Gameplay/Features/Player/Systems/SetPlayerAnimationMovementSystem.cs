@@ -38,7 +38,6 @@ namespace Code.Gameplay.Features.Player.Systems
                                 entity.PlayerAnimator.SetRotation(camera.Transform.rotation.y -
                                                                   entity.Transform.rotation.y);
                                 
-                                Debug.Log(input.AxisInput);
                                 
                                 if (input.AxisInput.y > 0f)
                                     entity.PlayerAnimator.IncreaseForwardVector(_time.DeltaTime * entity.AnimationSpeed);

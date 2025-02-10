@@ -2,16 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.AnimationRigShit.BaseStateMachine
+namespace Code.Gameplay.StateMachine
 {
-    public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
+    public abstract class StateManager<EState> : MonoBehaviour, IStateManager where EState : Enum
     {
         protected Dictionary<EState, BaseState<EState>> States = new();
         protected BaseState<EState> CurrentState;
 
         protected bool IsTransitioningToState = false;
-        
-        private void Awake() { }
 
         // private void Start() // MonoBehStuff
         // {
@@ -27,12 +25,12 @@ namespace Code.Gameplay.Features.AnimationRigShit.BaseStateMachine
         //     else if(!IsTransitioningToState)
         //         TransitionToState(nextStateKey);
         // }
-
-        public void StateMachineStart()
+        public virtual void InitializeStateMachine(){}
+        public virtual void StartStateMachine()
         {
             CurrentState.EnterState();
         }
-        public void StateMachineTick()
+        public virtual void Tick()
         {
             EState nextStateKey = CurrentState.GetNextState();
 
@@ -40,16 +38,30 @@ namespace Code.Gameplay.Features.AnimationRigShit.BaseStateMachine
                 CurrentState.UpdateState();
             else if(!IsTransitioningToState)
                 TransitionToState(nextStateKey);
+            
+            Debug.Log("CurrentState is " + CurrentState.StateKey);
         }
         public void TransitionToState(EState key)
         {
+            IsTransitioningToState = true;
             CurrentState.ExitState();
             CurrentState = States[key];
             CurrentState.EnterState();
+            IsTransitioningToState = false;
         }
-        private void OnTriggerEnter(Collider other) { }
-        private void OnTriggerStay(Collider other) { }
-        private void OnTriggerExit(Collider other) { }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            CurrentState.OnTriggerEnter(other);
+        }
+        private void OnTriggerStay(Collider other) 
+        { 
+            CurrentState.OnTriggerStay(other);
+        }
+        private void OnTriggerExit(Collider other) 
+        {
+            CurrentState.OnTriggerExit(other);
+        }
         private void OnCollisionEnter(Collision other) { }
         private void OnCollisionStay(Collision other) { }
         private void OnCollisionExit(Collision other) { }

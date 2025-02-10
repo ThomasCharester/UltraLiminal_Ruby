@@ -6,8 +6,8 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
     public abstract class EnvironmentInteractionState : BaseState<EnvironmentInteractionStateMachine.EEnvironmentInteractionState>
     {
         protected EnvironmentInteractionContext Context;
-        private bool _shouldReset ;
         private float _movingAwayOffset = 0.005f;
+        private bool _shouldReset;
 
         public EnvironmentInteractionState(EnvironmentInteractionContext context, EnvironmentInteractionStateMachine.EEnvironmentInteractionState stateKey) : base(stateKey)
         {
@@ -18,18 +18,34 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         {
             if (_shouldReset)
             {
+                Context.LowestDistance = Mathf.Infinity;
                 _shouldReset = false;
                 return true;
             }
 
+            bool isBadAngle = CheckIsBadAngle();
             bool isMovingAway = CheckIsMovingAway();
 
-            if (isMovingAway)
+            if (isMovingAway || isBadAngle)
                 return true;
             
             return false;
         }
 
+        private bool CheckIsBadAngle()
+        {
+            if (Context.CurrentIntersectingCollider == null) return false;
+
+            Vector3 targetDirection =
+                Context.ClosestPointOnColliderFromShoulder - Context.CurrentShoulderTransform.position;
+            Vector3 shoulderDirection = Context.CurrentBodySide == EnvironmentInteractionContext.EBodySide.Right ? Context.RootTransform.right : -Context.RootTransform.right;
+            
+            float dotProduct = Vector3.Dot(shoulderDirection, targetDirection.normalized);
+
+            bool isBadAngle = dotProduct < 0;
+
+            return isBadAngle;
+        }
         private bool CheckIsMovingAway()
         {
             float currentDistanceToTarget =
@@ -38,9 +54,20 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             if (isSearchingForNewInteraction)
                 return false;
 
-            bool isMovingAwayFromTarget = currentDistanceToTarget > _movingAwayOffset;
+            bool isGettingCloserToTarget = currentDistanceToTarget <= Context.LowestDistance;
+            if (isGettingCloserToTarget)
+            {
+                Context.LowestDistance = currentDistanceToTarget;
+                return false;
+            }
+            
+            bool isMovingAwayFromTarget = currentDistanceToTarget > Context.LowestDistance + _movingAwayOffset;
+
             if (isMovingAwayFromTarget)
+            {
+                Context.LowestDistance = Mathf.Infinity;
                 return true;
+            }
             
             return false;
         }
@@ -71,6 +98,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             {
                 Context.CurrentIntersectingCollider = null;
                 Context.ClosestPointOnColliderFromShoulder = Vector3.positiveInfinity;
+                _shouldReset = true;
             }
         }
 
@@ -87,9 +115,6 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             Vector3 offsetPosition = Context.ClosestPointOnColliderFromShoulder + offset;
             Context.CurrentIKTargetTransform.position = new Vector3(offsetPosition.x,Context.InteractionPointYOffset,offsetPosition.z);
             
-            //Debug.Log("Closest point" + Context.ClosestPointOnColliderFromShoulder);
-            //Debug.Log("Offset" + offsetPosition);
-            Debug.Log(Context.CurrentIKTargetTransform.position);
         }
     }
 }

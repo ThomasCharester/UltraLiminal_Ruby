@@ -19,9 +19,8 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         private Rigidbody _rigidbody;
         private CapsuleCollider _rootCollider;
         private Transform _rootTransform;
-        private Transform _leftOriginalTargetTransform;
-        private Transform _rightOriginalTargetTransform;
-        private Transform _shoulderOrigin;
+        private Vector3 _leftOriginalTargetPosition;
+        private Vector3 _rightOriginalTargetPosition;
 
         public EnvironmentInteractionContext(
             TwoBoneIKConstraint leftIKConstraint,
@@ -29,10 +28,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             MultiRotationConstraint leftMultiRotationConstraint,
             MultiRotationConstraint rightMultiRotationConstraint,
             StandaloneCharacterController standaloneCharacterController, 
-            Transform rootTransform,
-            Transform leftOriginalTarget,
-            Transform rightOriginalTarget,
-            Transform shoulderOrigin)
+            Transform rootTransform)
         {
             _leftIKConstraint = leftIKConstraint;
             _rightIKConstraint = rightIKConstraint;
@@ -41,12 +37,11 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             _rigidbody = standaloneCharacterController.GetRigidbody();
             _rootCollider = standaloneCharacterController.GetCapsuleCollider();
             _rootTransform = rootTransform;
-            _leftOriginalTargetTransform = leftOriginalTarget;
-            _rightOriginalTargetTransform = rightOriginalTarget;
             OriginalTargetRotation = _leftIKConstraint.data.target.rotation;
-            
-            
-            _shoulderOrigin = shoulderOrigin;
+            _leftOriginalTargetPosition = _leftIKConstraint.data.target.transform.position;
+            _rightOriginalTargetPosition = rightIKConstraint.data.target.transform.position;
+
+            CharacterShoulderHeight = _leftIKConstraint.data.root.transform.position.y;
             SetCurrentSide(Vector3.positiveInfinity);
         }
 
@@ -58,7 +53,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         public CapsuleCollider RootCollider => _rootCollider;
         public Transform RootTransform => _rootTransform;
         
-        public float CharacterShoulderHeight => _shoulderOrigin.localPosition.y;
+        public float CharacterShoulderHeight { get; set; }
         public Collider CurrentIntersectingCollider { get; set; }
         public TwoBoneIKConstraint CurrentIKConstraint { get; private set; }
         public MultiRotationConstraint CurrentMultiRotationConstraint { get; private set; }
@@ -70,6 +65,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         public float ColliderCenterY { get; set; }
         public Vector3 CurrentOriginalTargetPosition { get; private set; }
         public Quaternion OriginalTargetRotation { get; private set; }
+        public float LowestDistance { get; set; } = Mathf.Infinity;
 
 
         public void SetCurrentSide(Vector3 positionToCheck)
@@ -80,19 +76,19 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             bool isLeftCloser = Vector3.Distance(positionToCheck,leftShoulder) < Vector3.Distance(positionToCheck, rightShoulder);
             if (isLeftCloser)
             {
-                Debug.Log("LeftCloser");
+                //Debug.Log("LeftCloser");
                 CurrentBodySide = EBodySide.Left;
                 CurrentIKConstraint = _leftIKConstraint;
                 CurrentMultiRotationConstraint = _leftMultiRotationConstraint;
-                CurrentOriginalTargetPosition = _leftOriginalTargetTransform.localPosition;
+                CurrentOriginalTargetPosition = _leftOriginalTargetPosition;
             }
             else
             {
-                Debug.Log("RightCloser");
+                //Debug.Log("RightCloser");
                 CurrentBodySide = EBodySide.Right;
                 CurrentIKConstraint = _rightIKConstraint;
                 CurrentMultiRotationConstraint = _rightMultiRotationConstraint;
-                CurrentOriginalTargetPosition = _rightOriginalTargetTransform.localPosition;
+                CurrentOriginalTargetPosition = _rightOriginalTargetPosition;
             }
             
             CurrentShoulderTransform = CurrentIKConstraint.data.root.transform;

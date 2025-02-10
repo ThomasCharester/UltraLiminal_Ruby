@@ -24,16 +24,16 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         [SerializeField] private MultiRotationConstraint _leftMultiRotationConstraint;
         [SerializeField] private MultiRotationConstraint _rightMultiRotationConstraint;
         [SerializeField] private StandaloneCharacterController _standaloneCharacterController;
-        [SerializeField] private Transform _leftOriginalTransform;
-        [SerializeField] private Transform _rightOriginalTransform;
-        [SerializeField] private Transform _shoulderOrigin;
+        // [SerializeField] private Transform _leftOriginalTransform;
+        // [SerializeField] private Transform _rightOriginalTransform;
+        // [SerializeField] private Transform _shoulderOrigin;
         private BoxCollider _boxCollider;
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
             if(_context != null && _context.ClosestPointOnColliderFromShoulder != Vector3.positiveInfinity) // to do реши
-                Gizmos.DrawSphere(_context.ClosestPointOnColliderFromShoulder, .1f);
+                Gizmos.DrawSphere(_context.ClosestPointOnColliderFromShoulder, .03f);
         }
 
         public override void InitializeStateMachine()
@@ -44,10 +44,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
                 _rightMultiRotationConstraint, 
                 _leftMultiRotationConstraint, 
                 _standaloneCharacterController,
-                transform,
-                _leftOriginalTransform,
-                _rightOriginalTransform,
-                _shoulderOrigin);
+                transform);
             InitializeStates();
             ConstructEnvironmentDetectionCollider();
         }
@@ -79,7 +76,9 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             _boxCollider = gameObject.AddComponent<BoxCollider>();
             
             _boxCollider.size = new Vector3(wingspan, wingspan, wingspan);
-            _boxCollider.center = new Vector3(_context.RootCollider.center.x, _context.RootCollider.center.y + (.25f * wingspan),_context.RootCollider.center.z + (.5f * wingspan));
+            _boxCollider.center = new Vector3(_context.RootCollider.center.x, 
+                _context.RootCollider.center.y + (.25f * wingspan),
+                _context.RootCollider.center.z + (.5f * wingspan));
             _boxCollider.isTrigger = true;
 
             _context.ColliderCenterY = _context.RootCollider.center.y;

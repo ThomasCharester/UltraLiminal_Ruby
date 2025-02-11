@@ -27,6 +27,8 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
         [SerializeField] private Transform _shoulderOrigin;
         [SerializeField] private Transform _leftOriginalTargetTransform; 
         [SerializeField] private Transform _rightOriginalTargetTransform;
+        [SerializeField] private float _lerpDuration = 10.0f;
+        [SerializeField] private float _rotationSpeed = 500.0f;
         private BoxCollider _boxCollider;
 
         private void OnDrawGizmosSelected()
@@ -41,12 +43,15 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
             ValidateConstraints();
             _context = new DoorInteractionContext(_leftIKConstraint,
                 _rightIKConstraint, 
-                _rightMultiRotationConstraint, 
                 _leftMultiRotationConstraint, 
+                _rightMultiRotationConstraint, 
                 _standaloneCharacterController,
                 transform,
                 _leftOriginalTargetTransform,
-                _rightOriginalTargetTransform);
+                _rightOriginalTargetTransform,
+                _shoulderOrigin,
+                _lerpDuration,
+                _rotationSpeed);
             InitializeStates();
             ConstructEnvironmentDetectionCollider();
         }
@@ -62,12 +67,10 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
 
         private void InitializeStates()
         {
-            States.Add(EDoorInteractionState.Reset, new DoorIntResetState(_context, EDoorInteractionState.Reset));
-            States.Add(EDoorInteractionState.Touch, new DoorIntTouchState(_context, EDoorInteractionState.Touch));
             States.Add(EDoorInteractionState.Rise, new DoorIntRiseState(_context, EDoorInteractionState.Rise));
             States.Add(EDoorInteractionState.Search, new DoorIntSearchState(_context, EDoorInteractionState.Search));
 
-            CurrentState = States[EDoorInteractionState.Reset];
+            CurrentState = States[EDoorInteractionState.Search];
         }
 
         private void ConstructEnvironmentDetectionCollider() // 
@@ -76,13 +79,12 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
             
             _boxCollider = gameObject.AddComponent<BoxCollider>();
             
-            _boxCollider.size = new Vector3(wingspan * 0.5f, wingspan, wingspan * 0.5f);
+            _boxCollider.size = new Vector3(wingspan * 0.75f , wingspan, wingspan * 0.5f);
             _boxCollider.center = new Vector3(_context.RootCollider.center.x, 
                 _context.RootCollider.center.y + (.125f * wingspan),
                 _context.RootCollider.center.z + (.25f * wingspan));
             _boxCollider.isTrigger = true;
 
-            _context.ColliderCenterY = _context.RootCollider.center.y;
         }
     }
 }

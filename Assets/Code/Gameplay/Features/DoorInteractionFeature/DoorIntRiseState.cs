@@ -5,15 +5,14 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
 {
     public class DoorIntRiseState: DoorInteractionState
     {
-        private float _elapsedTime = 0.0f;
-        private float _lerpDuration = 5.0f;
         private float _riseWeight = 1.0f;
         private Quaternion _expectedHandRotation;
         private float _maxDistance = .5f;
-        protected LayerMask _interactableLayerMask = LayerMask.GetMask("Interactable");
-        private float _rotationSpeed = 1000f;
-        private float _touchDistanceThreshold = .5f;
-        private float _touchTimeThreshold = 1f;
+        protected LayerMask _interactableLayerMask = LayerMask.GetMask("Doors");
+        
+        
+        private float _elapsedLeftTime = 0.0f;
+        private float _elapsedRightTime = 0.0f;
         
         public DoorIntRiseState(DoorInteractionContext context,
             DoorInteractionStateMachine.EDoorInteractionState estate) : base(context, estate)
@@ -21,7 +20,8 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
 
         public override void EnterState()
         {
-            _elapsedTime = 0.0f;
+            _elapsedRightTime = 0.0f;
+            _elapsedLeftTime = 0.0f;
         }
         public override void ExitState(){}
 
@@ -29,28 +29,46 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
         {
             CalculateExpectedHandRotation();
             
-            //Context.InteractionPointYOffset = Mathf.Lerp(Context.InteractionPointYOffset, Context.ClosestPointOnColliderFromShoulder.y, _elapsedTime / _lerpDuration);
-            
-            Context.CurrentIKConstraint.weight = Mathf.Lerp(Context.CurrentIKConstraint.weight, _riseWeight, _elapsedTime / _lerpDuration);
-            
-            Context.CurrentMultiRotationConstraint.weight = Mathf.Lerp(Context.CurrentMultiRotationConstraint.weight, _riseWeight, _elapsedTime / _lerpDuration);
-            
             Context.CurrentIKTargetTransform.rotation = Quaternion.RotateTowards(Context.CurrentIKTargetTransform.rotation, _expectedHandRotation,
-                _rotationSpeed * Time.deltaTime);
+                Context.RotationSpeed * Time.deltaTime);
             
-            _elapsedTime += Time.deltaTime;
+            if (Context.CurrentBodySide == DoorInteractionContext.EBodySide.Right)
+            {
+                if(_elapsedRightTime >= 0) _elapsedRightTime -= Time.deltaTime;
+                
+                _elapsedLeftTime += Time.deltaTime;
+            
+                Context.CurrentIKConstraint.weight = Mathf.Lerp(Context.CurrentIKConstraint.weight, _riseWeight, _elapsedLeftTime / Context.LerpDuration);
+            
+                Context.CurrentMultiRotationConstraint.weight = Mathf.Lerp(Context.CurrentMultiRotationConstraint.weight, _riseWeight, _elapsedLeftTime / Context.LerpDuration);
+                
+                Context.ResetHand(DoorInteractionContext.EBodySide.Left,_elapsedLeftTime);
+            }
+            else 
+            {
+                if(_elapsedLeftTime >= 0) _elapsedLeftTime -= Time.deltaTime;
+                
+                _elapsedRightTime += Time.deltaTime;
+            
+                Context.CurrentIKConstraint.weight = Mathf.Lerp(Context.CurrentIKConstraint.weight, _riseWeight, _elapsedRightTime / Context.LerpDuration);
+                
+                Context.CurrentMultiRotationConstraint.weight = Mathf.Lerp(Context.CurrentMultiRotationConstraint.weight, _riseWeight, _elapsedRightTime / Context.LerpDuration);
+                
+                Context.ResetHand(DoorInteractionContext.EBodySide.Right,_elapsedRightTime);
+            }
         }
 
         private void CalculateExpectedHandRotation()
         {
             Vector3 startPos = Context.CurrentShoulderTransform.position;
             Vector3 endPos = Context.ClosestPointOnColliderFromShoulder;
-            Vector3 direction = (endPos - startPos).normalized;
+            Vector3 direction = (endPos - startPos); //.normalized
 
             RaycastHit hit;
 
             if (Physics.Raycast(startPos, direction, out hit, _maxDistance, _interactableLayerMask))
             {
+                DebugExtension.DebugArrow(startPos, direction, Color.red, 0.3f);
                 Vector3 surfaceNormal = hit.normal;
                 Vector3 targetForward = -surfaceNormal;
                 
@@ -60,13 +78,8 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
 
         public override DoorInteractionStateMachine.EDoorInteractionState GetNextState()
         {
-            if (CheckShouldReset())
-                 return DoorInteractionStateMachine.EDoorInteractionState.Reset;
-            
-            
-            if(Vector3.Distance(Context.CurrentIKTargetTransform.position, Context.ClosestPointOnColliderFromShoulder) < _touchDistanceThreshold 
-               && _elapsedTime >= _touchTimeThreshold)
-                return DoorInteractionStateMachine.EDoorInteractionState.Touch;
+            if (CheckShouldReset() || Context.CurrentIntersectingCollider == null)
+                 return DoorInteractionStateMachine.EDoorInteractionState.Search;
             
             return StateKey;
         }

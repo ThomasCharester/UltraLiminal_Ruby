@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5590083836932959781}
   - component: {fileID: -8266315013129248756}
   - component: {fileID: -4137226076510510390}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestMuzjik
   m_TagString: Untagged
   m_Icon: {fileID: 0}

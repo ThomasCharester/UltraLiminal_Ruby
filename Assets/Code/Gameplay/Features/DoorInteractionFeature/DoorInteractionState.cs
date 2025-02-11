@@ -1,15 +1,17 @@
+using Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine;
 using Code.Gameplay.StateMachine;
 using UnityEngine;
 
-namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
+namespace Code.Gameplay.Features.DoorInteractionFeature
 {
-    public abstract class EnvironmentInteractionState : BaseState<EnvironmentInteractionStateMachine.EEnvironmentInteractionState>
+    public abstract class DoorInteractionState: BaseState<DoorInteractionStateMachine.EDoorInteractionState>
     {
-        protected EnvironmentInteractionContext Context;
+        protected DoorInteractionContext Context;
         private float _movingAwayOffset = 0.005f;
         private bool _shouldReset;
 
-        public EnvironmentInteractionState(EnvironmentInteractionContext context, EnvironmentInteractionStateMachine.EEnvironmentInteractionState stateKey) : base(stateKey)
+        public DoorInteractionState(DoorInteractionContext context, DoorInteractionStateMachine.EDoorInteractionState stateKey)
+            : base(stateKey)
         {
             Context = context;
         }
@@ -23,10 +25,10 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
                 return true;
             }
 
-            bool isBadAngle = CheckIsBadAngle();
+            //bool isBadAngle = CheckIsBadAngle();
             bool isMovingAway = CheckIsMovingAway();
 
-            if (isMovingAway || isBadAngle)
+            if (isMovingAway)// || isBadAngle)
                 return true;
             
             return false;
@@ -38,7 +40,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
             Vector3 targetDirection =
                 Context.ClosestPointOnColliderFromShoulder - Context.CurrentShoulderTransform.position;
-            Vector3 shoulderDirection = Context.CurrentBodySide == EnvironmentInteractionContext.EBodySide.Right ? Context.RootTransform.right : -Context.RootTransform.right;
+            Vector3 shoulderDirection = Context.CurrentBodySide == DoorInteractionContext.EBodySide.Right ? Context.RootTransform.right : -Context.RootTransform.right;
             
             float dotProduct = Vector3.Dot(shoulderDirection, targetDirection.normalized);
 
@@ -79,7 +81,8 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
         protected void StartIKTargetPositionTracking(Collider intersectingCollider)
         {
-            if (intersectingCollider.gameObject.layer != LayerMask.NameToLayer("Environment") || Context.CurrentIntersectingCollider != null) return;
+            if (intersectingCollider.gameObject.layer != LayerMask.NameToLayer("Doors") 
+                || Context.CurrentIntersectingCollider != null) return;
             
             Context.CurrentIntersectingCollider = intersectingCollider;
             Vector3 closestPointFromRoot = GetClosestPointCollider(intersectingCollider, Context.RootTransform.position);
@@ -102,7 +105,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             }
         }
 
-        private void SetIkTargetPosition()
+        private void SetIkTargetPosition() // todo
         {
             Context.ClosestPointOnColliderFromShoulder = GetClosestPointCollider(Context.CurrentIntersectingCollider, 
                 new Vector3(Context.CurrentShoulderTransform.position.x,Context.CharacterShoulderHeight, Context.CurrentShoulderTransform.position.z));
@@ -113,7 +116,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             Vector3 offset = normalizedRayDirection * offsetDistance;
             
             Vector3 offsetPosition = Context.ClosestPointOnColliderFromShoulder + offset;
-            Context.CurrentIKTargetTransform.position = new Vector3(offsetPosition.x, 0 ,offsetPosition.z);
+            Context.CurrentIKTargetTransform.position = offsetPosition;
         }
     }
 }

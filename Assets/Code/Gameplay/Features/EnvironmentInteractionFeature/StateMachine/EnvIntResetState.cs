@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 {
-    public class ResetState : EnvironmentInteractionState
+    public class EnvIntResetState : EnvironmentInteractionState
     {
         private float _elapsedTime = 0.0f;
         private float _resetDuration = 2.0f;
         private float _lerpDuration = 10.0f;
         private float _rotationSpeed = 500.0f;
 
-        public ResetState(EnvironmentInteractionContext context,
+        public EnvIntResetState(EnvironmentInteractionContext context,
             EnvironmentInteractionStateMachine.EEnvironmentInteractionState estate) : base(context, estate)
         { }
 

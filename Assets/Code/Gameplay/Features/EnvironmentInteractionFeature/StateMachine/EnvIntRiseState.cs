@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 {
-    public class RiseState : EnvironmentInteractionState
+    public class EnvIntRiseState : EnvironmentInteractionState
     {
         private float _elapsedTime = 0.0f;
         private float _lerpDuration = 5.0f;
@@ -12,10 +12,10 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         private float _maxDistance = .5f;
         protected LayerMask _interactableLayerMask = LayerMask.GetMask("Interactable");
         private float _rotationSpeed = 1000f;
-        private float _touchDistanceThreshold = .05f;
+        private float _touchDistanceThreshold = .5f;
         private float _touchTimeThreshold = 1f;
         
-        public RiseState(EnvironmentInteractionContext context,
+        public EnvIntRiseState(EnvironmentInteractionContext context,
             EnvironmentInteractionStateMachine.EEnvironmentInteractionState estate) : base(context, estate)
         { }
 
@@ -60,8 +60,9 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
         public override EnvironmentInteractionStateMachine.EEnvironmentInteractionState GetNextState()
         {
-            if (CheckShouldReset())
-                return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
+            // if (CheckShouldReset())
+            //     return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
+            
             
             if(Vector3.Distance(Context.CurrentIKTargetTransform.position, Context.ClosestPointOnColliderFromShoulder) < _touchDistanceThreshold 
                && _elapsedTime >= _touchTimeThreshold)

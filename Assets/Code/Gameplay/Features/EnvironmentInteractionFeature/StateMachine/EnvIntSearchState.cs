@@ -2,14 +2,14 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 {
-    public class SearchState : EnvironmentInteractionState
+    public class EnvIntSearchState : EnvironmentInteractionState
     {
         public float _approachDistanceThreshold = 2.0f;
         // private float _elapsedTime = 0.0f;
         // private float _lerpDuration = 10.0f;
         // private float _rotationSpeed = 500.0f;
 
-        public SearchState(EnvironmentInteractionContext context,
+        public EnvIntSearchState(EnvironmentInteractionContext context,
             EnvironmentInteractionStateMachine.EEnvironmentInteractionState estate) : base(context, estate)
         {
         }
@@ -41,8 +41,8 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
         public override EnvironmentInteractionStateMachine.EEnvironmentInteractionState GetNextState()
         {
-            if (CheckShouldReset())
-                 return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
+            // if (CheckShouldReset())
+            //      return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
     
             bool isCloseToTarget =
                 Vector3.Distance(Context.ClosestPointOnColliderFromShoulder, Context.RootTransform.position) <

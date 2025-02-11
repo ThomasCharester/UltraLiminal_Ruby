@@ -113,9 +113,9 @@ GameObject:
   - component: {fileID: -3039426836297787171}
   - component: {fileID: 6443105445756913022}
   - component: {fileID: 6555893428293626154}
-  - component: {fileID: 6557471055044089251}
-  - component: {fileID: 6736622234978348497}
   - component: {fileID: 172329474597832513}
+  - component: {fileID: 3911464518498442351}
+  - component: {fileID: 2145539952111291851}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -344,37 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityView: {fileID: 1306332026228393185}
   rigBuilder: {fileID: 7977368917582812203}
---- !u!114 &6557471055044089251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630717598271122479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01cc6c3e7925416c911e9983e8886e19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leftIKConstraint: {fileID: 8109187185795712098}
-  _rightIKConstraint: {fileID: 1505472500203662133}
-  _leftMultiRotationConstraint: {fileID: 8845090082301470115}
-  _rightMultiRotationConstraint: {fileID: 65114580872248646}
-  _standaloneCharacterController: {fileID: 6772020166255092793}
---- !u!114 &6736622234978348497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6630717598271122479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0524e210557c4816acbf62170c6f20a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EntityView: {fileID: 1306332026228393185}
-  EnvironmentInteractionStateMachine: {fileID: 6557471055044089251}
 --- !u!54 &172329474597832513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -402,6 +371,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3911464518498442351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630717598271122479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6963ae7446439db0de30c53156b706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftIKConstraint: {fileID: 8109187185795712098}
+  _rightIKConstraint: {fileID: 1505472500203662133}
+  _leftMultiRotationConstraint: {fileID: 8845090082301470115}
+  _rightMultiRotationConstraint: {fileID: 65114580872248646}
+  _standaloneCharacterController: {fileID: 6772020166255092793}
+  _shoulderOrigin: {fileID: 5752680225850580922}
+  _leftOriginalTargetTransform: {fileID: 8354924643175269120}
+  _rightOriginalTargetTransform: {fileID: 5711309187128435375}
+--- !u!114 &2145539952111291851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6630717598271122479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c03255ec4604823b8236687ab4cb2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 1306332026228393185}
+  DoorInteractionStateMachine: {fileID: 3911464518498442351}
 --- !u!1001 &3251878241078214887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -410,6 +413,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3957964855612864019}
     m_Modifications:
+    - target: {fileID: 3298793655960911265, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_ConstrainedObject
+      value: 
+      objectReference: {fileID: 3302081497202477693}
+    - target: {fileID: 4162589690056682450, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_Tip
+      value: 
+      objectReference: {fileID: 3302081497202477693}
     - target: {fileID: 4911294280959920798, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -454,6 +465,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Banana Man
       objectReference: {fileID: 0}
+    - target: {fileID: 6332321209327478084, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_ConstrainedObject
+      value: 
+      objectReference: {fileID: 4065715310029359411}
+    - target: {fileID: 6501609538489077126, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749031894589555845, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_Tip
+      value: 
+      objectReference: {fileID: 4065715310029359411}
+    - target: {fileID: 6840614574308778166, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -484,6 +511,16 @@ MonoBehaviour:
 --- !u!4 &2450691021704844723 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1090544526583321940, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+  m_PrefabInstance: {fileID: 3251878241078214887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3302081497202477693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 68582757465246362, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+  m_PrefabInstance: {fileID: 3251878241078214887}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4065715310029359411 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1534791305226406356, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
   m_PrefabInstance: {fileID: 3251878241078214887}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &4605140573852127235 stripped

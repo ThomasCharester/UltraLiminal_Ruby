@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 {
-    public class ApproachState : EnvironmentInteractionState
+    public class EnvIntApproachState : EnvironmentInteractionState
     {
         private float _elapsedTime = 0.0f;
         private float _lerpDuration = 5.0f;
@@ -12,7 +12,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         private float _rotationSpeed = 500f;
         private float _riseDistanceThreshold = .5f;
 
-        public ApproachState(EnvironmentInteractionContext context,
+        public EnvIntApproachState(EnvironmentInteractionContext context,
             EnvironmentInteractionStateMachine.EEnvironmentInteractionState estate) : base(context, estate)
         { }
 

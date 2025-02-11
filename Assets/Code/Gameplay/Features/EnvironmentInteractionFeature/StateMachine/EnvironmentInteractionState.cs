@@ -42,7 +42,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             
             float dotProduct = Vector3.Dot(shoulderDirection, targetDirection.normalized);
 
-            bool isBadAngle = dotProduct < 0;
+            bool isBadAngle = dotProduct < 0f;
 
             return isBadAngle;
         }
@@ -113,8 +113,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             Vector3 offset = normalizedRayDirection * offsetDistance;
             
             Vector3 offsetPosition = Context.ClosestPointOnColliderFromShoulder + offset;
-            Context.CurrentIKTargetTransform.position = new Vector3(offsetPosition.x,Context.InteractionPointYOffset,offsetPosition.z);
-            
+            Context.CurrentIKTargetTransform.position = new Vector3(offsetPosition.x, 0 ,offsetPosition.z);
         }
     }
 }

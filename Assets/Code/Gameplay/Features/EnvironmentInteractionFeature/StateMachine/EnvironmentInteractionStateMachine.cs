@@ -60,11 +60,11 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
         private void InitializeStates()
         {
-            States.Add(EEnvironmentInteractionState.Reset, new ResetState(_context, EEnvironmentInteractionState.Reset));
-            States.Add(EEnvironmentInteractionState.Touch, new TouchState(_context, EEnvironmentInteractionState.Touch));
-            States.Add(EEnvironmentInteractionState.Rise, new RiseState(_context, EEnvironmentInteractionState.Rise));
-            States.Add(EEnvironmentInteractionState.Approach, new ApproachState(_context, EEnvironmentInteractionState.Approach));
-            States.Add(EEnvironmentInteractionState.Search, new SearchState(_context, EEnvironmentInteractionState.Search));
+            States.Add(EEnvironmentInteractionState.Reset, new EnvIntResetState(_context, EEnvironmentInteractionState.Reset));
+            States.Add(EEnvironmentInteractionState.Touch, new EnvIntTouchState(_context, EEnvironmentInteractionState.Touch));
+            States.Add(EEnvironmentInteractionState.Rise, new EnvIntRiseState(_context, EEnvironmentInteractionState.Rise));
+            States.Add(EEnvironmentInteractionState.Approach, new EnvIntApproachState(_context, EEnvironmentInteractionState.Approach));
+            States.Add(EEnvironmentInteractionState.Search, new EnvIntSearchState(_context, EEnvironmentInteractionState.Search));
 
             CurrentState = States[EEnvironmentInteractionState.Reset];
         }

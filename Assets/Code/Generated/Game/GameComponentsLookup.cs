@@ -64,10 +64,11 @@ public static class GameComponentsLookup {
     public const int UseButton = 53;
     public const int UseButtonHold = 54;
     public const int UseButtonPressed = 55;
-    public const int EnvironmentInteractionStateManager = 56;
-    public const int StateManagers = 57;
+    public const int DoorInteractionStateManager = 56;
+    public const int EnvironmentInteractionStateManager = 57;
+    public const int StateManagers = 58;
 
-    public const int TotalComponents = 58;
+    public const int TotalComponents = 59;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -126,6 +127,7 @@ public static class GameComponentsLookup {
         "UseButton",
         "UseButtonHold",
         "UseButtonPressed",
+        "DoorInteractionStateManager",
         "EnvironmentInteractionStateManager",
         "StateManagers"
     };
@@ -187,6 +189,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Input.UseButton),
         typeof(Code.Gameplay.Input.UseButtonHold),
         typeof(Code.Gameplay.Input.UseButtonPressed),
+        typeof(Code.Gameplay.StateMachine.DoorInteractionStateManagerComponent),
         typeof(Code.Gameplay.StateMachine.EnvironmentInteractionStateManagerComponent),
         typeof(Code.Gameplay.StateMachine.StateManagers)
     };

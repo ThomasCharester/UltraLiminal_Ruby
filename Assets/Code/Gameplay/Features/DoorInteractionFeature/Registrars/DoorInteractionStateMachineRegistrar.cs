@@ -10,7 +10,7 @@ namespace Code.Gameplay.Features.DoorInteractionFeature.Registrars
     {
         public DoorInteractionStateMachine DoorInteractionStateMachine;
 
-        public override void RegisterComponents() 
+        public override void RegisterComponents() //
         {
             if (!Entity.hasStateManagers)
                 Entity.AddStateManagers(new List<IStateManager>());

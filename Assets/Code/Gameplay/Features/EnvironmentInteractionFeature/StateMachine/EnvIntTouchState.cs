@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 {
-    public class TouchState : EnvironmentInteractionState
+    public class EnvIntTouchState : EnvironmentInteractionState
     {
         public float _elapsedTime = 0.0f;
         public float _resetThreshold = 5.5f;
         
-        public TouchState(EnvironmentInteractionContext context,
+        public EnvIntTouchState(EnvironmentInteractionContext context,
             EnvironmentInteractionStateMachine.EEnvironmentInteractionState estate) : base(context, estate)
         {
         }
@@ -28,7 +28,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
 
         public override EnvironmentInteractionStateMachine.EEnvironmentInteractionState GetNextState()
         {
-            if(_elapsedTime > _resetThreshold || CheckShouldReset())
+            if(_elapsedTime > _resetThreshold || CheckShouldReset() || Context.CurrentIntersectingCollider == null)
                 return EnvironmentInteractionStateMachine.EEnvironmentInteractionState.Reset;
             
             return StateKey;

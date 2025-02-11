@@ -19,8 +19,8 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
         private Rigidbody _rigidbody;
         private CapsuleCollider _rootCollider;
         private Transform _rootTransform;
-        private Vector3 _leftOriginalTargetPosition;
-        private Vector3 _rightOriginalTargetPosition;
+        private Vector3 _leftOriginalTargetPosition; // todo mts
+        private Vector3 _rightOriginalTargetPosition; //
 
         public EnvironmentInteractionContext(
             TwoBoneIKConstraint leftIKConstraint,
@@ -39,7 +39,7 @@ namespace Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine
             _rootTransform = rootTransform;
             OriginalTargetRotation = _leftIKConstraint.data.target.rotation;
             _leftOriginalTargetPosition = _leftIKConstraint.data.target.transform.position;
-            _rightOriginalTargetPosition = rightIKConstraint.data.target.transform.position;
+            _rightOriginalTargetPosition = _rightIKConstraint.data.target.transform.position;
 
             CharacterShoulderHeight = _leftIKConstraint.data.root.transform.position.y;
             SetCurrentSide(Vector3.positiveInfinity);

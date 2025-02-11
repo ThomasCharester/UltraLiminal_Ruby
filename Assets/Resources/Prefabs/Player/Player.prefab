@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3957964855612864019}
+  m_Father: {fileID: 7568459871747312249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3038254621757217822
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3957964855612864019}
+  m_Father: {fileID: 7568459871747312249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4453421913578488351
 GameObject:
@@ -91,7 +91,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3957964855612864019}
+  m_Father: {fileID: 7568459871747312249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6630717598271122479
 GameObject:
@@ -137,9 +137,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7568459871747312249}
-  - {fileID: 8354924643175269120}
-  - {fileID: 5752680225850580922}
-  - {fileID: 5711309187128435375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &482862424641534946
@@ -414,6 +411,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3957964855612864019}
     m_Modifications:
     - target: {fileID: 3298793655960911265, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_Offset.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298793655960911265, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
       propertyPath: m_Data.m_ConstrainedObject
       value: 
       objectReference: {fileID: 3302081497202477693}
@@ -466,6 +467,10 @@ PrefabInstance:
       value: Banana Man
       objectReference: {fileID: 0}
     - target: {fileID: 6332321209327478084, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      propertyPath: m_Data.m_Offset.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332321209327478084, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
       propertyPath: m_Data.m_ConstrainedObject
       value: 
       objectReference: {fileID: 4065715310029359411}
@@ -483,7 +488,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4911294280959920798, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8354924643175269120}
+    - targetCorrespondingSourceObject: {fileID: 4911294280959920798, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5752680225850580922}
+    - targetCorrespondingSourceObject: {fileID: 4911294280959920798, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5711309187128435375}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 888f98e580fbed74bbcb76bd2c70d1b1, type: 3}
 --- !u!114 &65114580872248646 stripped

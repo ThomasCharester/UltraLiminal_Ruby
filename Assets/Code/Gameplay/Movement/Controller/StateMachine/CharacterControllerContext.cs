@@ -2,9 +2,10 @@ namespace Code.Gameplay.Movement.Controller.StateMachine
 {
     public class CharacterControllerContext
     {
-        public CharacterControllerContext()
+        private StandaloneCharacterController _CC;
+        public CharacterControllerContext(StandaloneCharacterController CC)
         {
-            
+            _CC = CC;
         }
     }
 }

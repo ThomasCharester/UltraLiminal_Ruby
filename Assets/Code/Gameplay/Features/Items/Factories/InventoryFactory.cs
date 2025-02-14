@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
@@ -9,25 +10,27 @@ namespace Code.Gameplay.Features.Items.Factories
     public class InventoryFactory : IInventoryFactory
     {
         private readonly IIdentifierService _identifierService;
+        private readonly IStaticDataService _staticDataService;
 
-        public InventoryFactory(IIdentifierService identifierService)
+        public InventoryFactory(IIdentifierService identifierService, IStaticDataService staticDataService)
         {
             _identifierService = identifierService;
+            _staticDataService = staticDataService;
         }
 
-        public GameEntity CreateWorldInventory()
+        public GameEntity CreateWorldInventory(InventoryID inventoryID)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .With(x => x.isInventory = true)
-                .AddWorldItemList(new(0));
+                .AddWorldItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startWorldItems));
         }
-        public GameEntity CreatePlayerInventory()
+        public GameEntity CreatePlayerInventory(InventoryID inventoryID)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .With(x => x.isInventory = true)
-                .AddPlayerItemList(new(0));
+                .AddPlayerItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startPlayerItems));
         }
     }
 }

@@ -20,18 +20,15 @@ namespace Code.Gameplay.Features.Items.Factories
         public GameEntity CreateItem(ItemID itemID, Vector3 spawnPoint)
         {
             GameEntity item = CreateEntity.Empty();
+            item.AddItemID(itemID)
+                .AddId(_identifierService.NextId())
+                .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
+                .With(x => x.isItem = true);
+            
             if (spawnPoint != Vector3.zero)
-                item.AddItemID(itemID)
-                    .AddId(_identifierService.NextId())
-                    .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
-                    .AddVectorSpawnPoint(spawnPoint)
-                    .With(x => x.isItem = true);
+                item.AddVectorSpawnPoint(spawnPoint);
             else
-                item.AddItemID(itemID)
-                    .AddId(_identifierService.NextId())
-                    .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
-                    .AddTransformSpawnPoint(_staticDataService.GetItemConfig(itemID).transform)
-                    .With(x => x.isItem = true);
+                item.AddTransformSpawnPoint(_staticDataService.GetItemConfig(itemID).transform);
 
             AssignMiniGameActivator(item, itemID);
             return item;

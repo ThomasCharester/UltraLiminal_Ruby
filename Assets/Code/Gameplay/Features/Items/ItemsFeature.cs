@@ -9,7 +9,7 @@ namespace Code.Gameplay.Features.Items
         public ItemsFeature(ISystemFactory systems)
         {
             Add(systems.Create<InitializeWorldInventorySystem>());
-            Add(systems.Create<FillWorldInventoryItemsSystem>());
+            //Add(systems.Create<FillWorldInventoryItemsSystem>());
             Add(systems.Create<ProcessWorldInventoryItemsSystem>());
             
             Add(systems.Create<DebugKeyMiniGameSystem>());

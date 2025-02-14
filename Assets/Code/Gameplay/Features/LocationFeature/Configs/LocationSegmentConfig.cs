@@ -1,0 +1,16 @@
+using System.Collections.Generic;
+using Code.Gameplay.Features.Items;
+using Code.Infrastructure.View;
+using UnityEngine;
+
+namespace Code.Gameplay.Features.LocationFeature.Configs
+{
+    [CreateAssetMenu(menuName = "Location", fileName = "locationSegmentConfig")]
+    public class LocationSegmentConfig: ScriptableObject
+    {
+        public LocationSegmentID segmentID;
+        public Transform segmentOrigin;
+        public List<Transform> doorOrigins;
+        public EntityBehaviour segmentPrefab;
+    }
+}

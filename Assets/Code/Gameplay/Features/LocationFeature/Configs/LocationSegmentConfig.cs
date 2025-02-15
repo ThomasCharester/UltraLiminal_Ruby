@@ -9,8 +9,7 @@ namespace Code.Gameplay.Features.LocationFeature.Configs
     public class LocationSegmentConfig: ScriptableObject
     {
         public LocationSegmentID segmentID;
-        public Transform segmentOrigin;
-        public List<Transform> doorOrigins;
+        public DoorCalculator doorCalculator;
         public EntityBehaviour segmentPrefab;
     }
 }

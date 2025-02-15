@@ -19,7 +19,8 @@ namespace Code.Gameplay.StaticData
         private Dictionary<NPCID, NPCConfig> _npcsbyID;
         private Dictionary<CameraID, CameraConfig> _camerasByID;
         private Dictionary<InventoryID, InventoryConfig> _inventoriesByID;
-        private Dictionary<LocationSegmentID, LocationSegmentConfig> _locationSegmentsById;
+        private Dictionary<LocationSegmentID, LocationSegmentConfig> _locationSegmentsByID;
+        private Dictionary<DoorID, DoorConfig> _doorsByID;
 
         private PlayerConfig _playerConfig;
         public PlayerConfig PlayerConfig => _playerConfig;
@@ -51,7 +52,11 @@ namespace Code.Gameplay.StaticData
         } 
         public LocationSegmentConfig GetLocationSegmentConfig(LocationSegmentID locationSegmentID)
         {
-            return _locationSegmentsById.TryGetValue(locationSegmentID, out var value) ? value : null;
+            return _locationSegmentsByID.TryGetValue(locationSegmentID, out var value) ? value : null;
+        } 
+        public DoorConfig GetDoorConfig(DoorID doorID)
+        {
+            return _doorsByID.TryGetValue(doorID, out var value) ? value : null;
         } 
         
         public void LoadItems()
@@ -79,12 +84,17 @@ namespace Code.Gameplay.StaticData
                 .LoadAll<InventoryConfig>("Configs/Inventories")
                 .ToDictionary(x => x.inventoryID, x => x);
         }
-
         public void LoadLocationSegments()
         {
-            _locationSegmentsById = Resources
+            _locationSegmentsByID = Resources
                 .LoadAll<LocationSegmentConfig>("Configs/LocationSegments")
                 .ToDictionary(x => x.segmentID, x => x);
+        }
+        public void LoadDoors()
+        {
+            _doorsByID = Resources
+                .LoadAll<DoorConfig>("Configs/Doors")
+                .ToDictionary(x => x.doorID, x => x);
         }
 
         public void LoadPlayer()

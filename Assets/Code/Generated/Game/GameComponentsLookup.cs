@@ -16,59 +16,61 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 5;
     public const int AnimationSpeed = 6;
     public const int CharacterController = 7;
-    public const int Direction = 8;
-    public const int LayerMask = 9;
-    public const int Speed = 10;
-    public const int Transform = 11;
-    public const int TransformSpawnPoint = 12;
-    public const int VectorSpawnPoint = 13;
-    public const int WorldPosition = 14;
-    public const int WorldRotation = 15;
-    public const int MultiAimConstraint = 16;
-    public const int NotYetUnWeighted = 17;
-    public const int NotYetWeighted = 18;
-    public const int RigBuilder = 19;
-    public const int TrackingTarget = 20;
-    public const int Weighted = 21;
-    public const int Camera = 22;
-    public const int CameraTrackingTarget = 23;
-    public const int Cinemachine = 24;
-    public const int CinemachineCamera = 25;
-    public const int MainCamera = 26;
-    public const int Tracking = 27;
-    public const int DebugDoorMiniGameActivator = 28;
-    public const int DebugKeyMiniGameActivator = 29;
-    public const int Inventory = 30;
-    public const int Item = 31;
-    public const int ItemID = 32;
-    public const int PlayerItemList = 33;
-    public const int Triggered = 34;
-    public const int Useless = 35;
-    public const int WorldItemList = 36;
-    public const int NPC = 37;
-    public const int FoundTarget = 38;
-    public const int WatchingForTargets = 39;
-    public const int WatchRadius = 40;
-    public const int Player = 41;
-    public const int PlayerAnimator = 42;
-    public const int TriggeredItem = 43;
-    public const int AxisInput = 44;
-    public const int CrouchButton = 45;
-    public const int CrouchButtonHold = 46;
-    public const int CrouchButtonPressed = 47;
-    public const int Input = 48;
-    public const int JumpButton = 49;
-    public const int JumpButtonHold = 50;
-    public const int JumpButtonPressed = 51;
-    public const int PlayerInputs = 52;
-    public const int UseButton = 53;
-    public const int UseButtonHold = 54;
-    public const int UseButtonPressed = 55;
-    public const int DoorInteractionStateManager = 56;
-    public const int EnvironmentInteractionStateManager = 57;
-    public const int StateManagers = 58;
+    public const int ColliderEventService = 8;
+    public const int Direction = 9;
+    public const int LayerMask = 10;
+    public const int RotationSpawnPoint = 11;
+    public const int Transform = 12;
+    public const int TransformSpawnPoint = 13;
+    public const int VectorSpawnPoint = 14;
+    public const int MultiAimConstraint = 15;
+    public const int NotYetUnWeighted = 16;
+    public const int NotYetWeighted = 17;
+    public const int RigBuilder = 18;
+    public const int TrackingTarget = 19;
+    public const int Weighted = 20;
+    public const int Camera = 21;
+    public const int CameraTrackingTarget = 22;
+    public const int Cinemachine = 23;
+    public const int CinemachineCamera = 24;
+    public const int MainCamera = 25;
+    public const int Tracking = 26;
+    public const int DebugDoorMiniGameActivator = 27;
+    public const int DebugKeyMiniGameActivator = 28;
+    public const int Inventory = 29;
+    public const int Item = 30;
+    public const int ItemID = 31;
+    public const int PlayerItemList = 32;
+    public const int Triggered = 33;
+    public const int Useless = 34;
+    public const int WorldItemList = 35;
+    public const int LocationSegment = 36;
+    public const int MasterLocationSegment = 37;
+    public const int SlaveLocationSegment = 38;
+    public const int NPC = 39;
+    public const int FoundTarget = 40;
+    public const int WatchingForTargets = 41;
+    public const int WatchRadius = 42;
+    public const int Player = 43;
+    public const int PlayerAnimator = 44;
+    public const int TriggeredItem = 45;
+    public const int AxisInput = 46;
+    public const int CrouchButton = 47;
+    public const int CrouchButtonHold = 48;
+    public const int CrouchButtonPressed = 49;
+    public const int Input = 50;
+    public const int JumpButton = 51;
+    public const int JumpButtonHold = 52;
+    public const int JumpButtonPressed = 53;
+    public const int PlayerInputs = 54;
+    public const int UseButton = 55;
+    public const int UseButtonHold = 56;
+    public const int UseButtonPressed = 57;
+    public const int DoorInteractionStateManager = 58;
+    public const int EnvironmentInteractionStateManager = 59;
+    public const int StateManagers = 60;
 
-    public const int TotalComponents = 59;
+    public const int TotalComponents = 61;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -79,14 +81,13 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "AnimationSpeed",
         "CharacterController",
+        "ColliderEventService",
         "Direction",
         "LayerMask",
-        "Speed",
+        "RotationSpawnPoint",
         "Transform",
         "TransformSpawnPoint",
         "VectorSpawnPoint",
-        "WorldPosition",
-        "WorldRotation",
         "MultiAimConstraint",
         "NotYetUnWeighted",
         "NotYetWeighted",
@@ -108,6 +109,9 @@ public static class GameComponentsLookup {
         "Triggered",
         "Useless",
         "WorldItemList",
+        "LocationSegment",
+        "MasterLocationSegment",
+        "SlaveLocationSegment",
         "NPC",
         "FoundTarget",
         "WatchingForTargets",
@@ -141,14 +145,13 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.AnimationSpeed),
         typeof(Code.Gameplay.Common.CharacterControllerComponent),
+        typeof(Code.Gameplay.Common.ColliderEventServiceComponent),
         typeof(Code.Gameplay.Common.Direction),
         typeof(Code.Gameplay.Common.LayerMask),
-        typeof(Code.Gameplay.Common.Speed),
+        typeof(Code.Gameplay.Common.RotationSpawnPoint),
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.TransformSpawnPoint),
         typeof(Code.Gameplay.Common.VectorSpawnPoint),
-        typeof(Code.Gameplay.Common.WorldPosition),
-        typeof(Code.Gameplay.Common.WorldRotation),
         typeof(Code.Gameplay.Features.AnimationRigShit.MultiAimConstraintComponent),
         typeof(Code.Gameplay.Features.AnimationRigShit.NotYetUnWeighted),
         typeof(Code.Gameplay.Features.AnimationRigShit.NotYetWeighted),
@@ -170,6 +173,9 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Items.Triggered),
         typeof(Code.Gameplay.Features.Items.Useless),
         typeof(Code.Gameplay.Features.Items.WorldItemList),
+        typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.NPC.NPC),
         typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),
         typeof(Code.Gameplay.Features.ObjectSeek.WatchingForTargets),

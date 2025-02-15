@@ -18,11 +18,13 @@ namespace Code.Gameplay.StaticData
         CameraConfig GetCameraConfig(CameraID cameraID);
         InventoryConfig GetInventoryConfig(InventoryID inventoryID);
         LocationSegmentConfig GetLocationSegmentConfig(LocationSegmentID locationSegmentID);
+        DoorConfig GetDoorConfig(DoorID doorID);
         void LoadItems();
         void LoadNPCs();
         void LoadCameras();
         void LoadInventories();
         void LoadLocationSegments();
+        void LoadDoors();
         void LoadPlayer();
 
         public PlayerConfig PlayerConfig { get; }

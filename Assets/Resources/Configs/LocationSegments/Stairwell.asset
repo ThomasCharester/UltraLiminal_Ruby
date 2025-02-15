@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d29afc79a6415c9e0de1905ff42100, type: 3}
   m_Name: Stairwell
   m_EditorClassIdentifier: 
-  segmentID: 1
-  segmentOrigin: {fileID: 1281747737665334521, guid: 0366b898f0be98641b5ea2669dcc3b8c, type: 3}
-  doorOrigins:
-  - {fileID: 0}
+  segmentID: 0
+  doorCalculator: {fileID: 904887358217619176, guid: 0366b898f0be98641b5ea2669dcc3b8c, type: 3}
   segmentPrefab: {fileID: 6212510406431983749, guid: 0366b898f0be98641b5ea2669dcc3b8c, type: 3}

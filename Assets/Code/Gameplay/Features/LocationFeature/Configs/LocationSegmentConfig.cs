@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.LocationFeature.Configs
 {
-    [CreateAssetMenu(menuName = "Location", fileName = "locationSegmentConfig")]
+    [CreateAssetMenu(menuName = "Environment/Location", fileName = "locationSegmentConfig")]
     public class LocationSegmentConfig: ScriptableObject
     {
         public LocationSegmentID segmentID;

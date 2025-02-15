@@ -1,3 +1,4 @@
+using Code.Gameplay.Common.Configs;
 using Code.Gameplay.Features.Camera;
 using Code.Gameplay.Features.Camera.Configs;
 using Code.Gameplay.Features.Items;
@@ -26,7 +27,11 @@ namespace Code.Gameplay.StaticData
         void LoadLocationSegments();
         void LoadDoors();
         void LoadPlayer();
-
+        void LoadGameplayConstants();
+        void LoadUnityComponents();
+        
         public PlayerConfig PlayerConfig { get; }
+        public GameplayConstantsConfig GameplayConstantsConfig { get; }
+        public UnityComponentsConfig UnityComponentsConfig { get; }
     }
 }

@@ -1,3 +1,4 @@
+using Code.Gameplay.StaticData;
 using Code.Infrastructure.ShitManagement;
 using UnityEngine;
 using Zenject;
@@ -8,12 +9,13 @@ namespace Code.Infrastructure.View.Factory
     {
         private readonly IInstantiator _instantiator;
         private readonly IAssetProvider _assetProvider;
-        private readonly Vector3 _farAway = new Vector3(999,999,999);
+        private readonly IStaticDataService _staticDataService;
 
-        public EntityViewFactory(IInstantiator instantiator, IAssetProvider assetProvider)
+        public EntityViewFactory(IInstantiator instantiator, IAssetProvider assetProvider, IStaticDataService staticDataService)
         {
             _instantiator = instantiator;
             _assetProvider = assetProvider;
+            _staticDataService = staticDataService;
         }
 
         public IEntityView CreateEntityViewFromPrefab(GameEntity entity)
@@ -21,7 +23,7 @@ namespace Code.Infrastructure.View.Factory
             EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>
                 (
                     entity.ViewPrefab,
-                    position: _farAway,
+                    position: _staticDataService.GameplayConstantsConfig._farAway,
                     Quaternion.identity, 
                     parentTransform: null
                     );
@@ -36,7 +38,7 @@ namespace Code.Infrastructure.View.Factory
             EntityBehaviour view = _instantiator.InstantiatePrefabForComponent<EntityBehaviour>
             (
                 prefab,
-                position: _farAway,
+                position: _staticDataService.GameplayConstantsConfig._farAway,
                 Quaternion.identity, 
                 parentTransform: null
             );

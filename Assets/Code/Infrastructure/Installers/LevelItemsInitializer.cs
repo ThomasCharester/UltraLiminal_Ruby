@@ -8,7 +8,7 @@ namespace Code.Infrastructure.Installers
 {
     public class LevelItemsInitializer : MonoBehaviour, IInitializable
     {
-        public List<Transform> itemsSpawnPoints;
+        public List<Transform> itemsSpawnPoints; //
         private ILevelDataProvider _levelDataProvider;
         [Inject]
         public void Construct(ILevelDataProvider levelDataProvider)

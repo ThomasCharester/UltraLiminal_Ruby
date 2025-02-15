@@ -5,11 +5,8 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.LocationFeature.Factories
 {
-    public class LocationSegmentFactory
+    public class LocationSegmentFactory : ILocationSegmentFactory
     {
-        /////////////////////////////            
-        public float doorBoxDepth = 0.1f;
-        /////////////////////////////            
 
         private readonly IIdentifierService _identifierService;
         private readonly IStaticDataService _staticDataService;
@@ -22,12 +19,13 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
             _doorFactory = doorFactory;
         }
 
-        public GameEntity CreateLocationSegment(LocationSegmentID segmentID, Transform origin)
+        public GameEntity CreateLocationSegment(LocationSegmentID segmentID, Vector3 position, Quaternion rotation)
         {
             var locationSegment = CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .AddLocationSegment(_staticDataService.GetLocationSegmentConfig(segmentID).doorCalculator)
-                .AddTransformSpawnPoint(origin)
+                .AddVectorSpawnPoint(position)
+                .AddRotationSpawnPoint(rotation)
                 .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(segmentID).segmentPrefab);
 
             foreach (var doorOrigin in locationSegment.LocationSegment.GetDoorOrigins)
@@ -37,16 +35,16 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 switch (doorOrigin.rotation.y) //
                 {
                     case 0f:
-                        trueDoorOrigin.x += doorBoxDepth;
+                        trueDoorOrigin.x += _staticDataService.GameplayConstantsConfig._doorOffset;
                         break;
-                    case 90.0f:
-                        trueDoorOrigin.z -= doorBoxDepth;
+                    case 90f:
+                        trueDoorOrigin.z -= _staticDataService.GameplayConstantsConfig._doorOffset;;
                         break;
                     case 180f:
-                        trueDoorOrigin.x -= doorBoxDepth;
+                        trueDoorOrigin.x -= _staticDataService.GameplayConstantsConfig._doorOffset;;
                         break;
                     case 270f:
-                        trueDoorOrigin.z += doorBoxDepth;
+                        trueDoorOrigin.z += _staticDataService.GameplayConstantsConfig._doorOffset;;
                         break;
                 }
 

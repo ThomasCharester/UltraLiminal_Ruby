@@ -10,20 +10,23 @@ namespace Code.Gameplay.Movement.Systems
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context)
         {
-            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.CharacterController));
+            return context.CreateCollector(GameMatcher.AllOf(GameMatcher.RotationSpawnPoint));
         }
 
         protected override bool Filter(GameEntity entity)
         {
-            return entity.hasRotation && entity.hasCharacterController;
+            return entity.hasRotationSpawnPoint;
         }
 
         protected override void Execute(List<GameEntity> entities)
         {
             foreach (var entity in entities)
             {
-                entity.CharacterController.SetPosition(entity.VectorSpawnPoint);
-                entity.RemoveVectorSpawnPoint();
+                if (entity.hasCharacterController)
+                    entity.CharacterController.SetRotation(entity.RotationSpawnPoint);
+                else if(entity.hasTransform) 
+                    entity.Transform.rotation = entity.RotationSpawnPoint;
+                entity.RemoveRotationSpawnPoint();
             }
         }
     }

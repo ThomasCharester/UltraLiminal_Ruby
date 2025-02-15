@@ -44,33 +44,35 @@ public static class GameComponentsLookup {
     public const int Triggered = 33;
     public const int Useless = 34;
     public const int WorldItemList = 35;
-    public const int LocationSegment = 36;
-    public const int MasterLocationSegment = 37;
-    public const int SlaveLocationSegment = 38;
-    public const int NPC = 39;
-    public const int FoundTarget = 40;
-    public const int WatchingForTargets = 41;
-    public const int WatchRadius = 42;
-    public const int Player = 43;
-    public const int PlayerAnimator = 44;
-    public const int TriggeredItem = 45;
-    public const int AxisInput = 46;
-    public const int CrouchButton = 47;
-    public const int CrouchButtonHold = 48;
-    public const int CrouchButtonPressed = 49;
-    public const int Input = 50;
-    public const int JumpButton = 51;
-    public const int JumpButtonHold = 52;
-    public const int JumpButtonPressed = 53;
-    public const int PlayerInputs = 54;
-    public const int UseButton = 55;
-    public const int UseButtonHold = 56;
-    public const int UseButtonPressed = 57;
-    public const int DoorInteractionStateManager = 58;
-    public const int EnvironmentInteractionStateManager = 59;
-    public const int StateManagers = 60;
+    public const int DoorOff = 36;
+    public const int HingeJoint = 37;
+    public const int LocationSegment = 38;
+    public const int MasterLocationSegment = 39;
+    public const int SlaveLocationSegment = 40;
+    public const int NPC = 41;
+    public const int FoundTarget = 42;
+    public const int WatchingForTargets = 43;
+    public const int WatchRadius = 44;
+    public const int Player = 45;
+    public const int PlayerAnimator = 46;
+    public const int TriggeredItem = 47;
+    public const int AxisInput = 48;
+    public const int CrouchButton = 49;
+    public const int CrouchButtonHold = 50;
+    public const int CrouchButtonPressed = 51;
+    public const int Input = 52;
+    public const int JumpButton = 53;
+    public const int JumpButtonHold = 54;
+    public const int JumpButtonPressed = 55;
+    public const int PlayerInputs = 56;
+    public const int UseButton = 57;
+    public const int UseButtonHold = 58;
+    public const int UseButtonPressed = 59;
+    public const int DoorInteractionStateManager = 60;
+    public const int EnvironmentInteractionStateManager = 61;
+    public const int StateManagers = 62;
 
-    public const int TotalComponents = 61;
+    public const int TotalComponents = 63;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -109,6 +111,8 @@ public static class GameComponentsLookup {
         "Triggered",
         "Useless",
         "WorldItemList",
+        "DoorOff",
+        "HingeJoint",
         "LocationSegment",
         "MasterLocationSegment",
         "SlaveLocationSegment",
@@ -173,6 +177,8 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Items.Triggered),
         typeof(Code.Gameplay.Features.Items.Useless),
         typeof(Code.Gameplay.Features.Items.WorldItemList),
+        typeof(Code.Gameplay.Features.LocationFeature.DoorOff),
+        typeof(Code.Gameplay.Features.LocationFeature.HingeJointComponent),
         typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Common.Configs;
 using Code.Gameplay.Features.Camera;
 using Code.Gameplay.Features.Camera.Configs;
 using Code.Gameplay.Features.Items;
@@ -23,7 +24,11 @@ namespace Code.Gameplay.StaticData
         private Dictionary<DoorID, DoorConfig> _doorsByID;
 
         private PlayerConfig _playerConfig;
+        private GameplayConstantsConfig _gameplayConstantsConfig;
+        private UnityComponentsConfig _unityComponentsConfig;
         public PlayerConfig PlayerConfig => _playerConfig;
+        public GameplayConstantsConfig GameplayConstantsConfig => _gameplayConstantsConfig;
+        public UnityComponentsConfig UnityComponentsConfig => _unityComponentsConfig;
         public void LoadAll()
         {
             LoadPlayer();
@@ -32,6 +37,9 @@ namespace Code.Gameplay.StaticData
             LoadCameras();
             LoadInventories();
             LoadLocationSegments();
+            LoadDoors();
+            LoadGameplayConstants();
+            LoadUnityComponents();
         }
 
         public ItemConfig GetItemConfig(ItemID itemID)
@@ -100,6 +108,14 @@ namespace Code.Gameplay.StaticData
         public void LoadPlayer()
         {
             _playerConfig = Resources.Load<PlayerConfig>("Configs/Player/Player");
+        }
+        public void LoadUnityComponents()
+        {
+            _unityComponentsConfig = Resources.Load<UnityComponentsConfig>("Configs/Gameplay/UnityComponents");
+        }
+        public void LoadGameplayConstants()
+        {
+            _gameplayConstantsConfig = Resources.Load<GameplayConstantsConfig>("Configs/Gameplay/Constants");
         }
     }
 }

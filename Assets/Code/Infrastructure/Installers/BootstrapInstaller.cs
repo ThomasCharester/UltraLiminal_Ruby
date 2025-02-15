@@ -69,6 +69,7 @@ namespace Code.Infrastructure.Installers
             Container.Bind<IInventoryFactory>().To<InventoryFactory>().AsSingle();
             Container.Bind<INPCFactory>().To<NPCFactory>().AsSingle();
             Container.Bind<IDoorFactory>().To<DoorFactory>().AsSingle();
+            Container.Bind<ILocationSegmentFactory>().To<LocationSegmentFactory>().AsSingle();
         }
         private void BindAssetManagementServices()
         {
@@ -87,7 +88,7 @@ namespace Code.Infrastructure.Installers
         public void Initialize()
         {
             Container.Resolve<IStaticDataService>().LoadAll();
-            Container.Resolve<ISceneLoader>().LoadScene("Chistilinsk");   
+            Container.Resolve<ISceneLoader>().LoadScene("Genetaliatti");   
         }
 
     }

@@ -7,7 +7,7 @@ namespace Code.Gameplay.Features.NPC
     {
         public NPCFeature(ISystemFactory systems)
         {
-            Add(systems.Create<SpawnTestNPCSystem>());
+            //Add(systems.Create<SpawnTestNPCSystem>());
         }
     }
 }

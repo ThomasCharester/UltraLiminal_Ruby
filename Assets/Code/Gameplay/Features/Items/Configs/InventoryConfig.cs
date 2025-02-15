@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Items.Configs
 {
-    [CreateAssetMenu(menuName = "Inventory", fileName = "inventoryConfig")]
+    [CreateAssetMenu(menuName = "Items/Inventory", fileName = "inventoryConfig")]
     public class InventoryConfig: ScriptableObject
     {
         public InventoryID inventoryID;

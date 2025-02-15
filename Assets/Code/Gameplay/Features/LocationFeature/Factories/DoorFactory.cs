@@ -1,4 +1,5 @@
 using Code.Common.Entity;
+using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Indentifiers;
 using UnityEngine;
@@ -21,9 +22,11 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
-                .AddVectorSpawnPoint(originPosition)
                 .AddMasterLocationSegment(masterID)
-                .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab);
+                .AddVectorSpawnPoint(originPosition)
+                .AddRotationSpawnPoint(originRotation)
+                .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
+                .With(x => x.isDoorOff = true);
         }
     }
 }

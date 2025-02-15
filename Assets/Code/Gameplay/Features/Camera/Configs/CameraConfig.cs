@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace Code.Gameplay.Features.Camera.Configs
 {
-    [CreateAssetMenu(menuName = "Cameras", fileName = "cameraConfig")]
+    [CreateAssetMenu(menuName = "CameraConfig", fileName = "cameraConfig")]
     public class CameraConfig : ScriptableObject
     {
         public CameraID cameraID;

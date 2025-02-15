@@ -8,7 +8,8 @@ namespace Code.Gameplay.Movement
         public MovementFeature(ISystemFactory systems)
         {
             Add(systems.Create<MoveToVectorSpawnPointSystem>());
-            Add(systems.Create<MoveToTransformSpawnPointSystem>());
+            Add(systems.Create<RotateToSpawnPointSystem>());
+            //Add(systems.Create<MoveToTransformSpawnPointSystem>());
         }
     }
 }

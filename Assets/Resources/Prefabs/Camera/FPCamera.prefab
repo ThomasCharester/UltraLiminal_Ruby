@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityView: {fileID: 165567662521465534}
-  camera: {fileID: 8126034956992182425}
+  cinemachineCamera: {fileID: 8126034956992182425}
 --- !u!114 &165567662521465534
 MonoBehaviour:
   m_ObjectHideFlags: 0

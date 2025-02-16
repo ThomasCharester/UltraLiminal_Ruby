@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e7cac6c2d141b4bb98bbeca9ec8121, type: 3}
   m_Name: Stairwell
   m_EditorClassIdentifier: 
-  doorID: 1
+  doorID: 2
   doorPrefab: {fileID: 5276123451935805113, guid: 510b3e2e652ccc444ace0ca31dd11a0d, type: 3}

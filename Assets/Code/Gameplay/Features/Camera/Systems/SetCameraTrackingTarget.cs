@@ -30,7 +30,7 @@ namespace Code.Gameplay.Features.Camera.Systems
         {
             foreach (var target in entities)
             {
-                foreach (var camera in _cameras.GetEntities(_camerabuffer))
+                foreach (var camera in _cameras.GetEntities(_camerabuffer)) //
                 {
                     camera.CinemachineCamera.Target.TrackingTarget = target.CameraTrackingTarget;
                     camera.isTracking = true;
@@ -54,11 +54,11 @@ namespace Code.Gameplay.Features.Camera.Systems
     //
     //     public void Execute()
     //     {
-    //         foreach (var camera in _cameras)
+    //         foreach (var cinemachineCamera in _cameras)
     //         foreach (var target in _targets)
     //         {
-    //             camera.CinemachineCamera.Target.TrackingTarget = target.CameraTrackingTarget;
-    //             camera.isTracking = true;
+    //             cinemachineCamera.CinemachineCamera.Target.TrackingTarget = target.CameraTrackingTarget;
+    //             cinemachineCamera.isTracking = true;
     //         }
     //     }
     // }

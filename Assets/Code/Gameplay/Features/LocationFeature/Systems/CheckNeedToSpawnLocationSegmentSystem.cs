@@ -1,0 +1,29 @@
+using System.Linq;
+using Entitas;
+
+namespace Code.Gameplay.Features.LocationFeature.Systems
+{
+    public class CheckNeedToSpawnLocationSegmentSystem : IExecuteSystem
+    {
+        private readonly IGroup<GameEntity> _doorFrames;
+
+        public CheckNeedToSpawnLocationSegmentSystem(GameContext game)
+        {
+            _doorFrames = game.GetGroup(GameMatcher.AllOf(
+                GameMatcher.TriggerEventService,
+                GameMatcher.OwnerDoor
+            ));
+            
+        }
+        public void Execute()
+        {
+            foreach (var frame in _doorFrames)
+            {
+                if (frame.TriggerEventService.EnteredEntities.Count <= 0 
+                    || frame.TriggerEventService.EnteredEntities.Where(x => x.isPlayer).ToList().First() == null) continue;
+                
+                frame.isGotOnTheBall = true;
+            }
+        }
+    }
+}

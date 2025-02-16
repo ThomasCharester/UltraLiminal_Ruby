@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32789be3a9a94e25a80bd522d32985d4, type: 3}
-  m_Name: Constants
+  m_Script: {fileID: 11500000, guid: e8e7cac6c2d141b4bb98bbeca9ec8121, type: 3}
+  m_Name: Frame
   m_EditorClassIdentifier: 
-  _farAway: {x: 999, y: 999, z: 999}
-  _doorOffset: 0.06
-  _doorFrameVerticalOffset: 0.1
+  doorID: 0
+  doorPrefab: {fileID: 6542776436096011657, guid: 9112362a36c38fa49855216dec7bf35f, type: 3}

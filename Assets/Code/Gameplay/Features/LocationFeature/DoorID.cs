@@ -2,7 +2,8 @@ namespace Code.Gameplay.Features.LocationFeature
 {
     public enum DoorID
     {
-        Default = 0,
-        Stairwell = 1
+        DoorFrame = 0,
+        Corridor = 1,
+        Stairwell = 2
     }
 }

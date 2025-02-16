@@ -18,6 +18,7 @@ using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using Zenject;
 
 namespace Code.Infrastructure.Installers

@@ -1,6 +1,7 @@
 using Code.Common.Destruct;
 using Code.Gameplay.Features.AnimationRigShit;
 using Code.Gameplay.Features.Camera;
+using Code.Gameplay.Features.Common;
 using Code.Gameplay.Features.Items;
 using Code.Gameplay.Features.LocationFeature;
 using Code.Gameplay.Features.NPC;
@@ -18,6 +19,7 @@ namespace Code.Gameplay
     {
         public MainGameplayFeature(ISystemFactory systems)
         {
+            Add(systems.Create<CommonFeature>());
             Add(systems.Create<InputFeature>());
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<MovementFeature>());

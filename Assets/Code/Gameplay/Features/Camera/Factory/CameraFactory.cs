@@ -24,8 +24,7 @@ namespace Code.Gameplay.Features.Camera.Factory
                 .AddId(_identifierService.NextId())
                 .AddVectorSpawnPoint(position)
                 .AddViewPrefab(cinemachineCameraConfig.cameraPrefab)
-                .With(x => x.isCamera = true)
-                .With(x => x.isCinemachine = true);
+                .With(x => x.isCamera = true);
         }
         public GameEntity CreateMainCamera(Vector3 position, CameraConfig mainCameraConfig)
         {

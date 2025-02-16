@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d29afc79a6415c9e0de1905ff42100, type: 3}
+  m_Name: Corridor
+  m_EditorClassIdentifier: 
+  segmentID: 3
+  doorCalculator: {fileID: 455097355133777626, guid: b6e24e8f01d748e4294403fe50044b8a, type: 3}
+  segmentPrefab: {fileID: 8156882465029053151, guid: b6e24e8f01d748e4294403fe50044b8a, type: 3}

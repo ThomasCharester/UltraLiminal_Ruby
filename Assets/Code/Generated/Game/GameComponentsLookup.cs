@@ -16,12 +16,12 @@ public static class GameComponentsLookup {
     public const int ViewPrefab = 5;
     public const int AnimationSpeed = 6;
     public const int CharacterController = 7;
-    public const int ColliderEventService = 8;
-    public const int Direction = 9;
-    public const int LayerMask = 10;
-    public const int RotationSpawnPoint = 11;
-    public const int Transform = 12;
-    public const int TransformSpawnPoint = 13;
+    public const int Direction = 8;
+    public const int LayerMask = 9;
+    public const int RotationSpawnPoint = 10;
+    public const int Transform = 11;
+    public const int TransformSpawnPoint = 12;
+    public const int TriggerEventService = 13;
     public const int VectorSpawnPoint = 14;
     public const int MultiAimConstraint = 15;
     public const int NotYetUnWeighted = 16;
@@ -45,34 +45,36 @@ public static class GameComponentsLookup {
     public const int Useless = 34;
     public const int WorldItemList = 35;
     public const int DoorOff = 36;
-    public const int HingeJoint = 37;
-    public const int LocationSegment = 38;
-    public const int MasterLocationSegment = 39;
-    public const int SlaveLocationSegment = 40;
-    public const int NPC = 41;
-    public const int FoundTarget = 42;
-    public const int WatchingForTargets = 43;
-    public const int WatchRadius = 44;
-    public const int Player = 45;
-    public const int PlayerAnimator = 46;
-    public const int TriggeredItem = 47;
-    public const int AxisInput = 48;
-    public const int CrouchButton = 49;
-    public const int CrouchButtonHold = 50;
-    public const int CrouchButtonPressed = 51;
-    public const int Input = 52;
-    public const int JumpButton = 53;
-    public const int JumpButtonHold = 54;
-    public const int JumpButtonPressed = 55;
-    public const int PlayerInputs = 56;
-    public const int UseButton = 57;
-    public const int UseButtonHold = 58;
-    public const int UseButtonPressed = 59;
-    public const int DoorInteractionStateManager = 60;
-    public const int EnvironmentInteractionStateManager = 61;
-    public const int StateManagers = 62;
+    public const int GotOnTheBall = 37;
+    public const int HingeJoint = 38;
+    public const int LocationSegment = 39;
+    public const int MasterLocationSegment = 40;
+    public const int OwnerDoor = 41;
+    public const int SlaveLocationSegment = 42;
+    public const int NPC = 43;
+    public const int FoundTarget = 44;
+    public const int WatchingForTargets = 45;
+    public const int WatchRadius = 46;
+    public const int Player = 47;
+    public const int PlayerAnimator = 48;
+    public const int TriggeredItem = 49;
+    public const int AxisInput = 50;
+    public const int CrouchButton = 51;
+    public const int CrouchButtonHold = 52;
+    public const int CrouchButtonPressed = 53;
+    public const int Input = 54;
+    public const int JumpButton = 55;
+    public const int JumpButtonHold = 56;
+    public const int JumpButtonPressed = 57;
+    public const int PlayerInputs = 58;
+    public const int UseButton = 59;
+    public const int UseButtonHold = 60;
+    public const int UseButtonPressed = 61;
+    public const int DoorInteractionStateManager = 62;
+    public const int EnvironmentInteractionStateManager = 63;
+    public const int StateManagers = 64;
 
-    public const int TotalComponents = 63;
+    public const int TotalComponents = 65;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -83,12 +85,12 @@ public static class GameComponentsLookup {
         "ViewPrefab",
         "AnimationSpeed",
         "CharacterController",
-        "ColliderEventService",
         "Direction",
         "LayerMask",
         "RotationSpawnPoint",
         "Transform",
         "TransformSpawnPoint",
+        "TriggerEventService",
         "VectorSpawnPoint",
         "MultiAimConstraint",
         "NotYetUnWeighted",
@@ -112,9 +114,11 @@ public static class GameComponentsLookup {
         "Useless",
         "WorldItemList",
         "DoorOff",
+        "GotOnTheBall",
         "HingeJoint",
         "LocationSegment",
         "MasterLocationSegment",
+        "OwnerDoor",
         "SlaveLocationSegment",
         "NPC",
         "FoundTarget",
@@ -149,12 +153,12 @@ public static class GameComponentsLookup {
         typeof(Code.Common.ViewPrefab),
         typeof(Code.Gameplay.Common.AnimationSpeed),
         typeof(Code.Gameplay.Common.CharacterControllerComponent),
-        typeof(Code.Gameplay.Common.ColliderEventServiceComponent),
         typeof(Code.Gameplay.Common.Direction),
         typeof(Code.Gameplay.Common.LayerMask),
         typeof(Code.Gameplay.Common.RotationSpawnPoint),
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.TransformSpawnPoint),
+        typeof(Code.Gameplay.Common.TriggerEventServiceComponent),
         typeof(Code.Gameplay.Common.VectorSpawnPoint),
         typeof(Code.Gameplay.Features.AnimationRigShit.MultiAimConstraintComponent),
         typeof(Code.Gameplay.Features.AnimationRigShit.NotYetUnWeighted),
@@ -178,9 +182,11 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Items.Useless),
         typeof(Code.Gameplay.Features.Items.WorldItemList),
         typeof(Code.Gameplay.Features.LocationFeature.DoorOff),
+        typeof(Code.Gameplay.Features.LocationFeature.GotOnTheBall),
         typeof(Code.Gameplay.Features.LocationFeature.HingeJointComponent),
         typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.OwnerDoor),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.NPC.NPC),
         typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),

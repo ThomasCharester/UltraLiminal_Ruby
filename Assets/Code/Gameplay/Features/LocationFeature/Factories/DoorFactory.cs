@@ -8,7 +8,6 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
 {
     public class DoorFactory : IDoorFactory
     {
-        
         private readonly IIdentifierService _identifierService;
         private readonly IStaticDataService _staticDataService;
 
@@ -20,13 +19,31 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
 
         public GameEntity CreateDoor(DoorID segmentID, Vector3 originPosition, Quaternion originRotation, int masterID)
         {
-            return CreateEntity.Empty()
+            GameEntity door = CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .AddMasterLocationSegment(masterID)
                 .AddVectorSpawnPoint(originPosition)
                 .AddRotationSpawnPoint(originRotation)
                 .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
                 .With(x => x.isDoorOff = true);
+
+            originPosition = new Vector3(originPosition.x,
+                originPosition.y - _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset,
+                originPosition.z);
+            
+            CreateDoorFrame(originPosition, originRotation, door.Id);
+
+            return door;
+        }
+
+        public GameEntity CreateDoorFrame(Vector3 originPosition, Quaternion originRotation, int masterDoorID)
+        {
+            return CreateEntity.Empty()
+                .AddId(_identifierService.NextId())
+                .AddOwnerDoor(masterDoorID)
+                .AddVectorSpawnPoint(originPosition)
+                .AddRotationSpawnPoint(originRotation)
+                .AddViewPrefab(_staticDataService.GetDoorConfig(DoorID.DoorFrame).doorPrefab);
         }
     }
 }

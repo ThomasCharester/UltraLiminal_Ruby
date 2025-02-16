@@ -13,6 +13,6 @@ namespace Code.Gameplay.Common
     [Game] public class TransformSpawnPoint : IComponent { public Transform Value; }
     [Game] public class LayerMask : IComponent { public int Value; }
     [Game] public class AnimationSpeed : IComponent { public float Value; } 
-    [Game] public class ColliderEventServiceComponent : IComponent { public IColliderEventService Value; } 
+    [Game] public class TriggerEventServiceComponent : IComponent { public ITriggerEventService Value; } 
     
 }

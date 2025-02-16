@@ -4,9 +4,7 @@ using Code.Gameplay.Features.LocationFeature.Factories;
 using Code.Gameplay.Level;
 using Code.Gameplay.StaticData;
 using Entitas;
-using Unity.Mathematics;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Code.Gameplay.Features.LocationFeature.Systems
 {
@@ -26,8 +24,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
         public void Initialize()
         {
-            GameEntity firstSegment = _locationSegmentFactory.CreateLocationSegment(
-                (LocationSegmentID)UnityEngine.Random.Range(0, 1),//Enum.GetValues(typeof(LocationSegmentID)).Length),
+            GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
                 Vector3.zero, 
                 Quaternion.identity);// КОНФИГИИИИИИ
             

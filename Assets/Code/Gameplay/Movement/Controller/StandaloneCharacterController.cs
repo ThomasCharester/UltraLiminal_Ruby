@@ -144,7 +144,7 @@ namespace Code.Gameplay.Movement.Controller
             // Clamp input
             Vector3 moveInputVector = Vector3.ClampMagnitude(new Vector3(inputs.MoveAxis.x, 0f, inputs.MoveAxis.y), 1f);
 
-            // Calculate camera direction and rotation on the character plane
+            // Calculate cinemachineCamera direction and rotation on the character plane
             Vector3 cameraPlanarDirection =
                 Vector3.ProjectOnPlane(inputs.CameraRotation * Vector3.forward, Motor.CharacterUp).normalized;
 

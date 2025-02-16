@@ -9,6 +9,8 @@ namespace Code.Gameplay.Features.LocationFeature
         {
             Add(systems.Create<InitializeLocationSystem>());
             Add(systems.Create<TurnOnDoorSystem>());
+            Add(systems.Create<CheckNeedToSpawnLocationSegmentSystem>());
+            Add(systems.Create<RandomSpawnLocationSegmentSystem>());
         }
     }
 }

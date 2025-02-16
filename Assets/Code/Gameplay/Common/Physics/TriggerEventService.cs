@@ -13,7 +13,7 @@ namespace Code.Gameplay.Common.Physics
         public List<GameEntity> EnteredEntities => _enteredEntities;
         public List<GameEntity> ExitedEntities => _exitedEntities;
         public List<GameEntity> StayingEntities => _stayingEntities;
-        
+
         private ICollisionRegistry _collisionRegistry;
 
         public void OnTriggerEnter(Collider other)
@@ -34,7 +34,10 @@ namespace Code.Gameplay.Common.Physics
         {
             GameEntity buff = _collisionRegistry?.Get<GameEntity>(other.GetInstanceID());
             if (buff != null)
+            {
                 _exitedEntities.Add(buff);
+                _stayingEntities.Remove(buff);
+            }
         }
 
         public void SetCollisionRegistry(ICollisionRegistry registry) // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА

@@ -1,5 +1,6 @@
 using Code.Infrastructure.View;
 using Entitas;
+using Entitas.CodeGeneration.Attributes;
 
 namespace Code.Common
 {
@@ -10,5 +11,5 @@ namespace Code.Common
     [Game] public class ViewPath : IComponent { public string Value; }
     [Game] public class ViewPrefab : IComponent { public EntityBehaviour Value; }
     
-    [Game] public class Id : IComponent { public int Value; }
+    [Game] public class Id : IComponent { [PrimaryEntityIndex] public int Value; }
 }

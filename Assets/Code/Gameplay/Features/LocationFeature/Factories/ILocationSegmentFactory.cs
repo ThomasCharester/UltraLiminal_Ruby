@@ -6,5 +6,6 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
     {
         GameEntity CreateLocationSegment(LocationSegmentID segmentID, Vector3 position, Quaternion rotation);
         GameEntity CreateRandomLocationSegment(Vector3 position, Quaternion rotation);
+        void SpawnDoors(DoorCalculator locationSegment, int id, int exceptionOriginIdInList = -1);
     }
 }

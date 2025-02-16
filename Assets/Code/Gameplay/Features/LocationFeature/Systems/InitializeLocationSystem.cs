@@ -14,7 +14,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         private readonly IStaticDataService _staticDataService;
         private readonly ILocationSegmentFactory _locationSegmentFactory;
 
-        public InitializeLocationSystem(GameContext game, ILevelDataProvider levelDataProvider,
+        public InitializeLocationSystem(ILevelDataProvider levelDataProvider,
             IStaticDataService staticDataService, ILocationSegmentFactory locationSegmentFactory)
         {
             _levelDataProvider = levelDataProvider;
@@ -27,7 +27,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
                 Vector3.zero, 
                 Quaternion.identity);// КОНФИГИИИИИИ
-            
+            _locationSegmentFactory.SpawnDoors(firstSegment.LocationSegment,firstSegment.Id);
             _levelDataProvider.SetPlayerStart(firstSegment.LocationSegment.GetPlayerStart.position);
         }
     }

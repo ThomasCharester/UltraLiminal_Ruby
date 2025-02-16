@@ -23,6 +23,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                     || frame.TriggerEventService.EnteredEntities.Where(x => x.isPlayer).ToList().First() == null) continue;
                 
                 frame.isGotOnTheBall = true;
+                frame.TriggerEventService.EnteredEntities.Clear();
             }
         }
     }

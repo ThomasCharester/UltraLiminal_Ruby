@@ -1,5 +1,6 @@
 using System.Linq;
 using Entitas;
+using UnityEngine;
 
 namespace Code.Gameplay.Features.LocationFeature.Systems
 {
@@ -34,8 +35,8 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 _game.GetEntityWithId(frame.OwnerDoor).RemoveSlaveLocationSegment();
 
-                if (masterSegment.TriggerEventService.StayingEntities.Count <= 0 && masterSegment.TriggerEventService
-                        .StayingEntities.Where(x => x.isPlayer).ToList().First() == null)
+                if (masterSegment.TriggerEventService.StayingEntities.Count <= 0 
+                    || !masterSegment.TriggerEventService.StayingEntities.Any(x => x.isPlayer))
                 {
                     _game.GetEntityWithId(frame.OwnerDoor).ReplaceMasterLocationSegment(slaveSegment.Id);
                     masterSegment.isDestructed = true;

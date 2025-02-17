@@ -43,37 +43,56 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
 
                 Transform randomDoorOrigin = locationSegment.LocationSegment.GetRandomDoorOrigin;
-                Vector3 randomDoorOriginPosition = randomDoorOrigin.position;
-                Quaternion randomDoorOriginRotation = randomDoorOrigin.rotation;
-                
-                // _locationSegmentFactory.SpawnDoors(locationSegment.LocationSegment, locationSegment.Id,
-                //     locationSegment.LocationSegment.GetDoorOrigins.IndexOf(randomDoorOrigin));
+                Vector3 randomDoorOriginPosition = randomDoorOrigin.localPosition;
+                Quaternion randomDoorOriginRotation = randomDoorOrigin.localRotation;
 
-                float segmentOriginYRotation = 360 - heOnTheBall.Transform.rotation.y - randomDoorOriginRotation.y;
+                float segmentOriginYRotation = 0;
 
-                if (segmentOriginYRotation is >= 0f and < 90.0f)
-                {
-                    segmentOriginPosition.x += randomDoorOriginPosition.x;
-                    segmentOriginPosition.z += randomDoorOriginPosition.z;
-                }
-                else if (segmentOriginYRotation is >= 90f and < 180.0f)
-                {
-                    segmentOriginPosition.x += randomDoorOriginPosition.x;
-                    segmentOriginPosition.z -= randomDoorOriginPosition.z;
-                }
-                else if (segmentOriginYRotation is >= 180f and < 270.0f)
+                if (heOnTheBall.Transform.rotation.eulerAngles.y is >= 45f and < 135f or >= 225f and > 305f)
+                    segmentOriginYRotation = 360f - (heOnTheBall.Transform.rotation.eulerAngles.y +
+                                                     _game.GetEntityWithId(_game.GetEntityWithId(heOnTheBall.OwnerDoor)
+                                                         .MasterLocationSegment).Transform.rotation.eulerAngles.y +
+                                                     randomDoorOriginRotation.eulerAngles.y);
+                else
+                    segmentOriginYRotation = 180f - (heOnTheBall.Transform.rotation.eulerAngles.y +
+                                                     _game.GetEntityWithId(_game.GetEntityWithId(heOnTheBall.OwnerDoor)
+                                                         .MasterLocationSegment).Transform.rotation.eulerAngles.y +
+                                                     randomDoorOriginRotation.eulerAngles.y);
+
+
+                if (segmentOriginYRotation is >= 0f and < 45f or >= 305f or <= -305f)
                 {
                     segmentOriginPosition.x -= randomDoorOriginPosition.x;
                     segmentOriginPosition.z -= randomDoorOriginPosition.z;
                 }
-                else if (segmentOriginYRotation is >= 270f and < 360.0f)
+                else if (segmentOriginYRotation is >= 45f and < 135f or <= -225f and > -305f)
                 {
-                    segmentOriginPosition.x -= randomDoorOriginPosition.x;
+                    segmentOriginPosition.x -= randomDoorOriginPosition.z;
+                    segmentOriginPosition.z += randomDoorOriginPosition.x;
+                }
+                else if (segmentOriginYRotation is >= 135f and < 225f or <= -135f and > -225f)
+                {
+                    segmentOriginPosition.x += randomDoorOriginPosition.x;
                     segmentOriginPosition.z += randomDoorOriginPosition.z;
                 }
+                else if (segmentOriginYRotation is >= 225f and < 305f or <= -45f and > -135f)
+                {
+                    segmentOriginPosition.x += randomDoorOriginPosition.z;
+                    segmentOriginPosition.z -= randomDoorOriginPosition.x;
+                }
 
-                locationSegment.ReplaceVectorSpawnPoint(_staticDataService.GameplayConstantsConfig._farAway);//segmentOriginPosition);
-                locationSegment.ReplaceRotationSpawnPoint(new Quaternion(0, segmentOriginYRotation, 0, 0));
+                segmentOriginPosition.y -= randomDoorOriginPosition.y;
+
+                // Debug.Log("segmentOriginPosition " + segmentOriginPosition);
+                // Debug.Log("randomDoorOriginPosition " + randomDoorOriginPosition);
+                // Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation);
+                // Debug.Log("heOnTheBall.Transform.position " + heOnTheBall.Transform.position);
+                // Debug.Log("heOnTheBall.Transform.rotation " + heOnTheBall.Transform.rotation);
+                // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation);
+                // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation * Mathf.Deg2Rad);
+                locationSegment.ReplaceVectorSpawnPoint(segmentOriginPosition);
+                //_staticDataService.GameplayConstantsConfig._farAway);
+                locationSegment.ReplaceRotationSpawnPoint(Quaternion.Euler(0, segmentOriginYRotation, 0));
 
                 _game.GetEntityWithId(heOnTheBall.OwnerDoor).AddSlaveLocationSegment(locationSegment.Id);
                 heOnTheBall.isGotOnTheBall = false;

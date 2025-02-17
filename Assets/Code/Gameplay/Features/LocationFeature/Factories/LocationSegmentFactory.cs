@@ -35,34 +35,92 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
             return locationSegment;
         }
 
-        public void SpawnDoors(DoorCalculator locationSegment, int id, int exceptionOriginIdInList = -1)
+        public void SpawnDoors(Transform segmentOrigin, DoorCalculator locationSegment, int id,
+            int exceptionOriginIdInList = -1)
         {
             foreach (var doorOrigin in locationSegment.GetDoorOrigins)
             {
-                if (exceptionOriginIdInList > -1 && doorOrigin == locationSegment.GetDoorOrigins[exceptionOriginIdInList]) continue; 
-                
-                Vector3 trueDoorOrigin = doorOrigin.position;
+                if (exceptionOriginIdInList > -1 &&
+                    doorOrigin == locationSegment.GetDoorOrigins[exceptionOriginIdInList]) continue;
 
-                if (doorOrigin.rotation.y is >= 0f and < 90f)
+                doorOrigin.rotation = Quaternion.Euler(0,
+                    segmentOrigin.rotation.eulerAngles.y + doorOrigin.localRotation.eulerAngles.y, 0);
+
+                Vector3 trueDoorOrigin = segmentOrigin.position + doorOrigin.localPosition;
+
+                if (doorOrigin.rotation.y is >= 0f and < 45f or >= 305f)
+                {
                     trueDoorOrigin.z -= _staticDataService.GameplayConstantsConfig._doorOffset;
-                else if (doorOrigin.rotation.y is >= 90f and < 180f)
+                }
+                else if (doorOrigin.rotation.y is >= 45f and < 135f )
+                {
                     trueDoorOrigin.x -= _staticDataService.GameplayConstantsConfig._doorOffset;
-                else if (doorOrigin.rotation.y is >= 180f and < 270f)
+                }
+                else if (doorOrigin.rotation.y is >= 135f and < 225f)
+                {
                     trueDoorOrigin.z += _staticDataService.GameplayConstantsConfig._doorOffset;
-                else if (doorOrigin.rotation.y is >= 270f and < 360f)
+                }
+                else if (doorOrigin.rotation.y is >= 225f and < 305f)
+                {
                     trueDoorOrigin.x += _staticDataService.GameplayConstantsConfig._doorOffset;
+                }
 
                 trueDoorOrigin.y += _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset;
                 _doorFactory.CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
                     trueDoorOrigin,
                     doorOrigin.rotation, id);
+
+                Debug.Log("///////////////////////////////////////////////");
+                Debug.Log("trueDoorOrigin " + trueDoorOrigin);
+                Debug.Log("doorOrigin.rotation " + doorOrigin.rotation);
+                Debug.Log("segmentOrigin.position " + segmentOrigin.position);
+                Debug.Log("doorOrigin.localPosition " + doorOrigin.localPosition);
+                Debug.Log("///////////////////////////////////////////////");
+            }
+        } 
+        public void SpawnDoors(DoorCalculator locationSegment, int id,
+            int exceptionOriginIdInList = -1)
+        {
+            foreach (var doorOrigin in locationSegment.GetDoorOrigins)
+            {
+                if (exceptionOriginIdInList > -1 &&
+                    doorOrigin == locationSegment.GetDoorOrigins[exceptionOriginIdInList]) continue;
+
+                Vector3 trueDoorOrigin = doorOrigin.localPosition;
+
+                if (doorOrigin.rotation.y is >= 0f and < 45f or >= 305f)
+                {
+                    trueDoorOrigin.z -= _staticDataService.GameplayConstantsConfig._doorOffset;
+                }
+                else if (doorOrigin.rotation.y is >= 45f and < 135f )
+                {
+                    trueDoorOrigin.x -= _staticDataService.GameplayConstantsConfig._doorOffset;
+                }
+                else if (doorOrigin.rotation.y is >= 135f and < 225f)
+                {
+                    trueDoorOrigin.z += _staticDataService.GameplayConstantsConfig._doorOffset;
+                }
+                else if (doorOrigin.rotation.y is >= 225f and < 305f)
+                {
+                    trueDoorOrigin.x += _staticDataService.GameplayConstantsConfig._doorOffset;
+                }
+
+                trueDoorOrigin.y += _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset;
+                _doorFactory.CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
+                    trueDoorOrigin,
+                    doorOrigin.rotation, id);
+
+                Debug.Log("///////////////////////////////////////////////");
+                Debug.Log("trueDoorOrigin " + trueDoorOrigin);
+                Debug.Log("doorOrigin.rotation " + doorOrigin.rotation);
+                Debug.Log("doorOrigin.localPosition " + doorOrigin.localPosition);
+                Debug.Log("///////////////////////////////////////////////");
             }
         }
 
         public GameEntity CreateRandomLocationSegment(Vector3 position, Quaternion rotation)
         {
-            LocationSegmentID segmentID =
-                (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());
+            LocationSegmentID segmentID = (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());
 
             var locationSegment = CreateEntity.Empty()
                 .AddId(_identifierService.NextId())

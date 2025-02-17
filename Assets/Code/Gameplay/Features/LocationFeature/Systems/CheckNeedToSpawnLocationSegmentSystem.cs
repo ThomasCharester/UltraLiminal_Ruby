@@ -20,7 +20,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             foreach (var frame in _doorFrames)
             {
                 if (frame.TriggerEventService.EnteredEntities.Count <= 0 
-                    || frame.TriggerEventService.EnteredEntities.Where(x => x.isPlayer).ToList().First() == null) continue;
+                    || !frame.TriggerEventService.EnteredEntities.Any(x => x.isPlayer)) continue;
                 
                 frame.isGotOnTheBall = true;
                 frame.TriggerEventService.EnteredEntities.Clear();

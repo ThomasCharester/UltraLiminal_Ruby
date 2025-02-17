@@ -40,26 +40,20 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 GameEntity locationSegment =
                     _locationSegmentFactory.CreateRandomLocationSegment(
                         _staticDataService.GameplayConstantsConfig._farAway, Quaternion.identity);
-
-
+                
                 Transform randomDoorOrigin = locationSegment.LocationSegment.GetRandomDoorOrigin;
                 Vector3 randomDoorOriginPosition = randomDoorOrigin.localPosition;
                 Quaternion randomDoorOriginRotation = randomDoorOrigin.localRotation;
 
                 float segmentOriginYRotation = 0;
 
-                if (heOnTheBall.Transform.rotation.eulerAngles.y is >= 45f and < 135f or >= 225f and > 305f)
-                    segmentOriginYRotation = 360f - (heOnTheBall.Transform.rotation.eulerAngles.y +
-                                                     _game.GetEntityWithId(_game.GetEntityWithId(heOnTheBall.OwnerDoor)
-                                                         .MasterLocationSegment).Transform.rotation.eulerAngles.y +
-                                                     randomDoorOriginRotation.eulerAngles.y);
-                else
-                    segmentOriginYRotation = 180f - (heOnTheBall.Transform.rotation.eulerAngles.y +
-                                                     _game.GetEntityWithId(_game.GetEntityWithId(heOnTheBall.OwnerDoor)
-                                                         .MasterLocationSegment).Transform.rotation.eulerAngles.y +
-                                                     randomDoorOriginRotation.eulerAngles.y);
+                float masterLocationRotation = _game.GetEntityWithId(_game.GetEntityWithId(heOnTheBall.OwnerDoor)
+                    .MasterLocationSegment).Transform.rotation.eulerAngles.y;
+                float onTheBallLocationRotation = heOnTheBall.Transform.rotation.eulerAngles.y;
 
-
+                 segmentOriginYRotation = 180f - Mathf.Abs(masterLocationRotation - onTheBallLocationRotation)
+                                               - randomDoorOriginRotation.eulerAngles.y;
+                
                 if (segmentOriginYRotation is >= 0f and < 45f or >= 305f or <= -305f)
                 {
                     segmentOriginPosition.x -= randomDoorOriginPosition.x;
@@ -83,16 +77,20 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 segmentOriginPosition.y -= randomDoorOriginPosition.y;
 
+                // Debug.Log("///////////////////////////////////////////////");
                 // Debug.Log("segmentOriginPosition " + segmentOriginPosition);
                 // Debug.Log("randomDoorOriginPosition " + randomDoorOriginPosition);
-                // Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation);
                 // Debug.Log("heOnTheBall.Transform.position " + heOnTheBall.Transform.position);
-                // Debug.Log("heOnTheBall.Transform.rotation " + heOnTheBall.Transform.rotation);
+                // Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation.eulerAngles.y);
+                // Debug.Log("heOnTheBall.Transform.rotation " + onTheBallLocationRotation);
+                // Debug.Log("masterLocationSegment " + masterLocationRotation);
                 // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation);
-                // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation * Mathf.Deg2Rad);
+                // Debug.Log("///////////////////////////////////////////////");
+
                 locationSegment.ReplaceVectorSpawnPoint(segmentOriginPosition);
-                //_staticDataService.GameplayConstantsConfig._farAway);
                 locationSegment.ReplaceRotationSpawnPoint(Quaternion.Euler(0, segmentOriginYRotation, 0));
+                locationSegment.isNeedSomeDoors = true;
+                locationSegment.AddBadDoorId(locationSegment.LocationSegment.GetDoorOrigins.IndexOf(randomDoorOrigin));
 
                 _game.GetEntityWithId(heOnTheBall.OwnerDoor).AddSlaveLocationSegment(locationSegment.Id);
                 heOnTheBall.isGotOnTheBall = false;

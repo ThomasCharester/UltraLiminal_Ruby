@@ -44,37 +44,39 @@ public static class GameComponentsLookup {
     public const int Triggered = 33;
     public const int Useless = 34;
     public const int WorldItemList = 35;
-    public const int DoorOff = 36;
-    public const int GotOnTheBall = 37;
-    public const int HingeJoint = 38;
-    public const int LocationSegment = 39;
-    public const int MasterLocationSegment = 40;
-    public const int OwnerDoor = 41;
-    public const int SlaveLocationSegment = 42;
-    public const int NPC = 43;
-    public const int FoundTarget = 44;
-    public const int WatchingForTargets = 45;
-    public const int WatchRadius = 46;
-    public const int Player = 47;
-    public const int PlayerAnimator = 48;
-    public const int TriggeredItem = 49;
-    public const int AxisInput = 50;
-    public const int CrouchButton = 51;
-    public const int CrouchButtonHold = 52;
-    public const int CrouchButtonPressed = 53;
-    public const int Input = 54;
-    public const int JumpButton = 55;
-    public const int JumpButtonHold = 56;
-    public const int JumpButtonPressed = 57;
-    public const int PlayerInputs = 58;
-    public const int UseButton = 59;
-    public const int UseButtonHold = 60;
-    public const int UseButtonPressed = 61;
-    public const int DoorInteractionStateManager = 62;
-    public const int EnvironmentInteractionStateManager = 63;
-    public const int StateManagers = 64;
+    public const int BadDoorId = 36;
+    public const int DoorOff = 37;
+    public const int GotOnTheBall = 38;
+    public const int HingeJoint = 39;
+    public const int LocationSegment = 40;
+    public const int MasterLocationSegment = 41;
+    public const int NeedSomeDoors = 42;
+    public const int OwnerDoor = 43;
+    public const int SlaveLocationSegment = 44;
+    public const int NPC = 45;
+    public const int FoundTarget = 46;
+    public const int WatchingForTargets = 47;
+    public const int WatchRadius = 48;
+    public const int Player = 49;
+    public const int PlayerAnimator = 50;
+    public const int TriggeredItem = 51;
+    public const int AxisInput = 52;
+    public const int CrouchButton = 53;
+    public const int CrouchButtonHold = 54;
+    public const int CrouchButtonPressed = 55;
+    public const int Input = 56;
+    public const int JumpButton = 57;
+    public const int JumpButtonHold = 58;
+    public const int JumpButtonPressed = 59;
+    public const int PlayerInputs = 60;
+    public const int UseButton = 61;
+    public const int UseButtonHold = 62;
+    public const int UseButtonPressed = 63;
+    public const int DoorInteractionStateManager = 64;
+    public const int EnvironmentInteractionStateManager = 65;
+    public const int StateManagers = 66;
 
-    public const int TotalComponents = 65;
+    public const int TotalComponents = 67;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -113,11 +115,13 @@ public static class GameComponentsLookup {
         "Triggered",
         "Useless",
         "WorldItemList",
+        "BadDoorId",
         "DoorOff",
         "GotOnTheBall",
         "HingeJoint",
         "LocationSegment",
         "MasterLocationSegment",
+        "NeedSomeDoors",
         "OwnerDoor",
         "SlaveLocationSegment",
         "NPC",
@@ -181,11 +185,13 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.Items.Triggered),
         typeof(Code.Gameplay.Features.Items.Useless),
         typeof(Code.Gameplay.Features.Items.WorldItemList),
+        typeof(Code.Gameplay.Features.LocationFeature.BadDoorId),
         typeof(Code.Gameplay.Features.LocationFeature.DoorOff),
         typeof(Code.Gameplay.Features.LocationFeature.GotOnTheBall),
         typeof(Code.Gameplay.Features.LocationFeature.HingeJointComponent),
         typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.NeedSomeDoors),
         typeof(Code.Gameplay.Features.LocationFeature.OwnerDoor),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.NPC.NPC),

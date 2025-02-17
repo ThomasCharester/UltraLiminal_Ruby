@@ -27,6 +27,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
                 Vector3.zero, 
                 Quaternion.identity);// КОНФИГИИИИИИ
+            firstSegment.isNeedSomeDoors = true;
             _locationSegmentFactory.SpawnDoors(firstSegment.LocationSegment,firstSegment.Id);
             _levelDataProvider.SetPlayerStart(firstSegment.LocationSegment.GetPlayerStart.position);
         }

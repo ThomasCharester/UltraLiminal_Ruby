@@ -11,7 +11,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             _doorFrames = game.GetGroup(GameMatcher.AllOf(
                 GameMatcher.TriggerEventService,
-                GameMatcher.OwnerDoor
+                GameMatcher.MasterLocationSegment
             ));
             
         }

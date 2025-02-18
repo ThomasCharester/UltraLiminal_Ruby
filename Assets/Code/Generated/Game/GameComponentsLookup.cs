@@ -51,7 +51,7 @@ public static class GameComponentsLookup {
     public const int LocationSegment = 40;
     public const int MasterLocationSegment = 41;
     public const int NeedSomeDoors = 42;
-    public const int OwnerDoor = 43;
+    public const int OwnerFrame = 43;
     public const int SlaveLocationSegment = 44;
     public const int NPC = 45;
     public const int FoundTarget = 46;
@@ -122,7 +122,7 @@ public static class GameComponentsLookup {
         "LocationSegment",
         "MasterLocationSegment",
         "NeedSomeDoors",
-        "OwnerDoor",
+        "OwnerFrame",
         "SlaveLocationSegment",
         "NPC",
         "FoundTarget",
@@ -192,7 +192,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.NeedSomeDoors),
-        typeof(Code.Gameplay.Features.LocationFeature.OwnerDoor),
+        typeof(Code.Gameplay.Features.LocationFeature.OwnerFrame),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.NPC.NPC),
         typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),

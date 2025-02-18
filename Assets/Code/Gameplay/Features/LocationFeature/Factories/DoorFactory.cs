@@ -17,33 +17,31 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
             _staticDataService = staticDataService;
         }
 
-        public GameEntity CreateDoor(DoorID segmentID, Vector3 originPosition, Quaternion originRotation, int masterID)
+        public GameEntity CreateDoor(DoorID segmentID, Vector3 originPosition, Quaternion originRotation, int ownerID)
         {
-            GameEntity door = CreateEntity.Empty()
+            return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
-                .AddMasterLocationSegment(masterID)
+                .AddOwnerFrame(ownerID)
                 .AddVectorSpawnPoint(originPosition)
                 .AddRotationSpawnPoint(originRotation)
                 .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
                 .With(x => x.isDoorOff = true);
-
-            originPosition = new Vector3(originPosition.x,
-                originPosition.y - _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset,
-                originPosition.z);
-            
-            CreateDoorFrame(originPosition, originRotation, door.Id);
-
-            return door;
         }
 
-        public GameEntity CreateDoorFrame(Vector3 originPosition, Quaternion originRotation, int masterDoorID)
+        public GameEntity CreateDoorFrame(Vector3 originPosition, Quaternion originRotation, int masterID)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
-                .AddOwnerDoor(masterDoorID)
+                .AddMasterLocationSegment(masterID)
                 .AddVectorSpawnPoint(originPosition)
                 .AddRotationSpawnPoint(originRotation)
                 .AddViewPrefab(_staticDataService.GetDoorConfig(DoorID.DoorFrame).doorPrefab);
+            //
+            // originPosition = new Vector3(originPosition.x,
+            //     originPosition.y - _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset,
+            //     originPosition.z);
+            //
+            // CreateDoorFrame(originPosition, originRotation, door.Id);
         }
     }
 }

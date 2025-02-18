@@ -11,20 +11,22 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         public CleanUselessDoorsSystem(GameContext game)
         {
             _game = game;
-            _uselessDoors = game.GetGroup(GameMatcher.AllOf(GameMatcher.MasterLocationSegment));
-            _uselessDoorFrames = game.GetGroup(GameMatcher.AllOf(GameMatcher.OwnerDoor));
+            _uselessDoorFrames = game.GetGroup(GameMatcher.AllOf(GameMatcher.MasterLocationSegment));
+            _uselessDoors = game.GetGroup(GameMatcher.AllOf(GameMatcher.OwnerFrame));
         }
+
         public void Cleanup()
         {
-            foreach (var uselessDoor in _uselessDoors)
-            {
-                if (_game.GetEntityWithId(uselessDoor.MasterLocationSegment) == null) uselessDoor.isDestructed = true;
-            }
-
             foreach (var uselessDoorFrame in _uselessDoorFrames)
             {
-                var ownerDoor = _game.GetEntityWithId(uselessDoorFrame.OwnerDoor);
-                if(ownerDoor == null || ownerDoor.isDestructed) uselessDoorFrame.isDestructed = true;
+                if (_game.GetEntityWithId(uselessDoorFrame.MasterLocationSegment) == null)
+                    uselessDoorFrame.isDestructed = true;
+            }
+
+            foreach (var uselessDoor in _uselessDoors)
+            {
+                var ownerFrame = _game.GetEntityWithId(uselessDoor.OwnerFrame);
+                if (ownerFrame == null || ownerFrame.isDestructed) uselessDoor.isDestructed = true;
             }
         }
     }

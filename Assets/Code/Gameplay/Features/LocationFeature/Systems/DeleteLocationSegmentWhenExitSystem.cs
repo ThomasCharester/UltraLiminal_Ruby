@@ -26,8 +26,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             foreach (var frame in _doorFrames.GetEntities(buff))
             {
                 if (frame.TriggerEventService.ExitedEntities.Count <= 0
-                    || frame.TriggerEventService.ExitedEntities.Where(x => x.isPlayer).ToList().First() ==
-                    null) continue;
+                    || !frame.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
 
                 frame.TriggerEventService.ExitedEntities.Clear();
 
@@ -43,10 +42,14 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 {
                     frame.ReplaceMasterLocationSegment(slaveSegment.Id);
                     masterSegment.isDestructed = true;
+
+                    //float frameNewAngle = masterSegment.;
                     
-                    frame.Transform.rotation = Quaternion.Euler(0,180f - frame.Transform.rotation.eulerAngles.y,0);
+                    frame.Transform.rotation = Quaternion.Euler(0,frame.SlaveSegmentDoorOriginYRotation,0);
                 }
                 else slaveSegment.isDestructed = true;
+                
+                frame.RemoveSlaveSegmentDoorOriginYRotation();
             }
         }
     }

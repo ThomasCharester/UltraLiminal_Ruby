@@ -53,27 +53,27 @@ public static class GameComponentsLookup {
     public const int NeedSomeDoors = 42;
     public const int OwnerFrame = 43;
     public const int SlaveLocationSegment = 44;
-    public const int NPC = 45;
-    public const int FoundTarget = 46;
-    public const int WatchingForTargets = 47;
-    public const int WatchRadius = 48;
-    public const int Player = 49;
-    public const int PlayerAnimator = 50;
-    public const int TriggeredItem = 51;
-    public const int AxisInput = 52;
-    public const int CrouchButton = 53;
-    public const int CrouchButtonHold = 54;
-    public const int CrouchButtonPressed = 55;
-    public const int Input = 56;
-    public const int JumpButton = 57;
-    public const int JumpButtonHold = 58;
-    public const int JumpButtonPressed = 59;
-    public const int PlayerInputs = 60;
-    public const int UseButton = 61;
-    public const int UseButtonHold = 62;
-    public const int UseButtonPressed = 63;
-    public const int DoorInteractionStateManager = 64;
-    public const int EnvironmentInteractionStateManager = 65;
+    public const int SlaveSegmentDoorOriginYRotation = 45;
+    public const int NPC = 46;
+    public const int FoundTarget = 47;
+    public const int WatchingForTargets = 48;
+    public const int WatchRadius = 49;
+    public const int Player = 50;
+    public const int PlayerAnimator = 51;
+    public const int TriggeredItem = 52;
+    public const int AxisInput = 53;
+    public const int CrouchButton = 54;
+    public const int CrouchButtonHold = 55;
+    public const int CrouchButtonPressed = 56;
+    public const int Input = 57;
+    public const int JumpButton = 58;
+    public const int JumpButtonHold = 59;
+    public const int JumpButtonPressed = 60;
+    public const int PlayerInputs = 61;
+    public const int UseButton = 62;
+    public const int UseButtonHold = 63;
+    public const int UseButtonPressed = 64;
+    public const int DoorInteractionStateManager = 65;
     public const int StateManagers = 66;
 
     public const int TotalComponents = 67;
@@ -124,6 +124,7 @@ public static class GameComponentsLookup {
         "NeedSomeDoors",
         "OwnerFrame",
         "SlaveLocationSegment",
+        "SlaveSegmentDoorOriginYRotation",
         "NPC",
         "FoundTarget",
         "WatchingForTargets",
@@ -144,7 +145,6 @@ public static class GameComponentsLookup {
         "UseButtonHold",
         "UseButtonPressed",
         "DoorInteractionStateManager",
-        "EnvironmentInteractionStateManager",
         "StateManagers"
     };
 
@@ -194,6 +194,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.LocationFeature.NeedSomeDoors),
         typeof(Code.Gameplay.Features.LocationFeature.OwnerFrame),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.SlaveSegmentDoorOriginYRotation),
         typeof(Code.Gameplay.Features.NPC.NPC),
         typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),
         typeof(Code.Gameplay.Features.ObjectSeek.WatchingForTargets),
@@ -214,7 +215,6 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Input.UseButtonHold),
         typeof(Code.Gameplay.Input.UseButtonPressed),
         typeof(Code.Gameplay.StateMachine.DoorInteractionStateManagerComponent),
-        typeof(Code.Gameplay.StateMachine.EnvironmentInteractionStateManagerComponent),
         typeof(Code.Gameplay.StateMachine.StateManagers)
     };
 }

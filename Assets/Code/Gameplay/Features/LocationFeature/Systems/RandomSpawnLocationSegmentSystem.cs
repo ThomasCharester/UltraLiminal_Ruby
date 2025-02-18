@@ -45,47 +45,36 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 Vector3 randomDoorOriginPosition = randomDoorOrigin.localPosition;
                 Quaternion randomDoorOriginRotation = randomDoorOrigin.localRotation;
 
-                float segmentOriginYRotation = 0;
+                float segmentOriginYRotation;
 
-                float masterLocationRotation = _game.GetEntityWithId(heOnTheBall.MasterLocationSegment).Transform
-                    .rotation.eulerAngles.y;
-                float onTheBallLocationRotation = heOnTheBall.Transform.rotation.eulerAngles.y;
+                float heOnTheBallRotation = heOnTheBall.Transform.rotation.eulerAngles.y;
+                if (heOnTheBallRotation > 305f) heOnTheBallRotation -= 360f;
+                else if (heOnTheBallRotation < -45f) heOnTheBallRotation += 360f;
 
-                // segmentOriginYRotation = 180f - Mathf.Abs(masterLocationRotation - onTheBallLocationRotation)
-                //                               - randomDoorOriginRotation.eulerAngles.y;
-
-                if (masterLocationRotation > 305f) masterLocationRotation -= 360f;
-                else if (masterLocationRotation < -45f) masterLocationRotation += 360f;
-                
-                float realOnTheBallRotation = masterLocationRotation + onTheBallLocationRotation;
-                if (realOnTheBallRotation > 305f) realOnTheBallRotation -= 360f;
-                else if (realOnTheBallRotation < -45f) realOnTheBallRotation += 360f;
-
-                if (realOnTheBallRotation > 135f) //randomDoorOriginRotation.eulerAngles.y
-                    segmentOriginYRotation = realOnTheBallRotation - randomDoorOriginRotation.eulerAngles.y + 180f;
+                if (heOnTheBallRotation > 135f) 
+                    segmentOriginYRotation = heOnTheBallRotation - randomDoorOriginRotation.eulerAngles.y + 180f;
                 else
-                    segmentOriginYRotation = realOnTheBallRotation - randomDoorOriginRotation.eulerAngles.y -  - 180f;
-                // - 180f * (Mathf.Sin(randomDoorOriginRotation.y) -
-                //           Mathf.Cos(randomDoorOriginRotation.y));
+                    segmentOriginYRotation = heOnTheBallRotation - randomDoorOriginRotation.eulerAngles.y - 180f;
+                
                 if (segmentOriginYRotation < -45f) segmentOriginYRotation += 360f;
                 else if (segmentOriginYRotation > 305f) segmentOriginYRotation -= 360f;
 
-                if (segmentOriginYRotation is > -45f and < 45f or >= 305f or <= -305f)
+                if (segmentOriginYRotation is > -45f and < 45f)
                 {
                     segmentOriginPosition.x -= randomDoorOriginPosition.x;
                     segmentOriginPosition.z -= randomDoorOriginPosition.z;
                 }
-                else if (segmentOriginYRotation is >= 45f and < 135f or <= -225f and > -305f)
+                else if (segmentOriginYRotation is >= 45f and < 135f)
                 {
                     segmentOriginPosition.x -= randomDoorOriginPosition.z;
                     segmentOriginPosition.z += randomDoorOriginPosition.x;
                 }
-                else if (segmentOriginYRotation is >= 135f and < 225f or <= -135f and > -225f)
+                else if (segmentOriginYRotation is >= 135f and < 225f)
                 {
                     segmentOriginPosition.x += randomDoorOriginPosition.x;
                     segmentOriginPosition.z += randomDoorOriginPosition.z;
                 }
-                else if (segmentOriginYRotation is >= 225f and < 305f or <= -45f and > -135f)
+                else if (segmentOriginYRotation is >= 225f and < 305f)
                 {
                     segmentOriginPosition.x += randomDoorOriginPosition.z;
                     segmentOriginPosition.z -= randomDoorOriginPosition.x;
@@ -93,17 +82,14 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 segmentOriginPosition.y -= randomDoorOriginPosition.y;
 
-                Debug.Log("///////////////////////////////////////////////");
-                Debug.Log("segmentOriginPosition " + segmentOriginPosition);
-                Debug.Log("randomDoorOriginPosition " + randomDoorOriginPosition);
-                Debug.Log("heOnTheBall.Transform.position " + heOnTheBall.Transform.position);
-                Debug.Log("===============================================");
-                Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation.eulerAngles.y);
-                Debug.Log("heOnTheBall.Transform.rotation " + onTheBallLocationRotation);
-                Debug.Log("masterLocationSegment " + masterLocationRotation);
-                Debug.Log("realOnTheBall " + realOnTheBallRotation);
-                Debug.Log("Mathf.Cos(realOnTheBallRotation) " + Mathf.Cos(realOnTheBallRotation * Mathf.Deg2Rad));
-                Debug.Log("segmentOriginYRotation " + segmentOriginYRotation);
+                // Debug.Log("///////////////////////////////////////////////");
+                // Debug.Log("segmentOriginPosition " + segmentOriginPosition);
+                // Debug.Log("randomDoorOriginPosition " + randomDoorOriginPosition);
+                // Debug.Log("heOnTheBall.Transform.position " + heOnTheBall.Transform.position);
+                // Debug.Log("===============================================");
+                // Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation.eulerAngles.y);
+                // Debug.Log("realOnTheBall " + heOnTheBallRotation);
+                // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation);
                 // Debug.Log("///////////////////////////////////////////////");
 
                 locationSegment.ReplaceVectorSpawnPoint(segmentOriginPosition);
@@ -111,7 +97,12 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 locationSegment.isNeedSomeDoors = true;
                 locationSegment.AddBadDoorId(locationSegment.LocationSegment.GetDoorOrigins.IndexOf(randomDoorOrigin));
 
+                float frameOnTheBallRotation = segmentOriginYRotation + randomDoorOriginRotation.eulerAngles.y;
+                if (frameOnTheBallRotation > 305f) frameOnTheBallRotation -= 360f;
+                else if (frameOnTheBallRotation < -45f) frameOnTheBallRotation += 360f;
+                
                 heOnTheBall.AddSlaveLocationSegment(locationSegment.Id);
+                heOnTheBall.ReplaceSlaveSegmentDoorOriginYRotation(frameOnTheBallRotation);
                 heOnTheBall.isGotOnTheBall = false;
             }
         }

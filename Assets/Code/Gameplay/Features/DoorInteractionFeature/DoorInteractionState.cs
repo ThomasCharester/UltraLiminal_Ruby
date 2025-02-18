@@ -1,4 +1,3 @@
-using Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine;
 using Code.Gameplay.StateMachine;
 using UnityEngine;
 

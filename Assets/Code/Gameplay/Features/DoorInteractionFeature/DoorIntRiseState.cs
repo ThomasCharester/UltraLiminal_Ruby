@@ -1,4 +1,3 @@
-using Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.DoorInteractionFeature

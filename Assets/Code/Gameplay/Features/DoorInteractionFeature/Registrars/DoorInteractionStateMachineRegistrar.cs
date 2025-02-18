@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Code.Gameplay.Features.EnvironmentInteractionFeature.StateMachine;
 using Code.Gameplay.StateMachine;
 using Code.Infrastructure.View.Registrar;
 using UnityEngine.Serialization;

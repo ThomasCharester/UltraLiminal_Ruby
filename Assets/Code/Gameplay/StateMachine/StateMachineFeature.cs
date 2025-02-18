@@ -8,7 +8,6 @@ namespace Code.Gameplay.StateMachine
     {
         public StateMachineFeature(ISystemFactory systems)
         {
-            Add(systems.Create<InitializeAndStartEnvironmentInteractionStateMachineInRunTimeSystem>());
             Add(systems.Create<InitializeAndStartDoorInteractionStateMachineInRunTimeSystem>());
             
             Add(systems.Create<UpdateStateMachinesSystem>());

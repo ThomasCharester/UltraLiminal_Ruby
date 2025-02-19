@@ -4,6 +4,7 @@ using System.Text;
 using Code.Common.Entity.ToStrings;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Items;
+using Code.Gameplay.Features.LocationFeature;
 using Code.Gameplay.Features.Player;
 //using Code.Common.Extensions;
 using Entitas;
@@ -41,6 +42,8 @@ public sealed partial class GameEntity : INamedEntity
                         return PrintItem();
                     case nameof(Inventory):
                         return PrintInventory();
+                    case nameof(Stairwell):
+                        return PrintStairwell();
                 }
             }
         }
@@ -67,6 +70,12 @@ public sealed partial class GameEntity : INamedEntity
     private string PrintInventory()
     {
         return new StringBuilder($"Inventory ")
+            .With(s => s.Append($"Id:{Id}"), when: hasId)
+            .ToString();
+    }
+    private string PrintStairwell()
+    {
+        return new StringBuilder($"Stairwell ")
             .With(s => s.Append($"Id:{Id}"), when: hasId)
             .ToString();
     }

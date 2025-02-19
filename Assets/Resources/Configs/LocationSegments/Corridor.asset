@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Corridor
   m_EditorClassIdentifier: 
   segmentID: 3
-  doorCalculator: {fileID: 455097355133777626, guid: b6e24e8f01d748e4294403fe50044b8a, type: 3}
+  doorCalculator: {fileID: 1807934461501567484, guid: b6e24e8f01d748e4294403fe50044b8a, type: 3}
   segmentPrefab: {fileID: 8156882465029053151, guid: b6e24e8f01d748e4294403fe50044b8a, type: 3}

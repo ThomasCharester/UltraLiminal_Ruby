@@ -26,13 +26,15 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 if (segment.TriggerEventService.ExitedEntities.Count <= 0
                     || !segment.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
 
-                segment.isDestructed = true;
-
                 if (segment.hasUpperStairwellID)
                     _game.GetEntityWithId(segment.UpperStairwellID).RemoveLowerStairwellID();
                 
                 if (segment.hasLowerStairwellID)
                     _game.GetEntityWithId(segment.LowerStairwellID).RemoveUpperStairwellID();
+                
+                segment.isDestructed = true;
+
+                segment.TriggerEventService.ExitedEntities.Clear();
             }
         }
     }

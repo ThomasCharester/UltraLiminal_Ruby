@@ -160,7 +160,7 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
 
         public GameEntity CreateRandomLocationSegment(Vector3 position, Quaternion rotation)
         {
-            LocationSegmentID segmentID = LocationSegmentID.Stairwell;//(LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());
+            LocationSegmentID segmentID = (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());
 
             var locationSegment = CreateEntity.Empty()
                 .AddId(_identifierService.NextId())

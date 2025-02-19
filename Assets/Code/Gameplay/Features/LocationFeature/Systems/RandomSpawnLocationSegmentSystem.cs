@@ -58,6 +58,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 
                 if (segmentOriginYRotation < -45f) segmentOriginYRotation += 360f;
                 else if (segmentOriginYRotation > 305f) segmentOriginYRotation -= 360f;
+                else if(segmentOriginYRotation < -305f) segmentOriginYRotation += 720f;
 
                 if (segmentOriginYRotation is > -45f and < 45f)
                 {

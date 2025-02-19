@@ -3,6 +3,7 @@ using System.Linq;
 using Code.Gameplay.Features.LocationFeature.Factories;
 using Code.Gameplay.StaticData;
 using Entitas;
+using ModestTree;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.LocationFeature.Systems
@@ -30,7 +31,8 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (var section in _stairwellSections.GetEntities(buff))
             {
-                if (!section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Middle)
+                if (section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower).IsEmpty() || 
+                    !section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower)
                         .Any(x => x.isPlayer)) continue;
 
                 Vector3 lowerSectionOrigin = section.Transform.position;
@@ -44,6 +46,10 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 section.AddLowerStairwellID(lowerSection.Id);
 
                 lowerSection.AddUpperStairwellID(section.Id);
+                
+                section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower).Clear();
+                
+                Debug.Log("Spawned lower segment " + lowerSection.Id);
             }
         }
     }

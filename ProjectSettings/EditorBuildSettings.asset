@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Bootstrap.unity
     guid: 4c583cc69439ecb4d9da56e180bfe968
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Chistilinsk.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Genetaliatti.unity
     guid: 5cc37a7db9f626141bd94dd87bf99324
   m_configObjects:

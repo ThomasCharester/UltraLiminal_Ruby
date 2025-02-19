@@ -10,5 +10,6 @@ namespace Code.Gameplay.Common.Configs
         [Header("Doors")]
         public float _doorOffset;
         public float _doorFrameVerticalOffset;
+        public float _stairwellSectionVerticalOffset;
     }
 }

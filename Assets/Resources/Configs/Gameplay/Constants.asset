@@ -15,3 +15,4 @@ MonoBehaviour:
   _farAway: {x: 999, y: 999, z: 999}
   _doorOffset: 0.06
   _doorFrameVerticalOffset: 0.1
+  _stairwellSectionVerticalOffset: 3.24

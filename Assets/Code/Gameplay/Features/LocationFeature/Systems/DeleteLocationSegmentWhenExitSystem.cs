@@ -43,8 +43,6 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                     frame.ReplaceMasterLocationSegment(slaveSegment.Id);
                     masterSegment.isDestructed = true;
 
-                    //float frameNewAngle = masterSegment.;
-                    
                     frame.Transform.rotation = Quaternion.Euler(0,frame.SlaveSegmentDoorOriginYRotation,0);
                 }
                 else slaveSegment.isDestructed = true;

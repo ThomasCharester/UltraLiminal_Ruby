@@ -11,7 +11,12 @@ namespace Code.Gameplay.Features.LocationFeature
             Add(systems.Create<TurnOnDoorSystem>());
             Add(systems.Create<CheckNeedToSpawnLocationSegmentSystem>());
             Add(systems.Create<RandomSpawnLocationSegmentSystem>());
+            
+            Add(systems.Create<SpawnLowerStairwellSectionSystem>());
+            Add(systems.Create<SpawnUpperStairwellSectionSystem>());
+            
             Add(systems.Create<DeleteLocationSegmentWhenExitSystem>());
+            Add(systems.Create<DeleteStairwellSegmentsOnExitSystem>());
             
             Add(systems.Create<SetupDoorsAfterSpawnSystem>());
             

@@ -18,65 +18,69 @@ public static class GameComponentsLookup {
     public const int CharacterController = 7;
     public const int Direction = 8;
     public const int LayerMask = 9;
-    public const int RotationSpawnPoint = 10;
-    public const int Transform = 11;
-    public const int TransformSpawnPoint = 12;
-    public const int TriggerEventService = 13;
-    public const int VectorSpawnPoint = 14;
-    public const int MultiAimConstraint = 15;
-    public const int NotYetUnWeighted = 16;
-    public const int NotYetWeighted = 17;
-    public const int RigBuilder = 18;
-    public const int TrackingTarget = 19;
-    public const int Weighted = 20;
-    public const int Camera = 21;
-    public const int CameraTrackingTarget = 22;
-    public const int Cinemachine = 23;
-    public const int CinemachineCamera = 24;
-    public const int MainCamera = 25;
-    public const int Tracking = 26;
-    public const int DebugDoorMiniGameActivator = 27;
-    public const int DebugKeyMiniGameActivator = 28;
-    public const int Inventory = 29;
-    public const int Item = 30;
-    public const int ItemID = 31;
-    public const int PlayerItemList = 32;
-    public const int Triggered = 33;
-    public const int Useless = 34;
-    public const int WorldItemList = 35;
-    public const int BadDoorId = 36;
-    public const int DoorOff = 37;
-    public const int GotOnTheBall = 38;
-    public const int HingeJoint = 39;
-    public const int LocationSegment = 40;
-    public const int MasterLocationSegment = 41;
-    public const int NeedSomeDoors = 42;
-    public const int OwnerFrame = 43;
-    public const int SlaveLocationSegment = 44;
-    public const int SlaveSegmentDoorOriginYRotation = 45;
-    public const int NPC = 46;
-    public const int FoundTarget = 47;
-    public const int WatchingForTargets = 48;
-    public const int WatchRadius = 49;
-    public const int Player = 50;
-    public const int PlayerAnimator = 51;
-    public const int TriggeredItem = 52;
-    public const int AxisInput = 53;
-    public const int CrouchButton = 54;
-    public const int CrouchButtonHold = 55;
-    public const int CrouchButtonPressed = 56;
-    public const int Input = 57;
-    public const int JumpButton = 58;
-    public const int JumpButtonHold = 59;
-    public const int JumpButtonPressed = 60;
-    public const int PlayerInputs = 61;
-    public const int UseButton = 62;
-    public const int UseButtonHold = 63;
-    public const int UseButtonPressed = 64;
-    public const int DoorInteractionStateManager = 65;
-    public const int StateManagers = 66;
+    public const int MultipleTriggerEventService = 10;
+    public const int RotationSpawnPoint = 11;
+    public const int Transform = 12;
+    public const int TransformSpawnPoint = 13;
+    public const int TriggerEventService = 14;
+    public const int VectorSpawnPoint = 15;
+    public const int MultiAimConstraint = 16;
+    public const int NotYetUnWeighted = 17;
+    public const int NotYetWeighted = 18;
+    public const int RigBuilder = 19;
+    public const int TrackingTarget = 20;
+    public const int Weighted = 21;
+    public const int Camera = 22;
+    public const int CameraTrackingTarget = 23;
+    public const int Cinemachine = 24;
+    public const int CinemachineCamera = 25;
+    public const int MainCamera = 26;
+    public const int Tracking = 27;
+    public const int DebugDoorMiniGameActivator = 28;
+    public const int DebugKeyMiniGameActivator = 29;
+    public const int Inventory = 30;
+    public const int Item = 31;
+    public const int ItemID = 32;
+    public const int PlayerItemList = 33;
+    public const int Triggered = 34;
+    public const int Useless = 35;
+    public const int WorldItemList = 36;
+    public const int BadDoorId = 37;
+    public const int DoorOff = 38;
+    public const int GotOnTheBall = 39;
+    public const int HingeJoint = 40;
+    public const int LocationSegment = 41;
+    public const int LowerStairwellID = 42;
+    public const int MasterLocationSegment = 43;
+    public const int NeedSomeDoors = 44;
+    public const int OwnerFrame = 45;
+    public const int SlaveLocationSegment = 46;
+    public const int SlaveSegmentDoorOriginYRotation = 47;
+    public const int Stairwell = 48;
+    public const int UpperStairwellID = 49;
+    public const int NPC = 50;
+    public const int FoundTarget = 51;
+    public const int WatchingForTargets = 52;
+    public const int WatchRadius = 53;
+    public const int Player = 54;
+    public const int PlayerAnimator = 55;
+    public const int TriggeredItem = 56;
+    public const int AxisInput = 57;
+    public const int CrouchButton = 58;
+    public const int CrouchButtonHold = 59;
+    public const int CrouchButtonPressed = 60;
+    public const int Input = 61;
+    public const int JumpButton = 62;
+    public const int JumpButtonHold = 63;
+    public const int JumpButtonPressed = 64;
+    public const int PlayerInputs = 65;
+    public const int UseButton = 66;
+    public const int UseButtonHold = 67;
+    public const int UseButtonPressed = 68;
+    public const int DoorInteractionStateManager = 69;
+    public const int StateManagers = 70;
 
-    public const int TotalComponents = 67;
+    public const int TotalComponents = 71;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -89,6 +93,7 @@ public static class GameComponentsLookup {
         "CharacterController",
         "Direction",
         "LayerMask",
+        "MultipleTriggerEventService",
         "RotationSpawnPoint",
         "Transform",
         "TransformSpawnPoint",
@@ -120,11 +125,14 @@ public static class GameComponentsLookup {
         "GotOnTheBall",
         "HingeJoint",
         "LocationSegment",
+        "LowerStairwellID",
         "MasterLocationSegment",
         "NeedSomeDoors",
         "OwnerFrame",
         "SlaveLocationSegment",
         "SlaveSegmentDoorOriginYRotation",
+        "Stairwell",
+        "UpperStairwellID",
         "NPC",
         "FoundTarget",
         "WatchingForTargets",
@@ -159,6 +167,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Common.CharacterControllerComponent),
         typeof(Code.Gameplay.Common.Direction),
         typeof(Code.Gameplay.Common.LayerMask),
+        typeof(Code.Gameplay.Common.MultipleTriggerEventServiceComponent),
         typeof(Code.Gameplay.Common.RotationSpawnPoint),
         typeof(Code.Gameplay.Common.TransformComponent),
         typeof(Code.Gameplay.Common.TransformSpawnPoint),
@@ -190,11 +199,14 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.LocationFeature.GotOnTheBall),
         typeof(Code.Gameplay.Features.LocationFeature.HingeJointComponent),
         typeof(Code.Gameplay.Features.LocationFeature.LocationSegment),
+        typeof(Code.Gameplay.Features.LocationFeature.LowerStairwellID),
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.NeedSomeDoors),
         typeof(Code.Gameplay.Features.LocationFeature.OwnerFrame),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveSegmentDoorOriginYRotation),
+        typeof(Code.Gameplay.Features.LocationFeature.Stairwell),
+        typeof(Code.Gameplay.Features.LocationFeature.UpperStairwellID),
         typeof(Code.Gameplay.Features.NPC.NPC),
         typeof(Code.Gameplay.Features.ObjectSeek.FoundTarget),
         typeof(Code.Gameplay.Features.ObjectSeek.WatchingForTargets),

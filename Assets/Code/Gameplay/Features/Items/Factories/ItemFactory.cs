@@ -17,7 +17,7 @@ namespace Code.Gameplay.Features.Items.Factories
             _staticDataService = staticDataService;
         }
 
-        public GameEntity CreateItem(ItemID itemID, Vector3 spawnPoint)
+        public GameEntity CreateItem(ItemID itemID, in Vector3 spawnPoint)
         {
             GameEntity item = CreateEntity.Empty();
             item.AddItemID(itemID)

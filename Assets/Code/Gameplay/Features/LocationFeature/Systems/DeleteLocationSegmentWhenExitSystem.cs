@@ -28,8 +28,6 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 if (frame.TriggerEventService.ExitedEntities.Count <= 0
                     || !frame.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
 
-                frame.TriggerEventService.ExitedEntities.Clear();
-
                 GameEntity slaveSegment =
                     _game.GetEntityWithId(frame.SlaveLocationSegment);
                 GameEntity masterSegment =
@@ -48,6 +46,8 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 else slaveSegment.isDestructed = true;
                 
                 frame.RemoveSlaveSegmentDoorOriginYRotation();
+
+                frame.TriggerEventService.ExitedEntities.Clear();
             }
         }
     }

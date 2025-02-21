@@ -19,7 +19,7 @@ namespace Code.Gameplay.Common.Physics
             return _subTriggerEventHandlers[id].ExitedEntities;
         } 
         
-        public void SetCollisionRegistry(ICollisionRegistry registry) // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        public void SetCollisionRegistry(in ICollisionRegistry registry) // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
         {
             _collisionRegistry = registry;
             foreach (var eventHandler in _subTriggerEventHandlers)

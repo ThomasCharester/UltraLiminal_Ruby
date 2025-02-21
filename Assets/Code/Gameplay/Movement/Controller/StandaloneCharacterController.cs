@@ -124,6 +124,7 @@ namespace Code.Gameplay.Movement.Controller
 
         public void SetPosition(Vector3 position) => Motor.SetPosition(position);
         public void SetRotation(Quaternion rotation) => Motor.SetRotation(rotation);
+        public void SetPositionAndRotation(Vector3 position, Quaternion rotation) => Motor.SetPositionAndRotation(position, rotation);
         public void AddVelocity(Vector3 velocity)
         {
             switch (CurrentCharacterState)

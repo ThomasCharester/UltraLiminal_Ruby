@@ -9,6 +9,7 @@ namespace Code.Gameplay.Common.Physics
         List<GameEntity> ExitedEntities { get; }
         List<GameEntity> StayingEntities { get; }
 
-        void SetCollisionRegistry(ICollisionRegistry registry); // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        void SetCollisionRegistry(in ICollisionRegistry registry);
     }
 }

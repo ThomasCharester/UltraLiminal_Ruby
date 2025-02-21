@@ -6,7 +6,7 @@ namespace Code.Gameplay.Features.Camera.Factory
 {
     public interface ICameraFactory
     {
-        GameEntity CreateCinemachineCamera(Vector3 position, CameraConfig cinemachineCameraPrefab);
-        GameEntity CreateMainCamera(Vector3 position, CameraConfig mainCameraPrefab);
+        GameEntity CreateCinemachineCamera( in Vector3 position, in CameraConfig cinemachineCameraPrefab);
+        GameEntity CreateMainCamera( in Vector3 position, in CameraConfig mainCameraPrefab);
     }
 }

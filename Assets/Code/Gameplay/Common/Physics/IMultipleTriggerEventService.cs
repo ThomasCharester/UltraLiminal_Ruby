@@ -8,7 +8,7 @@ namespace Code.Gameplay.Common.Physics
         List<GameEntity> GetEnteredEntities(int id);
         List<GameEntity> GetExitedEntities(int id);
 
-        void SetCollisionRegistry(ICollisionRegistry registry) // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
-            ;
+        // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        void SetCollisionRegistry(in ICollisionRegistry registry);
     }
 }

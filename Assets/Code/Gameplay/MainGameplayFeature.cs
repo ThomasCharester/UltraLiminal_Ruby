@@ -24,15 +24,15 @@ namespace Code.Gameplay
             Add(systems.Create<BindViewFeature>());
             Add(systems.Create<MovementFeature>());
             Add(systems.Create<StateMachineFeature>());
-            Add(systems.Create<AnimationRigFeature>());
-            Add(systems.Create<ObjectSeekFeature>());
+            //Add(systems.Create<AnimationRigFeature>()); Переместить в стейт-машину
+            //Add(systems.Create<ObjectSeekFeature>()); Туда-же
             
             Add(systems.Create<LocationFeature>());
             
             Add(systems.Create<PlayerFeature>());
             Add(systems.Create<CameraFeature>());
             Add(systems.Create<ItemsFeature>());
-            Add(systems.Create<NPCFeature>());
+            //Add(systems.Create<NPCFeature>()); ...
             
             Add(systems.Create<ProcessDestructFeature>());
         }

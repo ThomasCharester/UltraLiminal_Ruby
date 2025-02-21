@@ -6,13 +6,13 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 {
     public class SetupDoorsAfterSpawnSystem : IExecuteSystem
     {
-        private readonly ILocationSegmentFactory _locationSegmentFactory;
+        private readonly IDoorFactory _doorFactory;
         private readonly IGroup<GameEntity> _doorNeededSegments;
         private List<GameEntity> buff = new(8);
 
-        public SetupDoorsAfterSpawnSystem(GameContext game, ILocationSegmentFactory locationSegmentFactory)
+        public SetupDoorsAfterSpawnSystem(GameContext game, IDoorFactory doorFactory)
         {
-            _locationSegmentFactory = locationSegmentFactory;
+            _doorFactory = doorFactory;
             _doorNeededSegments = game.GetGroup(GameMatcher
                 .AllOf(GameMatcher.NeedSomeDoors, GameMatcher.LocationSegment, GameMatcher.Transform)
                 .NoneOf(GameMatcher.VectorSpawnPoint, GameMatcher.RotationSpawnPoint));
@@ -24,13 +24,15 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             {
                 if (doorNeededSegment.hasBadDoorId)
                 {
-                    _locationSegmentFactory.SpawnDoors(doorNeededSegment.Transform, doorNeededSegment.LocationSegment, doorNeededSegment.Id,
+                    _doorFactory.SpawnDoors(doorNeededSegment.Transform.position, doorNeededSegment.Transform.rotation,
+                        doorNeededSegment.LocationSegment, doorNeededSegment.Id,
                         doorNeededSegment.BadDoorId);
                     doorNeededSegment.RemoveBadDoorId();
                 }
                 else
-                    _locationSegmentFactory.SpawnDoors(doorNeededSegment.Transform, doorNeededSegment.LocationSegment, doorNeededSegment.Id);
-                
+                    _doorFactory.SpawnDoors(doorNeededSegment.Transform.position, doorNeededSegment.Transform.rotation,
+                        doorNeededSegment.LocationSegment, doorNeededSegment.Id);
+
                 doorNeededSegment.isNeedSomeDoors = false;
             }
         }

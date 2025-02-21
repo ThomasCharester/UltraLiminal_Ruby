@@ -11,13 +11,16 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
     public class SpawnUpperStairwellSectionSystem : IExecuteSystem
     {
         private readonly ILocationSegmentFactory _locationSegmentFactory;
+        private readonly IDoorFactory _doorFactory;
         private readonly IStaticDataService _staticDataService;
         private readonly IGroup<GameEntity> _stairwellSections;
         private List<GameEntity> buff = new(8);
 
-        public SpawnUpperStairwellSectionSystem(GameContext game, ILocationSegmentFactory locationSegmentFactory, IStaticDataService staticDataService)
+        public SpawnUpperStairwellSectionSystem(GameContext game, ILocationSegmentFactory locationSegmentFactory, IDoorFactory doorFactory
+            , IStaticDataService staticDataService)
         {
             _locationSegmentFactory = locationSegmentFactory;
+            _doorFactory = doorFactory;
             _staticDataService = staticDataService;
             _stairwellSections = game.GetGroup(GameMatcher.AllOf(
                     GameMatcher.MultipleTriggerEventService,
@@ -40,15 +43,16 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 var upperSection = _locationSegmentFactory.CreateLocationSegment(LocationSegmentID.Stairwell,
                     upperSectionOrigin, section.Transform.rotation);
 
-                _locationSegmentFactory.SpawnDoors(upperSectionOrigin, section.Transform.rotation, upperSection.LocationSegment, upperSection.Id);
+                _doorFactory.SpawnDoors(upperSectionOrigin, section.Transform.rotation, upperSection.LocationSegment, upperSection.Id);
                 
                 section.AddUpperStairwellID(upperSection.Id);
 
                 upperSection.AddLowerStairwellID(section.Id);
                 
-                section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Upper).Clear();
+                // Попробую не чистить, авось сэкономлю на спичках
+                //section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Upper).Clear(); 
                 
-                Debug.Log("Spawned upper segment " + upperSection.Id);
+                //Debug.Log("Spawned upper segment " + upperSection.Id);
             }
         }
     }

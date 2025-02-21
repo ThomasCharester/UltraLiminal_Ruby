@@ -40,7 +40,8 @@ namespace Code.Gameplay.Common.Physics
             }
         }
 
-        public void SetCollisionRegistry(ICollisionRegistry registry) // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        // АХХАХАХАХАХАХАХАХХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАПХАХАХАХАХХАХАХА
+        public void SetCollisionRegistry(in ICollisionRegistry registry) 
         {
             _collisionRegistry = registry;
         }

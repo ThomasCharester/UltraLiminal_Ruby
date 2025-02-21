@@ -1,6 +1,4 @@
-using System;
 using Code.Gameplay.Common.Time;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -119,12 +117,6 @@ namespace Code.Gameplay.Features.Player.Animator
         public void StopAttack() =>
             _animator.SetBool(IsAttacking, false);
 
-        // public virtual void PlayDamageTaken() =>
-        //     _animator.SetBool(OnDamage, true);
-
-        // public virtual void StopDamageTaken() =>
-        //     _animator.SetBool(OnDamage, false);
-        //
         public void PlayDeath() =>
             _animator.SetBool(OnDeath, true);
 

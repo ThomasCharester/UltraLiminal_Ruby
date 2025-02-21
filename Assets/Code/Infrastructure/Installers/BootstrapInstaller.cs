@@ -1,6 +1,7 @@
 using Code.Gameplay.Common;
 using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.Physics;
+using Code.Gameplay.Common.Pooler;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Camera.Factory;
 using Code.Gameplay.Features.Items.Factories;
@@ -35,9 +36,15 @@ namespace Code.Infrastructure.Installers
             BindCommonServices();
             BindInputService();
             BindGameplayServices();
+            BindPoolers();
             
             BindContexts();
             BindSystemFactories();
+        }
+
+        private void BindPoolers()
+        {
+            Container.Bind<ILocationSegmentPoolerService>().To<LocationSegmentPoolerService>().AsSingle();
         }
 
         private void BindGameplayServices()

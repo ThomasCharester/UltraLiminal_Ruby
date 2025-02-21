@@ -15,5 +15,6 @@ namespace Code.Gameplay.Common
     [Game] public class AnimationSpeed : IComponent { public float Value; } 
     [Game] public class TriggerEventServiceComponent : IComponent { public ITriggerEventService Value; } 
     [Game] public class MultipleTriggerEventServiceComponent : IComponent { public IMultipleTriggerEventService Value; } 
+    [Game] public class ActiveOnScene : IComponent {} 
     
 }

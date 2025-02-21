@@ -1,11 +1,8 @@
 using Code.Common.Entity;
 using Code.Common.Extensions;
-using Code.Gameplay.Common;
 using Code.Gameplay.Features.Camera.Configs;
 using Code.Infrastructure.Indentifiers;
-using Entitas.VisualDebugging.Unity;
 using UnityEngine;
-using EntityBehaviour = Code.Infrastructure.View.EntityBehaviour;
 
 namespace Code.Gameplay.Features.Camera.Factory
 {
@@ -18,7 +15,7 @@ namespace Code.Gameplay.Features.Camera.Factory
             _identifierService = identifierService;
         }
 
-        public GameEntity CreateCinemachineCamera(Vector3 position, CameraConfig cinemachineCameraConfig)
+        public GameEntity CreateCinemachineCamera( in Vector3 position, in CameraConfig cinemachineCameraConfig)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
@@ -26,7 +23,7 @@ namespace Code.Gameplay.Features.Camera.Factory
                 .AddViewPrefab(cinemachineCameraConfig.cameraPrefab)
                 .With(x => x.isCamera = true);
         }
-        public GameEntity CreateMainCamera(Vector3 position, CameraConfig mainCameraConfig)
+        public GameEntity CreateMainCamera( in Vector3 position, in CameraConfig mainCameraConfig)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())

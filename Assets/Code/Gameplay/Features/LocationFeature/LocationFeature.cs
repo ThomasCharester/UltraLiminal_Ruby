@@ -15,10 +15,10 @@ namespace Code.Gameplay.Features.LocationFeature
             Add(systems.Create<SpawnLowerStairwellSectionSystem>());
             Add(systems.Create<SpawnUpperStairwellSectionSystem>());
             
-            Add(systems.Create<DeleteLocationSegmentWhenExitSystem>());
-            Add(systems.Create<DeleteStairwellSegmentsOnExitSystem>());
-            
             Add(systems.Create<SetupDoorsAfterSpawnSystem>());
+            
+            Add(systems.Create<DeleteStairwellSegmentsOnExitSystem>());
+            Add(systems.Create<DeleteLocationSegmentOnExitSystem>());
             
             Add(systems.Create<CleanUselessDoorsSystem>());
         }

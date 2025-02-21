@@ -19,14 +19,18 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (var uselessDoorFrame in _uselessDoorFrames)
             {
-                if (_game.GetEntityWithId(uselessDoorFrame.MasterLocationSegment) == null)
+                var segment = _game.GetEntityWithId(uselessDoorFrame.MasterLocationSegment);
+                
+                if ( segment == null || !segment.isActiveOnScene)
                     uselessDoorFrame.isDestructed = true;
             }
 
             foreach (var uselessDoor in _uselessDoors)
             {
                 var ownerFrame = _game.GetEntityWithId(uselessDoor.OwnerFrame);
-                if (ownerFrame == null || ownerFrame.isDestructed) uselessDoor.isDestructed = true;
+                
+                if (ownerFrame == null || ownerFrame.isDestructed) 
+                    uselessDoor.isDestructed = true;
             }
         }
     }

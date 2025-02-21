@@ -9,6 +9,7 @@ namespace Code.Gameplay.Features.LocationFeature
     [Game] public class GotOnTheBall : IComponent {} // PlayerEnteredTheDoor
     [Game] public class NeedSomeDoors : IComponent {}
     [Game] public class BadDoorId : IComponent { public int Value;}
+    [Game] public class SegmentIDComponent : IComponent { public LocationSegmentID Value;}
     [Game] public class UpperStairwellID : IComponent { public int Value;}
     [Game] public class LowerStairwellID : IComponent { public int Value;}
     [Game] public class SlaveSegmentDoorOriginYRotation : IComponent { public float Value;}

@@ -55,33 +55,34 @@ public static class GameComponentsLookup {
     public const int MasterLocationSegment = 44;
     public const int NeedSomeDoors = 45;
     public const int OwnerFrame = 46;
-    public const int SlaveLocationSegment = 47;
-    public const int SlaveSegmentDoorOriginYRotation = 48;
-    public const int Stairwell = 49;
-    public const int UpperStairwellID = 50;
-    public const int NPC = 51;
-    public const int FoundTarget = 52;
-    public const int WatchingForTargets = 53;
-    public const int WatchRadius = 54;
-    public const int Player = 55;
-    public const int PlayerAnimator = 56;
-    public const int TriggeredItem = 57;
-    public const int AxisInput = 58;
-    public const int CrouchButton = 59;
-    public const int CrouchButtonHold = 60;
-    public const int CrouchButtonPressed = 61;
-    public const int Input = 62;
-    public const int JumpButton = 63;
-    public const int JumpButtonHold = 64;
-    public const int JumpButtonPressed = 65;
-    public const int PlayerInputs = 66;
-    public const int UseButton = 67;
-    public const int UseButtonHold = 68;
-    public const int UseButtonPressed = 69;
-    public const int DoorInteractionStateManager = 70;
-    public const int StateManagers = 71;
+    public const int SegmentID = 47;
+    public const int SlaveLocationSegment = 48;
+    public const int SlaveSegmentDoorOriginYRotation = 49;
+    public const int Stairwell = 50;
+    public const int UpperStairwellID = 51;
+    public const int NPC = 52;
+    public const int FoundTarget = 53;
+    public const int WatchingForTargets = 54;
+    public const int WatchRadius = 55;
+    public const int Player = 56;
+    public const int PlayerAnimator = 57;
+    public const int TriggeredItem = 58;
+    public const int AxisInput = 59;
+    public const int CrouchButton = 60;
+    public const int CrouchButtonHold = 61;
+    public const int CrouchButtonPressed = 62;
+    public const int Input = 63;
+    public const int JumpButton = 64;
+    public const int JumpButtonHold = 65;
+    public const int JumpButtonPressed = 66;
+    public const int PlayerInputs = 67;
+    public const int UseButton = 68;
+    public const int UseButtonHold = 69;
+    public const int UseButtonPressed = 70;
+    public const int DoorInteractionStateManager = 71;
+    public const int StateManagers = 72;
 
-    public const int TotalComponents = 72;
+    public const int TotalComponents = 73;
 
     public static readonly string[] componentNames = {
         "Destructed",
@@ -131,6 +132,7 @@ public static class GameComponentsLookup {
         "MasterLocationSegment",
         "NeedSomeDoors",
         "OwnerFrame",
+        "SegmentID",
         "SlaveLocationSegment",
         "SlaveSegmentDoorOriginYRotation",
         "Stairwell",
@@ -206,6 +208,7 @@ public static class GameComponentsLookup {
         typeof(Code.Gameplay.Features.LocationFeature.MasterLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.NeedSomeDoors),
         typeof(Code.Gameplay.Features.LocationFeature.OwnerFrame),
+        typeof(Code.Gameplay.Features.LocationFeature.SegmentIDComponent),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveLocationSegment),
         typeof(Code.Gameplay.Features.LocationFeature.SlaveSegmentDoorOriginYRotation),
         typeof(Code.Gameplay.Features.LocationFeature.Stairwell),

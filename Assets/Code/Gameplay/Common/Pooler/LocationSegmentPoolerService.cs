@@ -1,28 +1,30 @@
 using System;
 using System.Collections.Generic;
 using Code.Common.Entity;
+using Code.Common.Extensions;
 using Code.Gameplay.Features.LocationFeature;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Indentifiers;
-using Code.Infrastructure.View;
-using UnityEngine;
+using NUnit.Framework.Constraints;
 using UnityEngine.Pool;
 
 namespace Code.Gameplay.Common.Pooler
 {
     public class LocationSegmentPoolerService : ILocationSegmentPoolerService
     {
-        public Dictionary<LocationSegmentID, LocationSegmentPool> SegmentPools { get; set; }
+        private Dictionary<LocationSegmentID, LocationSegmentPool> _segmentPools = new();
+
+        public IObjectPool<GameEntity> GetPool(LocationSegmentID locationSegmentID) =>
+            _segmentPools[locationSegmentID].Pool;
         // Реши надо не надо приват. Totally unsafe shit.
-        
+
         public LocationSegmentPoolerService(IIdentifierService identifierService, IStaticDataService staticDataService)
         {
             foreach (LocationSegmentID segmentID in Enum.GetValues(typeof(LocationSegmentID)))
             {
-                SegmentPools.Add(segmentID, new(segmentID, identifierService,staticDataService));
+                _segmentPools.Add(segmentID, new(segmentID, identifierService, staticDataService));
             }
         }
-        
     }
 
     public class LocationSegmentPool
@@ -37,12 +39,14 @@ namespace Code.Gameplay.Common.Pooler
         private IStaticDataService _staticDataService;
         private LocationSegmentID _segmentID;
 
-        public LocationSegmentPool(LocationSegmentID segmentID,in IIdentifierService identifierService,in IStaticDataService staticDataService)
+        public LocationSegmentPool(LocationSegmentID segmentID, in IIdentifierService identifierService,
+            in IStaticDataService staticDataService)
         {
             _segmentID = segmentID;
             _identifierService = identifierService;
             _staticDataService = staticDataService;
         }
+
         public IObjectPool<GameEntity> Pool
         {
             get
@@ -57,7 +61,9 @@ namespace Code.Gameplay.Common.Pooler
             var locationSegment = CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .AddLocationSegment(_staticDataService.GetLocationSegmentConfig(_segmentID).doorCalculator)
-                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(_segmentID).segmentPrefab);
+                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(_segmentID).segmentPrefab)
+                .AddSegmentID(_segmentID)
+                .With(x => x.isActiveOnScene = true);
 
             return locationSegment;
         }
@@ -66,15 +72,18 @@ namespace Code.Gameplay.Common.Pooler
         void OnReturnedToPool(GameEntity entity)
         {
             entity.isActiveOnScene = false;
-            entity.View.gameObject.SetActive(false);
+            if (entity.hasView)
+                entity.View.gameObject.SetActive(false);
         }
 
         // Called when an item is taken from the pool using Get
         void OnTakeFromPool(GameEntity entity)
         {
-            entity.View.gameObject.SetActive(true);
+            if (entity.hasView)
+                entity.View.gameObject.SetActive(true);
             entity.isActiveOnScene = true;
         }
+
         // If the pool capacity is reached then any items returned will be destroyed.
         // We can control what the destroy behavior does, here we destroy the GameObject.
         void OnDestroyPoolObject(GameEntity entity)

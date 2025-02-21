@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Common.Pooler;
 using Entitas;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.LocationFeature.Systems
 {
-    public class DeleteLocationSegmentWhenExitSystem : IExecuteSystem
+    public class DeleteLocationSegmentOnExitSystem : ICleanupSystem
     {
         private readonly GameContext _game;
+        private readonly ILocationSegmentPoolerService _locationSegmentPoolerService;
         private readonly IGroup<GameEntity> _doorFrames;
         private List<GameEntity> buff = new(8);
 
-        public DeleteLocationSegmentWhenExitSystem(GameContext game)
+        public DeleteLocationSegmentOnExitSystem(GameContext game, ILocationSegmentPoolerService locationSegmentPoolerService)
         {
             _game = game;
+            _locationSegmentPoolerService = locationSegmentPoolerService;
             _doorFrames = game.GetGroup(GameMatcher.AllOf(
                 GameMatcher.TriggerEventService,
                 GameMatcher.MasterLocationSegment,
@@ -21,13 +24,12 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             ));
         }
 
-        public void Execute()
+        public void Cleanup()
         {
             foreach (var frame in _doorFrames.GetEntities(buff))
             {
-                if (frame.TriggerEventService.ExitedEntities.Count <= 0
-                    || !frame.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
-
+                if (!frame.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
+                // Каждый кадр, чел
                 GameEntity slaveSegment =
                     _game.GetEntityWithId(frame.SlaveLocationSegment);
                 GameEntity masterSegment =
@@ -35,15 +37,17 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 frame.RemoveSlaveLocationSegment();
 
-                if (masterSegment.TriggerEventService.StayingEntities.Count <= 0 
-                    || !masterSegment.TriggerEventService.StayingEntities.Any(x => x.isPlayer))
+                if (!masterSegment.isActiveOnScene || !masterSegment.TriggerEventService.StayingEntities.Any(x => x.isPlayer))
                 {
                     frame.ReplaceMasterLocationSegment(slaveSegment.Id);
-                    masterSegment.isDestructed = true;
-
+                    
                     frame.Transform.rotation = Quaternion.Euler(0,frame.SlaveSegmentDoorOriginYRotation,0);
+                    
+                    if(masterSegment.isActiveOnScene)
+                        _locationSegmentPoolerService.GetPool(masterSegment.SegmentID).Release(masterSegment);
                 }
-                else slaveSegment.isDestructed = true;
+                else if(slaveSegment.isActiveOnScene) 
+                    _locationSegmentPoolerService.GetPool(slaveSegment.SegmentID).Release(slaveSegment);
                 
                 frame.RemoveSlaveSegmentDoorOriginYRotation();
 

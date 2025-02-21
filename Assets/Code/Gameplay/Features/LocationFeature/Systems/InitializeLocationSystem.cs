@@ -1,8 +1,6 @@
-using System;
 using System.Linq;
-using Code.Gameplay.Features.LocationFeature.Factories;
+using Code.Gameplay.Common.Pooler;
 using Code.Gameplay.Level;
-using Code.Gameplay.StaticData;
 using Entitas;
 using UnityEngine;
 
@@ -11,22 +9,25 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
     public class InitializeLocationSystem : IInitializeSystem
     {
         private readonly ILevelDataProvider _levelDataProvider;
-        private readonly IStaticDataService _staticDataService;
-        private readonly ILocationSegmentFactory _locationSegmentFactory;
+        private readonly ILocationSegmentPoolerService _locationSegmentPoolerService;
 
-        public InitializeLocationSystem(ILevelDataProvider levelDataProvider,
-            IStaticDataService staticDataService, ILocationSegmentFactory locationSegmentFactory)
+        public InitializeLocationSystem(ILevelDataProvider levelDataProvider, ILocationSegmentPoolerService locationSegmentPoolerService)
         {
             _levelDataProvider = levelDataProvider;
-            _staticDataService = staticDataService;
-            _locationSegmentFactory = locationSegmentFactory;
+            _locationSegmentPoolerService = locationSegmentPoolerService;
         }
 
         public void Initialize()
         {
-            GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
-                Vector3.zero, 
-                Quaternion.identity);// КОНФИГИИИИИИ
+            // GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
+            //     Vector3.zero, 
+            //     Quaternion.identity);// КОНФИГИИИИИИ
+
+            GameEntity firstSegment = _locationSegmentPoolerService.GetPool(
+                    (LocationSegmentID)Random.Range(0,System.Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max())).Get();
+            firstSegment.AddVectorSpawnPoint(Vector3.zero);
+            firstSegment.AddRotationSpawnPoint(Quaternion.identity);
+            
             firstSegment.isNeedSomeDoors = true;
             
             _levelDataProvider.SetPlayerStart(firstSegment.LocationSegment.GetPlayerStart.position);

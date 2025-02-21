@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Code.Gameplay.Common.Pooler;
 using Code.Gameplay.Features.LocationFeature.Factories;
 using Code.Gameplay.StaticData;
 using Entitas;
@@ -11,18 +12,13 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 {
     public class RandomSpawnLocationSegmentSystem : IExecuteSystem
     {
-        private readonly GameContext _game;
-        private readonly ILocationSegmentFactory _locationSegmentFactory;
-        private readonly IStaticDataService _staticDataService;
+        private readonly ILocationSegmentPoolerService _locationSegmentPoolerService;
         private readonly IGroup<GameEntity> _themOnTheBall;
         private List<GameEntity> buffer = new(8);
 
-        public RandomSpawnLocationSegmentSystem(GameContext game, ILocationSegmentFactory locationSegmentFactory,
-            IStaticDataService staticDataService)
+        public RandomSpawnLocationSegmentSystem(GameContext game, ILocationSegmentPoolerService locationSegmentPoolerService)
         {
-            _game = game;
-            _locationSegmentFactory = locationSegmentFactory;
-            _staticDataService = staticDataService;
+            _locationSegmentPoolerService = locationSegmentPoolerService;
             _themOnTheBall = game.GetGroup(GameMatcher.AllOf(
                 GameMatcher.GotOnTheBall,
                 GameMatcher.Transform
@@ -37,9 +33,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                     (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());
                 Vector3 segmentOriginPosition = heOnTheBall.Transform.position;
 
-                GameEntity locationSegment =
-                    _locationSegmentFactory.CreateRandomLocationSegment(
-                        _staticDataService.GameplayConstantsConfig._farAway, Quaternion.identity);
+                GameEntity locationSegment = _locationSegmentPoolerService.GetPool(segmentID).Get();
 
                 Transform randomDoorOrigin = locationSegment.LocationSegment.GetRandomDoorOrigin;
                 Vector3 randomDoorOriginPosition = randomDoorOrigin.localPosition;

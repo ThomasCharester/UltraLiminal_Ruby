@@ -7,7 +7,9 @@ namespace Code.Gameplay.Features.LocationFeature
     {
         public LocationFeature(ISystemFactory systems)
         {
+            Add(systems.Create<InitializeSegmentPoolSystem>());
             Add(systems.Create<InitializeLocationSystem>());
+            
             Add(systems.Create<TurnOnDoorSystem>());
             Add(systems.Create<CheckNeedToSpawnLocationSegmentSystem>());
             Add(systems.Create<RandomSpawnLocationSegmentSystem>());
@@ -17,7 +19,9 @@ namespace Code.Gameplay.Features.LocationFeature
             
             Add(systems.Create<SetupDoorsAfterSpawnSystem>());
             
-            Add(systems.Create<DeleteStairwellSegmentsOnExitSystem>());
+            // Add(systems.Create<DeleteStairwellSegmentsOnExitSystem>());
+            Add(systems.Create<DeleteLowerStairwellSegmentsOnExitSystem>());
+            Add(systems.Create<DeleteUpperStairwellSegmentsOnExitSystem>());
             Add(systems.Create<DeleteLocationSegmentOnExitSystem>());
             
             Add(systems.Create<CleanUselessDoorsSystem>());

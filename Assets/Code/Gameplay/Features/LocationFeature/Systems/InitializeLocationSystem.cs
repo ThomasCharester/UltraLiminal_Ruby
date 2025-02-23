@@ -24,7 +24,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             //     Quaternion.identity);// КОНФИГИИИИИИ
 
             GameEntity firstSegment = _locationSegmentPoolerService.GetPool(
-                    (LocationSegmentID)Random.Range(0,System.Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max())).Get();
+                    (LocationSegmentID)Random.Range(0,System.Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max()+ 1)).Get();
             firstSegment.AddVectorSpawnPoint(Vector3.zero);
             firstSegment.AddRotationSpawnPoint(Quaternion.identity);
             

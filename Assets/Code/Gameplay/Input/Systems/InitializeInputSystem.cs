@@ -1,4 +1,5 @@
 using Code.Common.Entity;
+using Code.Common.Extensions;
 using Entitas;
 
 namespace Code.Gameplay.Input.Systems
@@ -8,7 +9,8 @@ namespace Code.Gameplay.Input.Systems
         public void Initialize()
         {
             CreateEntity.Empty()
-                .isInput = true;
+                .With(x => x.isInput = true)
+                .With(x => x.isActiveOnScene = true);
         }
     }
 }

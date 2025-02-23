@@ -23,14 +23,16 @@ namespace Code.Gameplay.Features.Items.Factories
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .With(x => x.isInventory = true)
-                .AddWorldItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startWorldItems));
+                .AddWorldItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startWorldItems))
+                .With(x => x.isActiveOnScene = true);;
         }
         public GameEntity CreatePlayerInventory(InventoryID inventoryID)
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .With(x => x.isInventory = true)
-                .AddPlayerItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startPlayerItems));
+                .AddPlayerItemList(new List<ItemID>(_staticDataService.GetInventoryConfig(inventoryID).startPlayerItems))
+                .With(x => x.isActiveOnScene = true);;
         }
     }
 }

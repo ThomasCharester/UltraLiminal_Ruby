@@ -23,7 +23,8 @@ namespace Code.Gameplay.Features.Items.Factories
             item.AddItemID(itemID)
                 .AddId(_identifierService.NextId())
                 .AddViewPrefab(_staticDataService.GetItemConfig(itemID).itemPrefab)
-                .With(x => x.isItem = true);
+                .With(x => x.isItem = true)
+                .With(x => x.isActiveOnScene = true);
             
             if (spawnPoint != Vector3.zero)
                 item.AddVectorSpawnPoint(spawnPoint);

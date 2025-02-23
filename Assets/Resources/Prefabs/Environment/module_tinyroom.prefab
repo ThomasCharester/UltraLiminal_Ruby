@@ -141,6 +141,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2729732982619633915, guid: b6898c0614bd84b4485ce54c2d7c42a8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b6898c0614bd84b4485ce54c2d7c42a8, type: 3}
       propertyPath: m_Name
       value: module_tinyroom

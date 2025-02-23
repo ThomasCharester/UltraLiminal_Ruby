@@ -24,7 +24,8 @@ namespace Code.Gameplay.Features.Player.Factory
                     .AddVectorSpawnPoint(position == Vector3.zero ? _staticDataService.PlayerConfig.spawnPoint.position : position)
                     .AddViewPrefab(_staticDataService.PlayerConfig.playerPrefab)
                     .AddAnimationSpeed(_staticDataService.PlayerConfig.animationSpeed)
-                    .With(x => x.isPlayer = true);
+                    .With(x => x.isPlayer = true)
+                    .With(x => x.isActiveOnScene = true);
         }
     }
 }

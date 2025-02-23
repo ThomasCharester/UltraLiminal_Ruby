@@ -29,7 +29,9 @@ namespace Code.Gameplay.StaticData
         void LoadPlayer();
         void LoadGameplayConstants();
         void LoadUnityComponents();
+        void LoadLocationSegmentCountInPoolConfig();
         
+        public LocationSegmentsCountInPoolConfig LocationSegmentsCountInPoolConfig { get; }
         public PlayerConfig PlayerConfig { get; }
         public GameplayConstantsConfig GameplayConstantsConfig { get; }
         public UnityComponentsConfig UnityComponentsConfig { get; }

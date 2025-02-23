@@ -25,7 +25,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             _doorFactory = doorFactory;
             _staticDataService = staticDataService;
             _stairwellSections = game.GetGroup(GameMatcher.AllOf(
-                    GameMatcher.MultipleTriggerEventService,
+                    GameMatcher.TriggerEventService,
                     GameMatcher.Stairwell,
                     GameMatcher.Transform)
                 .NoneOf(GameMatcher.LowerStairwellID));
@@ -35,8 +35,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (var section in _stairwellSections.GetEntities(buff))
             {
-                if (!section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower)
-                        .Any(x => x.isPlayer)) continue;
+                if (!section.TriggerEventService.StayingEntities.Any(x => x.isPlayer)) continue;
 
                 Vector3 lowerSectionOrigin = section.Transform.position;
                 lowerSectionOrigin.y -= _staticDataService.GameplayConstantsConfig._stairwellSectionVerticalOffset;
@@ -55,7 +54,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 lowerSection.AddUpperStairwellID(section.Id);
 
                 // Экономия на спичках
-                section.MultipleTriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower).Clear();
+                // section.TriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower).Clear();
 
                 // Debug.Log("Spawned lower segment " + lowerSection.Id);
             }

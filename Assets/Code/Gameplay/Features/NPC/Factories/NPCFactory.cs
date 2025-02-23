@@ -27,7 +27,8 @@ namespace Code.Gameplay.Features.NPC.Factories
                 .AddViewPrefab(_staticDataService.GetNPCConfig(npcid).npcPrefab)
                 .AddWatchRadius(_staticDataService.GetNPCConfig(npcid).watchRadius)
                 .With(x => x.isNPC = true)
-                .With(x => x.isWatchingForTargets = _staticDataService.GetNPCConfig(npcid).watchingForTargets);
+                .With(x => x.isWatchingForTargets = _staticDataService.GetNPCConfig(npcid).watchingForTargets)
+                .With(x => x.isActiveOnScene = true);
             
             return newNpc;
         }

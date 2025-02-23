@@ -9,6 +9,8 @@ namespace Code.Gameplay.Features.Common
         {
             Add(systems.Create<SetupCollisionRegistryInTriggerEventHandlersSystem>());
             Add(systems.Create<SetupCollisionRegistryInMultipleTriggerEventServiceSystem>());
+            
+            Add(systems.Create<ActiveOnSceneToUnitySystem>());
         }
     }
 }

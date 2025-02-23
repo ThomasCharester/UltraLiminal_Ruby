@@ -27,28 +27,43 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (var segment in _stairwellSegments.GetEntities(buff))
             {
-                if (!segment.TriggerEventService.ExitedEntities.Any(x => x.isPlayer)) continue;
+                if (segment.TriggerEventService.StayingEntities.Any(x => x.isPlayer)) continue;
 
                 if (segment.hasUpperStairwellID)
                 {
-                    _game.GetEntityWithId(segment.UpperStairwellID).RemoveLowerStairwellID();
-                    segment.RemoveUpperStairwellID();
+                    GameEntity upperSegment = _game.GetEntityWithId(segment.UpperStairwellID);
+
+                    if (!upperSegment.TriggerEventService.StayingEntities.Any(x => x.isPlayer))
+                    {
+                        upperSegment.RemoveLowerStairwellID();
+
+                        segment.RemoveUpperStairwellID();
+                    }
                 }
 
                 if (segment.hasLowerStairwellID)
                 {
-                    _game.GetEntityWithId(segment.LowerStairwellID).RemoveUpperStairwellID();
-                    segment.RemoveLowerStairwellID();
+                    //_game.GetEntityWithId(segment.LowerStairwellID).RemoveUpperStairwellID();
+
+                    GameEntity lowerSegment = _game.GetEntityWithId(segment.LowerStairwellID);
+
+                    if (!lowerSegment.TriggerEventService.StayingEntities.Any(x => x.isPlayer))
+                    {
+                        lowerSegment.RemoveUpperStairwellID();
+
+                        segment.RemoveLowerStairwellID();
+                    }
                 }
 
                 // segment.RemoveLowerStairwellID();
                 // segment.RemoveUpperStairwellID();
-                
-                _locationSegmentPoolerService.GetPool(LocationSegmentID.Stairwell).Release(segment);
 
-                //segment.isDestructed = true;
+                if (!segment.hasLowerStairwellID && !segment.hasUpperStairwellID)
+                    _locationSegmentPoolerService.GetPool(LocationSegmentID.Stairwell).Release(segment);
 
-                segment.TriggerEventService.ExitedEntities.Clear();
+                // segment.isDestructed = true;
+                //
+                // segment.TriggerEventService.ExitedEntities.Clear();
             }
         }
     }

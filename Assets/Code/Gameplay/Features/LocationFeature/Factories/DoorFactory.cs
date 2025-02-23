@@ -27,7 +27,8 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddVectorSpawnPoint(originPosition)
                 .AddRotationSpawnPoint(originRotation)
                 .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
-                .With(x => x.isDoorOff = true);
+                .With(x => x.isDoorOff = true)
+                .With(x => x.isActiveOnScene = true);
         }
 
         public GameEntity CreateDoorFrame(in Vector3 originPosition, in Quaternion originRotation, int masterID) // Need some ref
@@ -37,7 +38,8 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddMasterLocationSegment(masterID)
                 .AddVectorSpawnPoint(originPosition)
                 .AddRotationSpawnPoint(originRotation)
-                .AddViewPrefab(_staticDataService.GetDoorConfig(DoorID.DoorFrame).doorPrefab);
+                .AddViewPrefab(_staticDataService.GetDoorConfig(DoorID.DoorFrame).doorPrefab)
+                .With(x => x.isActiveOnScene = true);
         }
         
         public void SpawnDoors(in Vector3 segmentOriginPosition, in Quaternion segmentOriginRotation, in DoorCalculator locationSegment, int id,

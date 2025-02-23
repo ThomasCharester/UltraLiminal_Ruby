@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Code.Common.Entity;
+using Code.Common.Extensions;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Indentifiers;
 using Unity.VisualScripting;
@@ -27,7 +28,8 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddLocationSegment(_staticDataService.GetLocationSegmentConfig(segmentID).doorCalculator)
                 .AddVectorSpawnPoint(position)
                 .AddRotationSpawnPoint(rotation)
-                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(segmentID).segmentPrefab);
+                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(segmentID).segmentPrefab)
+                .With(x => x.isActiveOnScene = true);
 
             return locationSegment;
         }
@@ -41,7 +43,8 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddLocationSegment(_staticDataService.GetLocationSegmentConfig(segmentID).doorCalculator)
                 .AddVectorSpawnPoint(position)
                 .AddRotationSpawnPoint(rotation)
-                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(segmentID).segmentPrefab);
+                .AddViewPrefab(_staticDataService.GetLocationSegmentConfig(segmentID).segmentPrefab)
+                .With(x => x.isActiveOnScene = true);
 
 
             return locationSegment;

@@ -78,10 +78,10 @@ namespace Code.Gameplay.Features.DoorInteractionFeature
             
             _boxCollider = gameObject.AddComponent<BoxCollider>();
             
-            _boxCollider.size = new Vector3(wingspan * 0.75f , wingspan, wingspan * 0.5f);
+            _boxCollider.size = new Vector3(wingspan * 0.75f , wingspan, wingspan);
             _boxCollider.center = new Vector3(_context.RootCollider.center.x, 
                 _context.RootCollider.center.y + (.125f * wingspan),
-                _context.RootCollider.center.z + (.25f * wingspan));
+                _context.RootCollider.center.z + (.5f * wingspan));
             _boxCollider.isTrigger = true;
 
         }

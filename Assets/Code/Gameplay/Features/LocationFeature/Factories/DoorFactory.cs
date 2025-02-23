@@ -93,10 +93,10 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 trueDoorOrigin.y += _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset;
 
                 // Конечно рандом нужно вынести наверное
-                CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
-                    trueDoorOrigin,
-                    trueDoorRotation, frame.Id);
-                
+                // CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
+                //     trueDoorOrigin,
+                //     trueDoorRotation, frame.Id);
+                //
                 // Debug.Log("///////////////////////////////////////////////");
                 // Debug.Log("trueDoorOrigin " + trueDoorOrigin);
                 // Debug.Log("segmentOrigin.position " + segmentOrigin.position);

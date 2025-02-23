@@ -234,6 +234,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4511835018606933044, guid: e2e4b2897e85a0746a1f394f3fb45263, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a06e92bfedaa66048a194e5dd93f4233, type: 2}
     - target: {fileID: -2517177978524186364, guid: e2e4b2897e85a0746a1f394f3fb45263, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.25
@@ -335,7 +339,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30

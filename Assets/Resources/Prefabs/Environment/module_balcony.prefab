@@ -148,14 +148,14 @@ PrefabInstance:
     - target: {fileID: -4234705425691019710, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a06e92bfedaa66048a194e5dd93f4233, type: 2}
+      objectReference: {fileID: 2100000, guid: 291f79a7e01180a49838e92615bb249b, type: 2}
     - target: {fileID: 373572802250803225, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 373572802250803225, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: m_Name
@@ -164,6 +164,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6037045709018771797, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       propertyPath: m_LocalScale.x
@@ -214,6 +218,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1461841826234152249}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4721284672312673925}
     - targetCorrespondingSourceObject: {fileID: 373572802250803225, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1629870840660125904}
@@ -245,6 +252,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6381975139820595685}
   m_SourcePrefab: {fileID: 100100000, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
+--- !u!23 &2386965916290383327 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4234705425691019710, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
+  m_PrefabInstance: {fileID: 7213492271859600285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7004306313628844932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 373572802250803225, guid: f9f521806442f42429299e084f5d5a5a, type: 3}
@@ -559,3 +571,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7.9173694, y: 2.6551583, z: 2.4186587}
   m_Center: {x: -0.0645411, y: 0.82757914, z: 0.8293297}
+--- !u!114 &4721284672312673925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7555369815812781772}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026923dc7977c6f429dc529b6de7ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  releaseShaders: 1
+  m_RendererInfo:
+  - renderer: {fileID: 2386965916290383327}
+    lightmapIndex: 0
+    lightmapOffsetScale: {x: 0.27877846, y: 0.27877846, z: -0.005084613, w: -0.005084613}
+  m_Lightmaps:
+  - {fileID: 2800000, guid: 5a59e02a608e5244cb5685265489a0e7, type: 3}
+  m_LightmapsDir:
+  - {fileID: 2800000, guid: ac5e6a5912da28949a042363e77a0485, type: 3}
+  m_ShadowMasks:
+  - {fileID: 0}
+  m_LightInfo: []

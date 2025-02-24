@@ -1,6 +1,7 @@
 using System;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Common.Pooler;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Indentifiers;
 using UnityEngine;
@@ -12,26 +13,33 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
     {
         private readonly IIdentifierService _identifierService;
         private readonly IStaticDataService _staticDataService;
+        private readonly IDoorPoolerService _doorPoolerService;
 
-        public DoorFactory(IIdentifierService identifierService, IStaticDataService staticDataService)
+        public DoorFactory(IIdentifierService identifierService, IStaticDataService staticDataService,
+            IDoorPoolerService doorPoolerService)
         {
             _identifierService = identifierService;
             _staticDataService = staticDataService;
+            _doorPoolerService = doorPoolerService;
         }
 
-        public GameEntity CreateDoor(DoorID segmentID, in Vector3 originPosition, in Quaternion originRotation, int ownerID)// Need some ref
+        public GameEntity CreateDoor(DoorID segmentID, in Vector3 originPosition, in Quaternion originRotation,
+            int ownerID) // Need some ref
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
                 .AddOwnerFrame(ownerID)
-                .AddVectorSpawnPoint(originPosition)
-                .AddRotationSpawnPoint(originRotation)
+                .AddHingeJointAnchorPosition(originPosition)
+                .AddHingeJointAnchorRotation(originRotation)
                 .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
                 .With(x => x.isDoorOff = true)
                 .With(x => x.isActiveOnScene = true);
+            //.AddVectorSpawnPoint(originPosition)
+            //.AddRotationSpawnPoint(originRotation)
         }
 
-        public GameEntity CreateDoorFrame(in Vector3 originPosition, in Quaternion originRotation, int masterID) // Need some ref
+        public GameEntity
+            CreateDoorFrame(in Vector3 originPosition, in Quaternion originRotation, int masterID) // Need some ref
         {
             return CreateEntity.Empty()
                 .AddId(_identifierService.NextId())
@@ -41,8 +49,9 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddViewPrefab(_staticDataService.GetDoorConfig(DoorID.DoorFrame).doorPrefab)
                 .With(x => x.isActiveOnScene = true);
         }
-        
-        public void SpawnDoors(in Vector3 segmentOriginPosition, in Quaternion segmentOriginRotation, in DoorCalculator locationSegment, int id,
+
+        public void SpawnDoors(in Vector3 segmentOriginPosition, in Quaternion segmentOriginRotation,
+            in DoorCalculator locationSegment, int segmentID,
             int exceptionOriginIdInList = -1) // Need some ref
         {
             foreach (var doorOrigin in locationSegment.GetDoorOrigins)
@@ -53,7 +62,7 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 float doorOriginRotation = segmentOriginRotation.eulerAngles.y + doorOrigin.rotation.eulerAngles.y;
                 if (doorOriginRotation > 305f) doorOriginRotation -= 360f;
                 else if (doorOriginRotation < -45f) doorOriginRotation += 360f;
-                
+
                 Vector3 trueDoorOrigin = segmentOriginPosition;
                 Quaternion trueDoorRotation = Quaternion.Euler(0, doorOriginRotation, 0);
 
@@ -86,9 +95,15 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                     trueDoorOrigin.z += doorOrigin.position.x;
                     trueDoorOrigin.z -= _staticDataService.GameplayConstantsConfig._doorOffset;
                 }
+
                 trueDoorOrigin.y += doorOrigin.localPosition.y;
-                
-                var frame = CreateDoorFrame(trueDoorOrigin, trueDoorRotation, id);
+
+                GameEntity frame = _doorPoolerService.GetPool(DoorID.DoorFrame).Get();
+                frame.AddMasterLocationSegment(segmentID)
+                    .AddVectorSpawnPoint(trueDoorOrigin)
+                    .AddRotationSpawnPoint(trueDoorRotation);
+
+                //var frame = CreateDoorFrame(trueDoorOrigin, trueDoorRotation, segmentID);
 
                 trueDoorOrigin.y += _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset;
 
@@ -96,7 +111,13 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 // CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
                 //     trueDoorOrigin,
                 //     trueDoorRotation, frame.Id);
-                //
+
+                GameEntity door = _doorPoolerService
+                    .GetPool((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length)).Get();
+                
+                door.AddOwnerFrame(frame.Id)
+                    .AddHingeJointAnchorPosition(trueDoorOrigin)
+                    .AddHingeJointAnchorRotation(trueDoorRotation);
                 // Debug.Log("///////////////////////////////////////////////");
                 // Debug.Log("trueDoorOrigin " + trueDoorOrigin);
                 // Debug.Log("segmentOrigin.position " + segmentOrigin.position);
@@ -108,6 +129,5 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 // Debug.Log("///////////////////////////////////////////////");
             }
         }
-
     }
 }

@@ -8,7 +8,7 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
         GameEntity CreateDoorFrame(in Vector3 originPosition,in  Quaternion originRotation, int masterID);
 
         void SpawnDoors(in Vector3 segmentOriginPosition, in Quaternion segmentOriginRotation,in DoorCalculator locationSegment,
-            int id,
+            int segmentID,
             int exceptionOriginIdInList = -1);
     }
 }

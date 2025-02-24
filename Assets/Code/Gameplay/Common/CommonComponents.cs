@@ -7,6 +7,7 @@ namespace Code.Gameplay.Common
 {
     [Game] public class Direction : IComponent { public Vector3 Value; }
     [Game] public class TransformComponent : IComponent { public Transform Value; }
+    [Game] public class RigidbodyComponent : IComponent { public Rigidbody Value; }
     [Game] public class CharacterControllerComponent : IComponent { public IStandaloneCharacterController Value; }
     [Game] public class VectorSpawnPoint : IComponent { public Vector3 Value; }
     [Game] public class RotationSpawnPoint : IComponent { public Quaternion Value; }

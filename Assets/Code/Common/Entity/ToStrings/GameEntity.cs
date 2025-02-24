@@ -42,8 +42,10 @@ public sealed partial class GameEntity : INamedEntity
                         return PrintItem();
                     case nameof(Inventory):
                         return PrintInventory();
-                    case nameof(Stairwell):
-                        return PrintStairwell();
+                    case nameof(DoorIDComponent):
+                        return PrintDoor();
+                    case nameof(LocationSegment):
+                        return PrintLocationSegment();
                 }
             }
         }
@@ -55,6 +57,18 @@ public sealed partial class GameEntity : INamedEntity
         return components.First().GetType().Name;
     }
 
+    private string PrintDoor()
+    {
+        return new StringBuilder($"Door ")
+            .With(s => s.Append($"Id:{Id}"), when: hasId)
+            .ToString();
+    }
+    private string PrintLocationSegment()
+    {
+        return new StringBuilder($"LocationSegment ")
+            .With(s => s.Append($"Id:{Id}"), when: hasId)
+            .ToString();
+    }
     private string PrintPlayer()
     {
         return new StringBuilder($"Player ")

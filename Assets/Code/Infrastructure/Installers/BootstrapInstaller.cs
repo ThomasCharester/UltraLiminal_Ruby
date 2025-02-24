@@ -8,7 +8,6 @@ using Code.Gameplay.Features.Items.Factories;
 using Code.Gameplay.Features.LocationFeature.Factories;
 using Code.Gameplay.Features.NPC.Factories;
 using Code.Gameplay.Features.Player.Factory;
-using Code.Gameplay.Input;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Level;
 using Code.Gameplay.StaticData;
@@ -17,9 +16,7 @@ using Code.Infrastructure.Loading;
 using Code.Infrastructure.ShitManagement;
 using Code.Infrastructure.Systems;
 using Code.Infrastructure.View.Factory;
-using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
@@ -45,6 +42,7 @@ namespace Code.Infrastructure.Installers
         private void BindPoolers()
         {
             Container.Bind<ILocationSegmentPoolerService>().To<LocationSegmentPoolerService>().AsSingle();
+            Container.Bind<IDoorPoolerService>().To<DoorPoolerService>().AsSingle();
         }
 
         private void BindGameplayServices()

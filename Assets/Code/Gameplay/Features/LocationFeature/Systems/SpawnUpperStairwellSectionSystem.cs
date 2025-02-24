@@ -38,9 +38,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 Vector3 upperSectionOrigin = section.Transform.position;
                 upperSectionOrigin.y += _staticDataService.GameplayConstantsConfig._stairwellSectionVerticalOffset;
-                
-                // var upperSection = _locationSegmentFactory.CreateLocationSegment(LocationSegmentID.Stairwell,
-                //     upperSectionOrigin, section.Transform.rotation);
+                 
                 var upperSection = _locationSegmentPoolerService.GetPool(LocationSegmentID.Stairwell).Get();
                 upperSection.AddVectorSpawnPoint(upperSectionOrigin);
                 upperSection.AddRotationSpawnPoint(section.Transform.rotation);
@@ -49,12 +47,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 
                 section.AddUpperStairwellID(upperSection.Id);
 
-                upperSection.AddLowerStairwellID(section.Id);
-                
-                // Попробую не чистить, авось сэкономлю на спичках
-                // section.TriggerEventService.StayingEntities.Clear(); 
-                
-                //Debug.Log("Spawned upper segment " + upperSection.Id);
+                upperSection.AddLowerStairwellID(section.Id); 
             }
         }
     }

@@ -22,11 +22,6 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (LocationSegmentID segmentID in Enum.GetValues(typeof(LocationSegmentID)))
             {
-                // Totally unsafe lol
-                // int count = _staticDataService.LocationSegmentsCountInPoolConfig.SegmentCount.ContainsKey(segmentID)
-                //     ? _staticDataService.LocationSegmentsCountInPoolConfig.SegmentCount[segmentID]
-                //     : 2;
-                
                 int count = _staticDataService.LocationSegmentsCountInPoolConfig.SegmentCount[(int)segmentID];
                 
                 List<GameEntity> poolShit = new(count);

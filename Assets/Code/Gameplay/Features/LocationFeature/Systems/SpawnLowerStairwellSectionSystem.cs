@@ -39,9 +39,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 Vector3 lowerSectionOrigin = section.Transform.position;
                 lowerSectionOrigin.y -= _staticDataService.GameplayConstantsConfig._stairwellSectionVerticalOffset;
-
-                // _locationSegmentFactory.CreateLocationSegment(LocationSegmentID.Stairwell,
-                //     lowerSectionOrigin, section.Transform.rotation);
+ 
                 var lowerSection = _locationSegmentPoolerService.GetPool(LocationSegmentID.Stairwell).Get();
                 lowerSection.AddVectorSpawnPoint(lowerSectionOrigin);
                 lowerSection.AddRotationSpawnPoint(section.Transform.rotation);
@@ -52,11 +50,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 section.AddLowerStairwellID(lowerSection.Id);
 
                 lowerSection.AddUpperStairwellID(section.Id);
-
-                // Экономия на спичках
-                // section.TriggerEventService.GetEnteredEntities((int)StairwellColliderType.Lower).Clear();
-
-                // Debug.Log("Spawned lower segment " + lowerSection.Id);
+ 
             }
         }
     }

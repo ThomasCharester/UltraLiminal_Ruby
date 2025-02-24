@@ -19,10 +19,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
         public void Initialize()
         {
-            // GameEntity firstSegment = _locationSegmentFactory.CreateRandomLocationSegment(
-            //     Vector3.zero, 
-            //     Quaternion.identity);// КОНФИГИИИИИИ
-
+            // TODO вынести рандом
             GameEntity firstSegment = _locationSegmentPoolerService.GetPool(
                     (LocationSegmentID)Random.Range(0,
                         System.Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max()))

@@ -29,8 +29,10 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (var heOnTheBall in _themOnTheBall.GetEntities(buffer))
             {
+                // TODO вынести рандом
                 LocationSegmentID segmentID =
                     (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());// + 1);
+                
                 Vector3 segmentOriginPosition = heOnTheBall.Transform.position;
 
                 GameEntity locationSegment = _locationSegmentPoolerService.GetPool(segmentID).Get();
@@ -77,16 +79,6 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
 
                 segmentOriginPosition.y -= randomDoorOriginPosition.y;
 
-                // Debug.Log("///////////////////////////////////////////////");
-                // Debug.Log("segmentOriginPosition " + segmentOriginPosition);
-                // Debug.Log("randomDoorOriginPosition " + randomDoorOriginPosition);
-                // Debug.Log("heOnTheBall.Transform.position " + heOnTheBall.Transform.position);
-                // Debug.Log("===============================================");
-                // Debug.Log("randomDoorOriginRotation " + randomDoorOriginRotation.eulerAngles.y);
-                // Debug.Log("realOnTheBall " + heOnTheBallRotation);
-                // Debug.Log("segmentOriginYRotation " + segmentOriginYRotation);
-                // Debug.Log("///////////////////////////////////////////////");
-
                 locationSegment.ReplaceVectorSpawnPoint(segmentOriginPosition);
                 locationSegment.ReplaceRotationSpawnPoint(Quaternion.Euler(0, segmentOriginYRotation, 0));
                 locationSegment.isNeedSomeDoors = true;
@@ -99,9 +91,6 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
                 heOnTheBall.AddSlaveLocationSegment(locationSegment.Id);
                 heOnTheBall.ReplaceSlaveSegmentDoorOriginYRotation(frameOnTheBallRotation);
                 heOnTheBall.isGotOnTheBall = false;
-                
-                /////////////////////////////////
-                
             }
         }
     }

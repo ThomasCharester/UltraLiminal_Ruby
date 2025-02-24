@@ -34,8 +34,6 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 .AddViewPrefab(_staticDataService.GetDoorConfig(segmentID).doorPrefab)
                 .With(x => x.isDoorOff = true)
                 .With(x => x.isActiveOnScene = true);
-            //.AddVectorSpawnPoint(originPosition)
-            //.AddRotationSpawnPoint(originRotation)
         }
 
         public GameEntity
@@ -70,6 +68,7 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 if (trueSegmentRotation > 305f) trueSegmentRotation -= 360f;
                 else if (trueSegmentRotation < -45f) trueSegmentRotation += 360f;
 
+                
                 // Как бы заменить на перемножение синусов и косинусов
                 if (trueSegmentRotation is > -45f and < 45f)
                 {
@@ -103,14 +102,7 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                     .AddVectorSpawnPoint(trueDoorOrigin)
                     .AddRotationSpawnPoint(trueDoorRotation);
 
-                //var frame = CreateDoorFrame(trueDoorOrigin, trueDoorRotation, segmentID);
-
                 trueDoorOrigin.y += _staticDataService.GameplayConstantsConfig._doorFrameVerticalOffset;
-
-                // Конечно рандом нужно вынести наверное
-                // CreateDoor((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length),
-                //     trueDoorOrigin,
-                //     trueDoorRotation, frame.Id);
 
                 GameEntity door = _doorPoolerService
                     .GetPool((DoorID)Random.Range(1, Enum.GetValues(typeof(DoorID)).Length)).Get();
@@ -118,15 +110,6 @@ namespace Code.Gameplay.Features.LocationFeature.Factories
                 door.AddOwnerFrame(frame.Id)
                     .AddHingeJointAnchorPosition(trueDoorOrigin)
                     .AddHingeJointAnchorRotation(trueDoorRotation);
-                // Debug.Log("///////////////////////////////////////////////");
-                // Debug.Log("trueDoorOrigin " + trueDoorOrigin);
-                // Debug.Log("segmentOrigin.position " + segmentOrigin.position);
-                // Debug.Log("doorOrigin.localPosition " + doorOrigin.localPosition);
-                // Debug.Log("===============================================");
-                // Debug.Log("trueRotation " + trueDoorRotation.eulerAngles.y);
-                // Debug.Log("doorOrigin.rotation.y " + doorOrigin.rotation.eulerAngles.y);
-                // Debug.Log("segmentOriginRotation " + trueSegmentRotation);
-                // Debug.Log("///////////////////////////////////////////////");
             }
         }
     }

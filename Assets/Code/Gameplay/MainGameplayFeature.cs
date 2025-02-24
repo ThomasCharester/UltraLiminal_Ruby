@@ -32,7 +32,7 @@ namespace Code.Gameplay
             Add(systems.Create<PlayerFeature>());
             Add(systems.Create<CameraFeature>());
             Add(systems.Create<ItemsFeature>());
-            //Add(systems.Create<NPCFeature>()); ...
+            //Add(systems.Create<NPCFeature>()); ... Переписать полностью
             
             Add(systems.Create<ProcessDestructFeature>());
         }

@@ -22,12 +22,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
         {
             foreach (DoorID segmentID in Enum.GetValues(typeof(DoorID)))
             {
-                // Totally unsafe lol
-                // int count = _staticDataService.LocationSegmentsCountInPoolConfig.SegmentCount.ContainsKey(segmentID)
-                //     ? _staticDataService.LocationSegmentsCountInPoolConfig.SegmentCount[segmentID]
-                //     : 2;
-                
-                // Сделай конфиг
+                // TODO Сделай конфиг
                 int count = 5;
                 
                 List<GameEntity> poolShit = new(count);

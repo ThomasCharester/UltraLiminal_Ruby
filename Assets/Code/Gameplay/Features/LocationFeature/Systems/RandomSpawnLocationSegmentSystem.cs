@@ -31,7 +31,7 @@ namespace Code.Gameplay.Features.LocationFeature.Systems
             {
                 // TODO вынести рандом
                 LocationSegmentID segmentID =
-                    (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max());// + 1);
+                    (LocationSegmentID)Random.Range(0, Enum.GetValues(typeof(LocationSegmentID)).Cast<int>().Max() + 1);
                 
                 Vector3 segmentOriginPosition = heOnTheBall.Transform.position;
 
